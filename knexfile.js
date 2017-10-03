@@ -9,7 +9,8 @@ module.exports = {
 		connection: {
 			filename: './build/dev.sqlite3'
 		},
-		migrations: migrations
+		migrations: migrations,
+		useNullAsDefault: true
 	},
 	production: {
 		client: 'mysql',

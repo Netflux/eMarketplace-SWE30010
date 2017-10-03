@@ -10,8 +10,8 @@ eMarketplace powered by Angular 1 and NodeJS.
 ## Installation
 1. Clone the repository using `git clone https://github.com/Netflux/eMarketplace-SWE30010.git`.
 2. Install NPM dependencies using `npm install`.
-3. Run database migrations using `npm run migrate`.
-4. Compile the client/server files using `npm run build`.
+3. Compile the client/server files using `npm run build`.
+4. Run database migrations using `npm run migrate`.
 5. Start the server using `npm start`. The default port is 3000.
 
 ## Commands
