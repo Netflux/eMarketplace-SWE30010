@@ -7,8 +7,10 @@
     "clean": "rimraf build static/js static/css",
     "lint": "eslint src",
     "watch": "webpack --config webpack.config.dev.js --watch",
-    "build-dev": "webpack --config webpack.config.dev.js",
-    "start-dev": "node build/server-bundle.js",
+	"migrate-dev": "cross-env NODE_ENV='development' knex migrate:latest",
+    "build-dev": "cross-env NODE_ENV='development' webpack --config webpack.config.dev.js",
+    "start-dev": "cross-env NODE_ENV='development' node build/server-bundle.js",
+	"migrate": "cross-env NODE_ENV='production' knex migrate:latest",
     "build": "cross-env NODE_ENV='production' webpack --config webpack.config.prod.js",
     "start": "cross-env NODE_ENV='production' node build/server-bundle.js"
   },
@@ -36,5 +38,12 @@
     "rimraf": "^2.6.2",
     "webpack": "^3.6.0",
     "webpack-node-externals": "^1.6.0"
+  },
+  "dependencies": {
+    "express": "^4.16.1",
+    "helmet": "^3.8.2",
+    "knex": "^0.13.0",
+    "mysql2": "^1.4.2",
+    "sqlite3": "^3.1.13"
   }
 }
