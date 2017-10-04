@@ -40,16 +40,16 @@ const setupAuth = app => {
 	// Allow persistent sessions by providing serialize/deserialize methods for user accounts
 	Passport.serializeUser((user, done) => done(null, user.userId))
 	Passport.deserializeUser((id, done) => findUserById(id).asCallback((err, user) => {
-		if (err) { done(err) }
+		if (err) { return done(err) }
 		done(null, user)
 	}))
 
 	// Setup the LocalStrategy for login authentication
 	Passport.use(new LocalStrategy((username, password, done) => {
 		findUserByUsername(username).asCallback((err, user) => {
-			if (err) { done(null, false) }
+			if (err || !user) { return done(null, false) }
 			verifyPassword(password, user.password).then(res => {
-				if (!res) { done(null, false) }
+				if (!res) { return done(null, false) }
 				done(null, user)
 			})
 		})
