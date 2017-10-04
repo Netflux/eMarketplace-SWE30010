@@ -4,7 +4,7 @@ import LocalStrategy from 'passport-local'
 import KnexSessionStore from 'connect-session-knex'
 import Crypto from 'crypto'
 
-import db from './database'
+import db from 'server/database'
 
 const hashPassword = password => new Promise((resolve, reject) => {
 	Crypto.randomBytes(16, (err, salt) => {

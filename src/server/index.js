@@ -3,8 +3,8 @@ import Express from 'express'
 import Helmet from 'helmet'
 import BodyParser from 'body-parser'
 
-import { setupAuth } from './auth'
-import { apiRouter, webRouter } from './routes'
+import { setupAuth } from 'server/auth'
+import { apiRouter, webRouter } from 'server/routes'
 
 // Create a new instance of the Express application
 const app = Express()

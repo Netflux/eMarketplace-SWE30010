@@ -1,6 +1,6 @@
 import { check } from 'express-validator/check'
 
-import db from '../../../database'
+import db from 'server/database'
 
 const loginUsername = check('username')
 	.trim()
