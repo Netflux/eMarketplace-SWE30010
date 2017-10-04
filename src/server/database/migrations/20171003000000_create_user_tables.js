@@ -1,28 +1,23 @@
 exports.up = knex => {
-	const createUserTable = () => knex.schema.raw(`
-		CREATE TABLE IF NOT EXISTS User (
-			userId UNSIGNED INT AUTO_INCREMENT NOT NULL,
-			username VARCHAR(255) NOT NULL,
-			password VARCHAR(255) NOT NULL,
-			email VARCHAR(255) NOT NULL,
-			newsletter UNSIGNED TINYINT NOT NULL,
-			role UNSIGNED TINYINT NOT NULL,
-			PRIMARY KEY (userId)
-		)
-	`)
-	const createUserAddressTable = () => knex.schema.raw(`
-		CREATE TABLE IF NOT EXISTS UserAddress (
-			userId UNSIGNED INT NOT NULL,
-			name VARCHAR(255) NOT NULL,
-			street VARCHAR(255) NOT NULL,
-			city VARCHAR(255) NOT NULL,
-			state VARCHAR(255) NOT NULL,
-			zip VARCHAR(255) NOT NULL,
-			phone VARCHAR(255) NOT NULL,
-			PRIMARY KEY (userId),
-			FOREIGN KEY (userId) REFERENCES User(userId)
-		)
-	`)
+	const createUserTable = () => knex.schema.createTable('User', table => {
+		table.increments('userId').unsigned().notNullable()
+		table.string('username').notNullable()
+		table.string('password').notNullable()
+		table.string('email').notNullable()
+		table.integer('newsletter').unsigned().notNullable()
+		table.integer('role').unsigned().notNullable()
+		table.unique(['username', 'email'])
+	})
+	const createUserAddressTable = () => knex.schema.createTable('UserAddress', table => {
+		table.integer('userId').unsigned().notNullable().references('userId').inTable('User')
+		table.string('name').notNullable()
+		table.string('street').notNullable()
+		table.string('city').notNullable()
+		table.string('state').notNullable()
+		table.string('zip').notNullable()
+		table.string('phone').notNullable()
+		table.primary('userId')
+	})
 
 	return createUserTable().then(createUserAddressTable)
 }

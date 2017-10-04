@@ -1,15 +1,11 @@
 exports.up = knex => {
-	const createHomeBannerTable = () => knex.schema.raw(`
-		CREATE TABLE IF NOT EXISTS \`Order\` (
-			homeBannerId UNSIGNED INT AUTO_INCREMENT NOT NULL,
-			userId UNSIGNED INT NOT NULL,
-			imageUrl VARCHAR(255) NOT NULL,
-			validFrom UNSIGNED INT NOT NULL,
-			validTo UNSIGNED INT,
-			PRIMARY KEY (homeBannerId, userId),
-			FOREIGN KEY (userId) REFERENCES User(userId)
-		)
-	`)
+	const createHomeBannerTable = () => knex.schema.createTable('HomeBanner', table => {
+		table.increments('homeBannerId').unsigned().notNullable()
+		table.integer('userId').unsigned().notNullable().references('userId').inTable('User')
+		table.string('imageUrl').notNullable()
+		table.integer('validFrom').unsigned().notNullable()
+		table.integer('validTo').unsigned()
+	})
 
 	return createHomeBannerTable()
 }

@@ -1,7 +1,9 @@
 import Express from 'express'
 
+import userRouter from './users'
+
 const router = Express.Router()
 
-// TODO - Add API routes
+router.use('/users', userRouter)
 
 export default router
