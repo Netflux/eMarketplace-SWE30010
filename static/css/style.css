@@ -295,3 +295,34 @@ footer {
 }
 
 /********************************* end of basket.html style ************************************/
+
+
+/********************************* checkout.html style ************************************/
+
+.flatButtonCHK{
+    border: 0;
+    font-size: 16px;
+    line-height: 38px;
+    background-color: #9c7242;
+    width: 50%;
+    color: white;
+    text-transform: uppercase;
+}
+
+.widthCtrl{
+    width: 100%;
+}
+
+.totalTXT{
+    width: 25%;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.totalAmount{
+    width: 25%; 
+    font-size: 25px;
+    font-weight: 700;
+}
+
+/********************************* end of checkout.html style ************************************/
