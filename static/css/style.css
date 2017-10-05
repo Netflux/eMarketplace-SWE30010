@@ -7,6 +7,17 @@
 
 body {
     font-family:"Futura Std", sans-serif;
+    background-color:#f4f4f4;
+}
+
+a{
+    color: black;
+}
+
+a:hover {
+    color: #9c7242;
+    text-decoration: none;
+   /* -webkit-transform: scale(2);*/
 }
 
 .nopadding {
@@ -14,8 +25,50 @@ body {
     padding:0;
 }
 
-.margintop{
-    margin-top: 1%;
+.col-xs-5ths,
+.col-sm-5ths,
+.col-md-5ths,
+.col-lg-5ths {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.col-xs-5ths {
+    width: 20%;
+    float: left;
+}
+
+@media (min-width: 768px) {
+    .col-sm-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-md-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-lg-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+
+.categorygridviewcontainer, .categorylistviewcontainer, .productlistcontainer, .productinfo{
+    background-color:white;
+    padding: 3%;
+    box-shadow: rgba(0,0,0,0.1) 0px 0px 3px 2px;
+}
+.productlistfiltercontainer, .productimage, .productinfocontainer ,.productsellercontainer {
+    background-color:white;
 }
 
 /******************************** End of General Style ********************************/
@@ -75,77 +128,98 @@ footer {
 }
 
 #footercontainer {
-     padding-top: 10%;
+    padding-top: 10%;
     padding-bottom: 10%;
 }
 
+
 /******************************* End of index.html Style *******************************/
 
-
-
-/********************************* login.html style ************************************/
-
-
-.smallPrintLogin{
-    font-size: 10px;
+/********************************* category.html Style *********************************/
+.listviewalphabet {
+    width:100%;
+    display:flex;
+    margin: 1% 0 3% 0;
 }
 
-.loginbtn{
-    margin-left: 1%;
+.listviewalphabet a {
+    flex:1;
+    display:inline-block;
+    text-align:center;
+}
+
+.listviewhr{
+    margin-bottom:1%;
+}
+
+/***************************** End of category.html Style ******************************/
+
+/********************************** product.html Style *********************************/
+#craftbanner {
+    width:100%;
+}
+
+.productimage {
+    width:100%;
+    box-shadow: rgba(0,0,0,0.1) 0px 0px 3px 2px;
+}
+
+.productinfocontainer{
+    box-shadow: rgba(0,0,0,0.1) 0px 0px 3px 2px;
+    padding-bottom: 20%;
+}
+
+#profilepicture {
+    width:25%;
+}
+
+.productlistcontainer{
+    margin-top: 3%;
+}
+
+.productcontainer{
+    margin-bottom: 2%;
+    padding-right: 1%;
+    padding-left: 1%;
+}
+
+.productbox{
+    box-shadow: rgba(0,0,0,0.1) 0px 0px 3px 2px;
+    padding:10%;
+}
+.productbox img {
+    width:100%;
+}
+
+.productsellercontainer {
+    box-shadow: rgba(0,0,0,0.1) 0px 0px 3px 2px;
+}
+.productsellerinfo div:nth-child(2), .productsellerinfo div:nth-child(3), .productsellerinfo div:nth-child(4){
+    margin-top:3%;
+    border-left: 1px solid black;
+    
+}
+
+.sellerinfobox {
     margin-top: 2%;
-    border: 0;
-    font-size: 16px;
-    line-height: 38px;
-    background-color: #9c7242;
-    width: 30%;
-    color: white;
-    text-transform: uppercase;
+    text-align:center;
 }
 
-/******************************* End of login.html Style *******************************/
-
-
-
-/********************************* signup.html style ************************************/
-
-.smallPrintSignup{
-    font-size: 10px;
-    position: relative;
-    left: 1%
-}
-
-.signupFont{
-    font-size: 16px;
-}
-
-.signupbtn{
-    margin-left: 1%;
-    border: 0;
-    font-size: 16px;
-    line-height: 38px;
-    background-color: #9c7242;
-    width: 20%;
-    color: white;
-    text-transform: uppercase;
-}
-
-/********************************* end of signup.html style ************************************/
-
-
-/********************************* basket.html style ************************************/
-
-.moreMargintop{
-    margin-top: 10%
-}
-
-.flatButton{
-    border: 0;
-    font-size: 16px;
-    line-height: 38px;
-    background-color: #9c7242;
+.sellerinfobox img{
     width: 100%;
-    color: white;
-    text-transform: uppercase;
 }
 
-/********************************* end of basket.html style ************************************/
+.productinfo2 li:nth-child(1) {
+    margin-left:8%;
+}
+
+.productinfo2content {
+    background-color: #f4f4f4;
+    padding: 2% 8% 2% 8%;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
+    color:black;
+    background-color:#f4f4f4;        
+} 
+/******************************** End of product.html Style ********************************/
