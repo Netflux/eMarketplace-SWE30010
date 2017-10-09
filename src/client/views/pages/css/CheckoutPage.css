@@ -1,0 +1,19 @@
+.flatButtonCHK {
+    border: 0;
+    font-size: 16px;
+    line-height: 38px;
+    background-color: #9c7242;
+    width: 50%;
+    color: white;
+    text-transform: uppercase;
+}
+
+.totalTXT {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.totalAmount {
+    font-size: 25px;
+    font-weight: 700;
+}

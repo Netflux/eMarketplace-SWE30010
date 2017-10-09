@@ -1,0 +1,15 @@
+.smallPrintLogin {
+    font-size: 10px;
+}
+
+.loginbtn {
+    margin-left: 1%;
+    margin-top: 2%;
+    border: 0;
+    font-size: 16px;
+    line-height: 38px;
+    background-color: #9c7242;
+    width: 30%;
+    color: white;
+    text-transform: uppercase;
+}

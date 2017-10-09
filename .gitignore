@@ -1,7 +1,7 @@
 # Compiled Code
 build/
 static/js/
-static/css/styles.css
+static/css/
 
 # Logs
 logs

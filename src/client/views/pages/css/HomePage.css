@@ -1,0 +1,14 @@
+#banner {
+    width:90%;
+    display: block;
+    margin: auto;
+}
+
+.categorycontainer {
+    margin-top: 2%;
+}
+
+.categorybox img {
+    padding: 5%;
+    width:100%;
+}

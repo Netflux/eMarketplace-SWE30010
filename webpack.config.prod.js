@@ -37,7 +37,8 @@ const client = {
 						{
 							loader: 'clean-css-loader',
 							options: {
-								level: 2
+								level: 2,
+								inline: ['none']
 							}
 						}
 					]

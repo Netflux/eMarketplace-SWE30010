@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css?family=Oxygen:400,700');
+
+body {
+    font-family: 'Oxygen', sans-serif;
+    background-color:#f4f4f4;
+}
+
+a {
+    color: black;
+}
+
+a:hover {
+    color: #9c7242;
+    text-decoration: none;
+}
+
+.nopadding {
+    margin:0;
+    padding:0;
+}
+
+.margintop {
+    margin-top: 1%;
+}
+
+.col-xs-5ths,
+.col-sm-5ths,
+.col-md-5ths,
+.col-lg-5ths {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.col-xs-5ths {
+    width: 20%;
+    float: left;
+}
+
+@media (min-width: 768px) {
+    .col-sm-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-md-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-lg-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+.categorygridviewcontainer, .categorylistviewcontainer, .productlistcontainer, .productinfo {
+    background-color:white;
+    padding: 3%;
+    box-shadow: rgba(0,0,0,0.1) 0px 0px 3px 2px;
+}
+
+.productlistfiltercontainer, .productimage, .productinfocontainer ,.productsellercontainer {
+    background-color:white;
+}
