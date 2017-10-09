@@ -7,7 +7,7 @@ const productId = check('productId')
 
 const productKey = check('productKey')
 	.trim()
-	.matches(/^[A-Za-z0-9_\-]+$/)
+	.matches(/^[A-Za-z0-9_-]+$/)
 	.escape()
 
 const title = check('title')
