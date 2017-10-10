@@ -1,3 +1,6 @@
+require('app-module-path').addPath('src')
+require('babel-register')
+
 const migrations = {
 	directory: './src/server/database/migrations',
 	tableName: 'knex_migrations'
@@ -10,6 +13,7 @@ module.exports = {
 			filename: './build/dev.sqlite3'
 		},
 		migrations: migrations,
+		seeds: { directory: './src/server/database/seeds/dev' },
 		useNullAsDefault: true
 	},
 	production: {
@@ -24,6 +28,7 @@ module.exports = {
 			min: 2,
 			max: 10
 		},
-		migrations: migrations
+		migrations: migrations,
+		seeds: { directory: './src/server/database/seeds' }
 	}
 }

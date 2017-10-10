@@ -21,6 +21,7 @@ const userValidation = (req, res, next) => {
 router.get('/', (req, res) => {
 	db('Product')
 		.innerJoin('ProductStock', 'ProductStock.productKey', 'Product.productKey')
+		.innerJoin('ProductCategory', 'ProductCategory.productKey', 'Product.productKey')
 		.whereNull('validTo')
 		.then(rows => {
 			res.status(200).json({ data: rows })

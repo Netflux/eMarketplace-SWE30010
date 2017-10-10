@@ -11,7 +11,7 @@ eMarketplace powered by Angular 1 and NodeJS.
 1. Clone the repository using `git clone https://github.com/Netflux/eMarketplace-SWE30010.git`.
 2. Install NPM dependencies using `npm install`.
 3. Compile the client/server files using `npm run build`.
-4. Run database migrations using `npm run migrate`.
+4. Run database migrations using `npm run migrate`. Optionally, seed the database using `npm run seed`.
 5. Start the server using `npm start`. The default port is 3000.
 
 ## Commands
@@ -21,11 +21,13 @@ eMarketplace powered by Angular 1 and NodeJS.
 | `npm run lint`    | Run code linting (uses ESLint)                                    |
 | `npm run watch`   | Watch code and automatically rebuild on change                    |
 | `npm run migrate` | Run the database migrations                                       |
+| `npm run seed`    | Run the database seeds                                            |
 | `npm run build`   | Build client/server bundles                                       |
 | `npm run start`   | Run the server                                                    |
 
-The `migrate`, `build` and `start` commands can be appended with `-dev` to run in development mode:
+The `migrate`, `seed`, `build` and `start` commands can be appended with `-dev` to run in development mode:
 * `npm run migrate-dev`
+* `npm run seed-dev`
 * `npm run build-dev`
 * `npm run start-dev`
 

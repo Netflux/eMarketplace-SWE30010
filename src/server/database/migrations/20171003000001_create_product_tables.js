@@ -23,13 +23,16 @@ exports.up = knex => {
 		table.integer('validFrom').unsigned().notNullable()
 		table.integer('validTo').unsigned()
 	})
-	const createProductCategoryTable = () => knex.schema.createTable('ProductCategory', table => {
-		table.increments('productCategoryId').unsigned().notNullable()
-		table.string('productKey').notNullable().references('productKey').inTable('Product')
+	const createCategoryTable = () => knex.schema.createTable('Category', table => {
+		table.increments('categoryId').unsigned().notNullable()
 		table.string('title').notNullable()
 		table.string('imageUrl').notNullable()
 		table.integer('validFrom').unsigned().notNullable()
 		table.integer('validTo').unsigned()
+	})
+	const createProductCategoryTable = () => knex.schema.createTable('ProductCategory', table => {
+		table.integer('categoryId').unsigned().notNullable().references('categoryId').inTable('Category')
+		table.string('productKey').notNullable().references('productKey').inTable('Product')
 	})
 	const createProductReviewTable = () => knex.schema.createTable('ProductReview', table => {
 		table.string('productKey').notNullable().references('productKey').inTable('Product')
@@ -44,6 +47,7 @@ exports.up = knex => {
 	return createProductTable()
 		.then(createProductStockTable)
 		.then(createProductImageTable)
+		.then(createCategoryTable)
 		.then(createProductCategoryTable)
 		.then(createProductReviewTable)
 }
@@ -51,12 +55,15 @@ exports.up = knex => {
 exports.down = knex => {
 	const dropProductReviewTable = () => knex.schema.dropTable('ProductReview')
 	const dropProductCategoryTable = () => knex.schema.dropTable('ProductCategory')
+	const dropCategoryTable = () => knex.schema.dropTable('Category')
 	const dropProductImageTable = () => knex.schema.dropTable('ProductImage')
 	const dropProductStockTable = () => knex.schema.droppTable('ProductStock')
 	const dropProductTable = () => knex.schema.dropTable('Product')
 
 	return dropProductReviewTable()
+		.then(dropProductReviewTable)
 		.then(dropProductCategoryTable)
+		.then(dropCategoryTable)
 		.then(dropProductImageTable)
 		.then(dropProductStockTable)
 		.then(dropProductTable)

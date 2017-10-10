@@ -1,0 +1,93 @@
+const productList = [
+	{
+		productId: 1,
+		userId: 1,
+		productKey: 'ProductKey1',
+		title: 'Product Title 1',
+		description: 'Product Description 1',
+		price: 50.00,
+		shippingPrice: 25.00,
+		discount: 10,
+		validFrom: 0
+	},
+	{
+		productId: 2,
+		userId: 1,
+		productKey: 'ProductKey2',
+		title: 'Product Title 2',
+		description: 'Product Description 2',
+		price: 25.50,
+		shippingPrice: 10.25,
+		discount: 0,
+		validFrom: 0
+	},
+	{
+		productId: 3,
+		userId: 1,
+		productKey: 'ProductKey3',
+		title: 'Product Title 3',
+		description: 'Product Description 3',
+		price: 77.77,
+		shippingPrice: 33.33,
+		discount: 50,
+		validFrom: 0
+	}
+]
+const productStockList = [
+	{
+		productKey: 'ProductKey1',
+		stock: 100
+	},
+	{
+		productKey: 'ProductKey2',
+		stock: 0
+	},
+	{
+		productKey: 'ProductKey3',
+		stock: 15
+	}
+]
+const categoryList = [
+	{
+		categoryId: 1,
+		title: 'Category 1',
+		imageUrl: '/',
+		validFrom: 0
+	},
+	{
+		categoryId: 2,
+		title: 'Category 2',
+		imageUrl: '/',
+		validFrom: 0
+	},
+	{
+		categoryId: 3,
+		title: 'Category 3',
+		imageUrl: '/',
+		validFrom: 0
+	}
+]
+const productCategoryList = [
+	{
+		categoryId: 1,
+		productKey: 'ProductKey1'
+	},
+	{
+		categoryId: 2,
+		productKey: 'ProductKey2'
+	},
+	{
+		categoryId: 2,
+		productKey: 'ProductKey3'
+	}
+]
+
+exports.seed = (knex, Promise) => {
+	return knex('Product').del()
+		.then(() => knex('ProductStock').del())
+		.then(() => knex('ProductCategory').del())
+		.then(hash => knex('Product').insert(productList))
+		.then(rows => knex('ProductStock').insert(productStockList))
+		.then(rows => knex('Category').insert(categoryList))
+		.then(rows => knex('ProductCategory').insert(productCategoryList))
+}
