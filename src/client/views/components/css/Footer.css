@@ -5,10 +5,15 @@ footer {
 }
 
 #subscriptioncontainer {
-    background-color: #9c7242;
+    background-image: url("https://www.danielwellington.com/media/staticbucket/media/theme/default/footer-gold.jpg");
     text-align: center;
     padding-top: 8%;
     padding-bottom: 8%;
+}
+
+.subscribeform {
+	margin-left:35%;
+	margin-right:35%;
 }
 
 #footercontainer {

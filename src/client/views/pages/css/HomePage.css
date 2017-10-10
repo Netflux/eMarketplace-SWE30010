@@ -4,11 +4,33 @@
     margin: auto;
 }
 
-.categorycontainer {
-    margin-top: 2%;
+.categorycontainerhome{
+    margin-left:6%;
+    margin-right:6%;
 }
 
 .categorybox img {
     padding: 5%;
     width:100%;
+}
+
+.contentcontainerhome{
+    margin-top:2%;
+}
+
+.trendingcontainer {
+    margin-left:6%;
+    margin-right:6%;
+}
+
+.trendingcontainer img{
+    width:100%;
+}
+
+#trendingbanner1, #trendingbanner2{
+    margin-bottom:2%;
+}
+
+#trendingbanner3{
+    padding:0;
 }
