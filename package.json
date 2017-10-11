@@ -8,11 +8,11 @@
     "lint": "eslint src",
     "watch": "webpack --config webpack.config.dev.js --watch",
     "migrate-dev": "cross-env NODE_ENV='development' knex migrate:latest",
-	"seed-dev": "cross-env NODE_ENV='development' knex seed:run",
+    "seed-dev": "cross-env NODE_ENV='development' knex seed:run",
     "build-dev": "cross-env NODE_ENV='development' webpack --config webpack.config.dev.js",
     "start-dev": "cross-env NODE_ENV='development' node build/server-bundle.js",
     "migrate": "cross-env NODE_ENV='production' knex migrate:latest",
-	"seed": "cross-env NODE_ENV='production' knex seed:run",
+    "seed": "cross-env NODE_ENV='production' knex seed:run",
     "build": "cross-env NODE_ENV='production' webpack --config webpack.config.prod.js",
     "start": "cross-env NODE_ENV='production' node build/server-bundle.js"
   },
