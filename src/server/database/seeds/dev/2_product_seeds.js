@@ -1,3 +1,23 @@
+const categoryList = [
+	{
+		categoryId: 1,
+		title: 'Category 1',
+		imageUrl: '/',
+		validFrom: 0
+	},
+	{
+		categoryId: 2,
+		title: 'Category 2',
+		imageUrl: '/',
+		validFrom: 0
+	},
+	{
+		categoryId: 3,
+		title: 'Category 3',
+		imageUrl: '/',
+		validFrom: 0
+	}
+]
 const productList = [
 	{
 		productId: 1,
@@ -47,47 +67,12 @@ const productStockList = [
 		stock: 15
 	}
 ]
-const categoryList = [
-	{
-		categoryId: 1,
-		title: 'Category 1',
-		imageUrl: '/',
-		validFrom: 0
-	},
-	{
-		categoryId: 2,
-		title: 'Category 2',
-		imageUrl: '/',
-		validFrom: 0
-	},
-	{
-		categoryId: 3,
-		title: 'Category 3',
-		imageUrl: '/',
-		validFrom: 0
-	}
-]
-const productCategoryList = [
-	{
-		categoryId: 1,
-		productKey: 'ProductKey1'
-	},
-	{
-		categoryId: 2,
-		productKey: 'ProductKey2'
-	},
-	{
-		categoryId: 2,
-		productKey: 'ProductKey3'
-	}
-]
 
 exports.seed = (knex, Promise) => {
-	return knex('Product').del()
-		.then(() => knex('ProductStock').del())
-		.then(() => knex('ProductCategory').del())
+	return knex('ProductStock').del()
+		.then(() => knex('Product').del())
+		.then(() => knex('Category').del())
+		.then(rows => knex('Category').insert(categoryList))
 		.then(hash => knex('Product').insert(productList))
 		.then(rows => knex('ProductStock').insert(productStockList))
-		.then(rows => knex('Category').insert(categoryList))
-		.then(rows => knex('ProductCategory').insert(productCategoryList))
 }
