@@ -22,6 +22,7 @@ const productList = [
 	{
 		productId: 1,
 		userId: 1,
+		categoryId: 1,
 		productKey: 'ProductKey1',
 		title: 'Product Title 1',
 		description: 'Product Description 1',
@@ -33,6 +34,7 @@ const productList = [
 	{
 		productId: 2,
 		userId: 1,
+		categoryId: 2,
 		productKey: 'ProductKey2',
 		title: 'Product Title 2',
 		description: 'Product Description 2',
@@ -44,6 +46,7 @@ const productList = [
 	{
 		productId: 3,
 		userId: 1,
+		categoryId: 2,
 		productKey: 'ProductKey3',
 		title: 'Product Title 3',
 		description: 'Product Description 3',

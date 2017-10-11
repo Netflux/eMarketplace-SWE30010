@@ -7,7 +7,7 @@ import * as validators from './validators/products'
 
 const router = Express.Router()
 
-const userValidation = (req, res, next) => {
+const validation = (req, res, next) => {
 	if (!req.user || req.user.role === 'Buyer') { return res.sendStatus(403) }
 
 	const validationErrors = validationResult(req)
@@ -21,7 +21,6 @@ const userValidation = (req, res, next) => {
 router.get('/', (req, res) => {
 	db('Product')
 		.innerJoin('ProductStock', 'ProductStock.productKey', 'Product.productKey')
-		.innerJoin('ProductCategory', 'ProductCategory.productKey', 'Product.productKey')
 		.whereNull('validTo')
 		.then(rows => {
 			res.status(200).json({ data: rows })
@@ -33,18 +32,20 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', [
+	validators.categoryId,
 	validators.title,
 	validators.description,
 	validators.price,
 	validators.shippingPrice,
 	validators.stock,
 	validators.discount,
-	userValidation
+	validation
 ], (req, res) => {
 	const productKey = ShortId.generate()
 	db.transaction(trx => trx('Product')
 		.insert({
 			userId: req.user.userId,
+			categoryId: req.body.categoryId,
 			productKey,
 			title: req.body.title,
 			description: req.body.description,
@@ -117,13 +118,14 @@ router.get('/:productKey', [
 
 router.post('/:productKey', [
 	validators.productKey,
+	validators.categoryId,
 	validators.title,
 	validators.description,
 	validators.price,
 	validators.shippingPrice,
 	validators.stock,
 	validators.discount,
-	userValidation
+	validation
 ], (req, res) => {
 	db.transaction(trx => trx('Product')
 		.where('productKey', req.params.productKey)
@@ -146,6 +148,7 @@ router.post('/:productKey', [
 		.then(() => {
 			return trx('Product')
 				.insert({
+					categoryId: req.body.categoryId,
 					productKey: req.params.productKey,
 					title: req.body.title,
 					description: req.body.description,
@@ -167,20 +170,29 @@ router.post('/:productKey', [
 
 router.delete('/:productKey', [
 	validators.productKey,
-	userValidation
+	validation
 ], (req, res) => {
-	db('Product')
+	db.transaction(trx => trx('Product')
 		.where({
 			productKey: req.params.productKey,
 			userId: req.user.userId
 		})
-		.whereNull('validTo')
-		.update('validTo', Date.now())
-		.then(response => {
-			if (!response) { return res.sendStatus(403) }
-			return res.sendStatus(204)
+		.first()
+		.then(row => {
+			if (!row) { throw new Error(422) }
+			return trx('Product')
+				.where({
+					productKey: req.params.productKey,
+					userId: req.user.userId
+				})
+				.whereNull('validTo')
+				.update('validTo', Date.now())
 		})
+		.then(() => {
+			return res.sendStatus(204)
+		}))
 		.catch(err => {
+			if (err.message === '422') { return res.sendStatus(422) }
 			console.error(err)
 			res.sendStatus(500)
 		})
