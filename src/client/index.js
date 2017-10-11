@@ -23,6 +23,7 @@ import './index.css'
 		.component('signupPage', pages.signup)
 		.component('navbar', components.navbar)
 		.component('footersection', components.footersection)
+        .component('productlist',components.productlist)
 
 	angular.module('app.routes', ['ui.router', 'app.components'])
 		.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) => {

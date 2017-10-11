@@ -32,7 +32,25 @@ export const login = {
 }
 
 export const product = {
-	templateUrl: 'templates/pages/ProductPage.html'
+	templateUrl: 'templates/pages/ProductPage.html',
+    controller:['$store','$stateParams', function($store,$stateParams){
+        this.$onDestroy = $store.subscribe(state => this.products = state.products)
+        //Error Handling here 
+        // 1. Check local cache
+        // 2. if not found, try to fetch from server
+        // 3. If still not found, show error
+        
+        // 1
+        this.product = this.products.items.find(i => i.productKey === $stateParams.productKey)
+        
+        if (!this.product) {
+            // 2
+        }
+        
+        //Fetch seller information
+        
+        
+    }]
 }
 
 export const productslist = {
