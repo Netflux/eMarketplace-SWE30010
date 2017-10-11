@@ -71,11 +71,11 @@ const productStockList = [
 	}
 ]
 
-exports.seed = (knex, Promise) => {
+exports.seed = knex => {
 	return knex('ProductStock').del()
 		.then(() => knex('Product').del())
 		.then(() => knex('Category').del())
-		.then(rows => knex('Category').insert(categoryList))
-		.then(hash => knex('Product').insert(productList))
-		.then(rows => knex('ProductStock').insert(productStockList))
+		.then(() => knex('Category').insert(categoryList))
+		.then(() => knex('Product').insert(productList))
+		.then(() => knex('ProductStock').insert(productStockList))
 }

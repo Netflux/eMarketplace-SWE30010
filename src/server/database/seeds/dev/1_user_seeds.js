@@ -1,6 +1,6 @@
 import { hashPassword } from 'server/auth'
 
-exports.seed = (knex, Promise) => {
+exports.seed = knex => {
 	return knex('User').del()
 		.then(() => hashPassword('12345678'))
 		.then(hash => knex('User').insert({

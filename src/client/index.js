@@ -1,3 +1,4 @@
+import { $store } from './logic/services'
 import * as pages from './views/pages'
 import * as components from './views/components'
 import routes from './views/routes'
@@ -7,7 +8,10 @@ import './index.css'
 (angular => {
 	'use strict'
 
-	angular.module('app.components', [])
+	angular.module('app.services', [])
+		.service('$store', $store)
+
+	angular.module('app.components', ['app.services'])
 		.component('adminPage', pages.admin)
 		.component('basketPage', pages.basket)
 		.component('categoryPage', pages.category)
@@ -26,5 +30,5 @@ import './index.css'
 			$urlRouterProvider.otherwise('/')
 		}])
 
-	angular.module('app', ['app.routes'])
+	angular.module('app', ['app.services', 'app.routes'])
 })(window.angular)

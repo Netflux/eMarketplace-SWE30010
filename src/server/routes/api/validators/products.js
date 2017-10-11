@@ -51,6 +51,7 @@ const discount = check('discount')
 
 export {
 	productId,
+	categoryId,
 	productKey,
 	title,
 	description,

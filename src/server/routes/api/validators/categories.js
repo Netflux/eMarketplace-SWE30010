@@ -11,4 +11,4 @@ const title = check('title')
 	.isLength({ min: 1, max: 255 }).withMessage('cannot exceed 255 characters')
 	.escape()
 
-export { title }
+export { categoryId, title }
