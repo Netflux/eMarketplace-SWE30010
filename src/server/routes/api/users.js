@@ -21,9 +21,7 @@ const authQuery = user => !user || user.role !== 'Administrator' ? db.select('us
 
 router.get('/', (req, res) => {
 	authQuery(req.user)
-		.then(rows => {
-			return res.status(200).json({ data: rows })
-		})
+		.then(rows => res.status(200).json({ data: rows }))
 		.catch(err => {
 			console.error(err)
 			res.sendStatus(500)
@@ -52,9 +50,7 @@ router.post('/', [
 				role: req.body.role
 			})
 		})
-		.then(() => {
-			return res.sendStatus(204)
-		})
+		.then(() => res.sendStatus(204))
 		.catch(err => {
 			console.error(err)
 			res.sendStatus(500)
@@ -126,9 +122,7 @@ router.post('/register', [
 				role: 'Buyer'
 			})
 		})
-		.then(() => {
-			return res.sendStatus(204)
-		})
+		.then(() => res.sendStatus(204))
 		.catch(err => {
 			console.error(err)
 			res.sendStatus(500)
@@ -141,9 +135,7 @@ router.get('/:userId', [
 ], (req, res) => {
 	authQuery(req.user)
 		.where('userId', req.params.userId)
-		.then(rows => {
-			return res.status(200).json({ data: rows })
-		})
+		.then(rows => res.status(200).json({ data: rows }))
 		.catch(err => {
 			console.error(err)
 			res.sendStatus(500)
@@ -163,7 +155,6 @@ router.post('/:userId', [
 	}
 
 	const fields = {
-		password: hash,
 		email: req.body.email,
 		newsletter: req.body.newsletter
 	}
@@ -173,11 +164,12 @@ router.post('/:userId', [
 		.then(hash => {
 			return db('User')
 				.where('userId', req.params.userId)
-				.update(fields)
+				.update({
+					...fields,
+					password: hash
+				})
 		})
-		.then(() => {
-			return res.sendStatus(204)
-		})
+		.then(() => res.sendStatus(204))
 		.catch(err => {
 			console.error(err)
 			res.sendStatus(500)
@@ -195,9 +187,7 @@ router.delete('/:userId', [
 	db('User')
 		.where('userId', req.params.userId)
 		.del()
-		.then(() => {
-			return res.sendStatus(204)
-		})
+		.then(() => res.sendStatus(204))
 		.catch(err => {
 			console.error(err)
 			res.sendStatus(500)

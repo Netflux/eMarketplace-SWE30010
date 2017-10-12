@@ -8,6 +8,7 @@ exports.up = knex => {
 		table.integer('orderId').unsigned().notNullable().references('orderId').inTable('Order')
 		table.integer('productId').unsigned().notNullable().references('productId').inTable('Product')
 		table.integer('quantity').unsigned().notNullable()
+		table.string('status').notNullable()
 		table.primary(['orderId', 'productId'])
 	})
 
