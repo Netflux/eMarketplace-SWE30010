@@ -24,6 +24,7 @@ import './index.css'
 		.component('navbar', components.navbar)
 		.component('footersection', components.footersection)
         .component('productlist',components.productlist)
+        .component('categories',components.categories)
 
 	angular.module('app.routes', ['ui.router', 'app.components'])
 		.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) => {

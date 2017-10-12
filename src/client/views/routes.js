@@ -36,7 +36,7 @@ const routes = [
 	},
 	{
 		name: 'products',
-		url: '/products',
+		url: '/category/:categoryId',
 		component: 'productsListPage'
 	},
 	{

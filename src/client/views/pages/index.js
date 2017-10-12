@@ -54,7 +54,22 @@ export const product = {
 }
 
 export const productslist = {
-	templateUrl: 'templates/pages/ProductsListPage.html'
+	templateUrl: 'templates/pages/ProductsListPage.html',
+    controller:['$store','$stateParams', function($store,$stateParams){
+        this.$onDestroy = $store.subscribe(state => this.categories = state.categories)
+        //Error Handling here 
+        // 1. Check local cache
+        // 2. if not found, try to fetch from server
+        // 3. If still not found, show error
+        
+        // 1
+        this.productslist = this.categories.items.find(i => i.categoryId === $stateParams.categoryId)
+        
+        if (!this.productslist) {
+            // 2
+        }
+        
+    }]
 }
 
 export const signup = {
