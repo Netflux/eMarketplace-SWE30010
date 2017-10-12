@@ -2,6 +2,12 @@ import { check } from 'express-validator/check'
 
 import db from 'server/database'
 
+const userId = check('userId')
+	.trim()
+	.isInt({ min: 0 })
+	.toInt()
+	.custom(value => db('User').where('userId', value).count('* AS count').then(rows => rows[0].count === 1)).withMessage('must be a valid user')
+
 const loginUsername = check('username')
 	.trim()
 	.isLength({ min: 6, max: 24 }).withMessage('must be 6 to 24 characters long')
@@ -71,6 +77,7 @@ const phone = check('phone')
 	.escape()
 
 export {
+	userId,
 	loginUsername,
 	username,
 	password,
