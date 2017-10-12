@@ -1,22 +1,18 @@
 import { check } from 'express-validator/check'
 
 import db from 'server/database'
+import { categoryId } from './categories'
 
 const productId = check('productId')
 	.trim()
 	.isInt({ min: 0 })
 	.toInt()
 
-const categoryId = check('categoryId')
-	.trim()
-	.isInt({ min: 0 })
-	.toInt()
-	.custom(value => db('Category').where('categoryId', value).count('* AS count').then(rows => rows[0].count === 1)).withMessage('must be a valid category')
-
 const productKey = check('productKey')
 	.trim()
 	.matches(/^[A-Za-z0-9_-]+$/)
 	.escape()
+	.custom(value => db('Product').where('productKey', value).count('* AS count').then(rows => rows[0].count !== 0)).withMessage('must be a valid product')
 
 const title = check('title')
 	.trim()

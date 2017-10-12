@@ -6,7 +6,7 @@ const userId = check('userId')
 	.trim()
 	.isInt({ min: 0 })
 	.toInt()
-	.custom(value => db('User').where('userId', value).count('* AS count').then(rows => rows[0].count === 1)).withMessage('must be a valid user')
+	.custom(value => db('User').where('userId', value).count('* AS count').then(rows => rows[0].count !== 0)).withMessage('must be a valid user')
 
 const loginUsername = check('username')
 	.trim()

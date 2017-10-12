@@ -7,9 +7,7 @@ import * as validators from './validators/basket'
 const router = Express.Router()
 
 const validation = (req, res, next) => {
-	if (!req.user) {
-		return res.sendStatus(403)
-	}
+	if (!req.user) { return res.sendStatus(403) }
 
 	const validationErrors = validationResult(req)
 	if (!validationErrors.isEmpty()) {
@@ -22,9 +20,7 @@ const validation = (req, res, next) => {
 router.get('/', validation, (req, res) => {
 	db('UserBasket')
 		.where('userId', req.user.userId)
-		.then(rows => {
-			res.status(200).json({ data: rows })
-		})
+		.then(rows => res.status(200).json({ data: rows }))
 		.catch(err => {
 			console.error(err)
 			res.sendStatus(500)
@@ -39,7 +35,7 @@ router.post('/', [
 	db.transaction(trx => trx('UserBasket')
 		.where({
 			userId: req.user.userId,
-			productKey: req.params.productKey
+			productKey: req.body.productKey
 		})
 		.first()
 		.then(row => {
@@ -50,10 +46,8 @@ router.post('/', [
 					productKey: req.body.productKey,
 					quantity: req.body.quantity
 				})
-				.then(() => {
-					return res.sendStatus(204)
-				})
-		}))
+		})
+		.then(() => res.sendStatus(204)))
 		.catch(err => {
 			if (err.message === '422') { return res.sendStatus(422) }
 			console.error(err)
@@ -81,9 +75,7 @@ router.post('/:productKey', [
 				})
 				.update('quantity', req.body.quantity)
 		})
-		.then(() => {
-			return res.sendStatus(204)
-		}))
+		.then(() => res.sendStatus(204)))
 		.catch(err => {
 			if (err.message === '422') { return res.sendStatus(422) }
 			console.error(err)
@@ -110,9 +102,7 @@ router.delete('/:productKey', [
 				})
 				.del()
 		})
-		.then(() => {
-			return res.sendStatus(204)
-		}))
+		.then(() => res.sendStatus(204)))
 		.catch(err => {
 			if (err.message === '422') { return res.sendStatus(422) }
 			console.error(err)

@@ -22,9 +22,7 @@ router.get('/', (req, res) => {
 	db('Product')
 		.innerJoin('ProductStock', 'ProductStock.productKey', 'Product.productKey')
 		.whereNull('validTo')
-		.then(rows => {
-			res.status(200).json({ data: rows })
-		})
+		.then(rows => res.status(200).json({ data: rows }))
 		.catch(err => {
 			console.error(err)
 			res.sendStatus(500)
@@ -61,9 +59,7 @@ router.post('/', [
 					stock: req.body.stock
 				})
 		})
-		.then(() => {
-			return res.sendStatus(204)
-		}))
+		.then(() => res.sendStatus(204)))
 		.catch(err => {
 			console.error(err)
 			res.sendStatus(500)
@@ -75,9 +71,7 @@ router.get('/:productKey/reviews', [
 ], (req, res) => {
 	db('ProductReview')
 		.where('productKey', req.params.productKey)
-		.then(rows => {
-			return res.status(200).json({ data: rows })
-		})
+		.then(rows => res.status(200).json({ data: rows }))
 		.catch(err => {
 			console.error(err)
 			res.sendStatus(500)
@@ -90,9 +84,7 @@ router.get('/:productKey/reviews', [
 // ], (req, res) => {
 // 	db('Discussion')
 // 		.where('productKey', req.params.productKey)
-// 		.then(rows => {
-// 			return res.status(200).json({ data: rows })
-// 		})
+// 		.then(rows => res.status(200).json({ data: rows }))
 // 		.catch(err => {
 // 			console.error(err)
 // 			res.sendStatus(500)
@@ -107,9 +99,7 @@ router.get('/:productKey', [
 		.where('Product.productKey', req.params.productKey)
 		.whereNull('validTo')
 		.first()
-		.then(row => {
-			res.status(200).json({ data: [row] })
-		})
+		.then(row => res.status(200).json({ data: [row] }))
 		.catch(err => {
 			console.error(err)
 			res.sendStatus(500)
@@ -158,9 +148,7 @@ router.post('/:productKey', [
 					validFrom: Date.now()
 				})
 		})
-		.then(() => {
-			return res.sendStatus(204)
-		}))
+		.then(() => res.sendStatus(204)))
 		.catch(err => {
 			if (err.message === '422') { return res.sendStatus(422) }
 			console.error(err)
@@ -188,9 +176,7 @@ router.delete('/:productKey', [
 				.whereNull('validTo')
 				.update('validTo', Date.now())
 		})
-		.then(() => {
-			return res.sendStatus(204)
-		}))
+		.then(() => res.sendStatus(204)))
 		.catch(err => {
 			if (err.message === '422') { return res.sendStatus(422) }
 			console.error(err)
