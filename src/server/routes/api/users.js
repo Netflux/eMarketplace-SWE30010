@@ -8,6 +8,59 @@ import * as validators from './validators/users'
 
 const router = Express.Router()
 
+const validation = (req, res, next) => {
+	const validationErrors = validationResult(req)
+	if (!validationErrors.isEmpty()) {
+		return res.status(422).json({ errors: validationErrors.mapped() })
+	}
+
+	next()
+}
+
+const authQuery = user => !user || user.role !== 'Administrator' ? db.select('userId', 'username').from('User') : db('User')
+
+router.get('/', (req, res) => {
+	authQuery(req.user)
+		.then(rows => {
+			return res.status(200).json({ data: rows })
+		})
+		.catch(err => {
+			console.error(err)
+			res.sendStatus(500)
+		})
+})
+
+router.post('/', [
+	validators.username,
+	validators.password,
+	validators.email,
+	validators.newsletter,
+	validators.role,
+	validation
+], (req, res) => {
+	if (!req.user || req.user.role !== 'Administrator') {
+		return res.sendStatus(403)
+	}
+
+	hashPassword(req.body.password)
+		.then(hash => {
+			return db('User').insert({
+				username: req.body.username,
+				password: hash,
+				email: req.body.email,
+				newsletter: req.body.newsletter,
+				role: req.body.role
+			})
+		})
+		.then(() => {
+			return res.sendStatus(204)
+		})
+		.catch(err => {
+			console.error(err)
+			res.sendStatus(500)
+		})
+})
+
 router.get('/login', (req, res) => {
 	if (req.user) {
 		return res.status(200).json({
@@ -25,13 +78,9 @@ router.get('/login', (req, res) => {
 
 router.post('/login', [
 	validators.loginUsername,
-	validators.password
+	validators.password,
+	validation
 ], (req, res) => {
-	const validationErrors = validationResult(req)
-	if (!validationErrors.isEmpty()) {
-		return res.status(422).json({ errors: validationErrors.mapped() })
-	}
-
 	Passport.authenticate('local', (err, user) => {
 		if (err) {
 			console.error(err)
@@ -65,13 +114,8 @@ router.post('/register', [
 	validators.password,
 	validators.email,
 	validators.newsletter,
-	validators.role
+	validation
 ], (req, res) => {
-	const validationErrors = validationResult(req)
-	if (!validationErrors.isEmpty()) {
-		return res.status(422).json({ errors: validationErrors.mapped() })
-	}
-
 	hashPassword(req.body.password)
 		.then(hash => {
 			return db('User').insert({
@@ -79,11 +123,80 @@ router.post('/register', [
 				password: hash,
 				email: req.body.email,
 				newsletter: req.body.newsletter,
-				role: req.body.role
+				role: 'Buyer'
 			})
 		})
 		.then(() => {
-			res.sendStatus(204)
+			return res.sendStatus(204)
+		})
+		.catch(err => {
+			console.error(err)
+			res.sendStatus(500)
+		})
+})
+
+router.get('/:userId', [
+	validators.userId,
+	validation
+], (req, res) => {
+	authQuery(req.user)
+		.where('userId', req.params.userId)
+		.then(rows => {
+			return res.status(200).json({ data: rows })
+		})
+		.catch(err => {
+			console.error(err)
+			res.sendStatus(500)
+		})
+})
+
+router.post('/:userId', [
+	validators.userId,
+	validators.password,
+	validators.email,
+	validators.newsletter,
+	validators.role,
+	validation
+], (req, res) => {
+	if (!req.user || (req.user.userId !== req.params.userId && req.user.role !== 'Administrator')) {
+		return res.sendStatus(403)
+	}
+
+	const fields = {
+		password: hash,
+		email: req.body.email,
+		newsletter: req.body.newsletter
+	}
+	if (req.user.role === 'Administrator') { fields.role = req.body.role }
+
+	hashPassword(req.body.password)
+		.then(hash => {
+			return db('User')
+				.where('userId', req.params.userId)
+				.update(fields)
+		})
+		.then(() => {
+			return res.sendStatus(204)
+		})
+		.catch(err => {
+			console.error(err)
+			res.sendStatus(500)
+		})
+})
+
+router.delete('/:userId', [
+	validators.userId,
+	validation
+], (req, res) => {
+	if (!req.user || req.user.role !== 'Administrator') {
+		return res.sendStatus(403)
+	}
+
+	db('User')
+		.where('userId', req.params.userId)
+		.del()
+		.then(() => {
+			return res.sendStatus(204)
 		})
 		.catch(err => {
 			console.error(err)
