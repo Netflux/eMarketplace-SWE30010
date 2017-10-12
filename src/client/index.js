@@ -16,6 +16,7 @@ import './index.css'
 		.component('basketPage', pages.basket)
 		.component('categoryPage', pages.category)
 		.component('checkoutPage', pages.checkout)
+		.component('customerPage', pages.customer)
 		.component('homePage', pages.home)
 		.component('loginPage', pages.login)
 		.component('productPage', pages.product)

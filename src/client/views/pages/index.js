@@ -2,6 +2,7 @@ import './css/AdminPage.css'
 import './css/BasketPage.css'
 import './css/CategoryPage.css'
 import './css/CheckoutPage.css'
+import './css/CustomerPage.css'
 import './css/HomePage.css'
 import './css/LoginPage.css'
 import './css/ProductPage.css'
@@ -21,6 +22,10 @@ export const category = {
 
 export const checkout = {
 	templateUrl: 'templates/pages/CheckoutPage.html'
+}
+
+export const customer = {
+	templateUrl: 'templates/pages/CustomerPage.html'
 }
 
 export const home = {

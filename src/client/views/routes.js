@@ -20,6 +20,11 @@ const routes = [
 		component: 'checkoutPage'
 	},
 	{
+		name: 'customer',
+		url: '/customer',
+		component: 'customerPage'
+	},
+	{
 		name: 'home',
 		url: '/',
 		component: 'homePage'
