@@ -12,7 +12,7 @@ const categoriesReducer = (state = {
             isFetching: true
         }
     case actions.RECEIVE_CATEGORIES:
-        const items = state.items.filter(i => action.data.filter(j => i.categories === j.categories).length === 0)
+        const items = state.items.filter(i => action.data.filter(j => i.categoryId === j.categoryId).length === 0)
         return {
             ...state,
             lastFetched: Date.now(),

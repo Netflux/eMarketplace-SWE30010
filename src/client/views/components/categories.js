@@ -7,21 +7,21 @@ const categories = {
         
         if (!this.categories.isFetching) {
             $store.update({
-            type: actions.FETCH_CATEGORIES
-        })
-        $http.get("/api/categories")
-            .then(function(response){
-                    $store.update({
-                        type: actions.RECEIVE_CATEGORIES,
-                        data: response.data.data
-                    })
-                },
-                function(response){
-                    $store.update({
-                        type: actions.RECEIVE_CATEGORIES_ERROR
-                    })
-                }
-            )
+                type: actions.FETCH_CATEGORIES
+            })
+            $http.get("/api/categories")
+                .then(function(response){
+                        $store.update({
+                            type: actions.RECEIVE_CATEGORIES,
+                            data: response.data.data
+                        })
+                    },
+                    function(response){
+                        $store.update({
+                            type: actions.RECEIVE_CATEGORIES_ERROR
+                        })
+                    }
+                )
         }   
     }] 
 }
