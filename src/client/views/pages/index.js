@@ -1,49 +1,12 @@
-import './css/AdminPage.css'
-import './css/BasketPage.css'
-import './css/CategoryPage.css'
-import './css/CheckoutPage.css'
-import './css/CustomerPage.css'
-import './css/HomePage.css'
-import './css/LoginPage.css'
-import './css/ProductPage.css'
-import './css/SignupPage.css'
+import admin from './admin'
+import basket from './basket'
+import category from './category'
+import checkout from './checkout'
+import customer from './customer'
+import home from './home'
+import login from './login'
+import product from './product'
+import productslist from './productslist'
+import signup from './signup'
 
-export const admin = {
-	templateUrl: 'templates/pages/AdminPage.html'
-}
-
-export const basket = {
-	templateUrl: 'templates/pages/BasketPage.html'
-}
-
-export const category = {
-	templateUrl: 'templates/pages/CategoryPage.html'
-}
-
-export const checkout = {
-	templateUrl: 'templates/pages/CheckoutPage.html'
-}
-
-export const customer = {
-	templateUrl: 'templates/pages/CustomerPage.html'
-}
-
-export const home = {
-	templateUrl: 'templates/pages/HomePage.html'
-}
-
-export const login = {
-	templateUrl: 'templates/pages/LoginPage.html'
-}
-
-export const product = {
-	templateUrl: 'templates/pages/ProductPage.html'
-}
-
-export const productslist = {
-	templateUrl: 'templates/pages/ProductsListPage.html'
-}
-
-export const signup = {
-	templateUrl: 'templates/pages/SignupPage.html'
-}
+export { admin, basket, category, checkout, customer, home, login, product, productslist, signup }

@@ -1,0 +1,41 @@
+<h1>List View</h1>
+<div class="row">
+    <div class="col-md-12 listviewalphabet">
+        <a ui-sref="category({ '#': 'A' })">A</a>
+        <a ui-sref="category({ '#': 'B' })">B</a>
+        <a ui-sref="category({ '#': 'C' })">C</a>
+        <a ui-sref="category({ '#': 'D' })">D</a>
+        <a ui-sref="category({ '#': 'E' })">E</a>
+        <a ui-sref="category({ '#': 'F' })">F</a>
+        <a ui-sref="category({ '#': 'G' })">G</a>
+        <a ui-sref="category({ '#': 'H' })">H</a>
+        <a ui-sref="category({ '#': 'I' })">I</a>
+        <a ui-sref="category({ '#': 'J' })">J</a>
+        <a ui-sref="category({ '#': 'K' })">K</a>
+        <a ui-sref="category({ '#': 'L' })">L</a>
+        <a ui-sref="category({ '#': 'M' })">M</a>
+        <a ui-sref="category({ '#': 'N' })">N</a>
+        <a ui-sref="category({ '#': 'O' })">O</a>
+        <a ui-sref="category({ '#': 'P' })">P</a>
+        <a ui-sref="category({ '#': 'Q' })">Q</a>
+        <a ui-sref="category({ '#': 'R' })">R</a>
+        <a ui-sref="category({ '#': 'S' })">S</a>
+        <a ui-sref="category({ '#': 'T' })">T</a>
+        <a ui-sref="category({ '#': 'U' })">U</a>
+        <a ui-sref="category({ '#': 'V' })">V</a>
+        <a ui-sref="category({ '#': 'W' })">W</a>
+        <a ui-sref="category({ '#': 'X' })">X</a>
+        <a ui-sref="category({ '#': 'Y' })">Y</a>
+        <a ui-sref="category({ '#': 'Z' })">Z</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12" ng-repeat="listcategories in $ctrl.categoryList">
+        <h2 id="{{listcategories.letter}}">{{listcategories.letter}}</h2><hr class="listviewhr"/>
+        <div class="row">
+            <div class="col-xs-4 col-md-4" ng-repeat="category in listcategories.items">
+                <a>{{category.title}}</a>
+            </div>
+        </div>
+    </div>
+</div>

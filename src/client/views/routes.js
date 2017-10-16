@@ -36,12 +36,12 @@ const routes = [
 	},
 	{
 		name: 'product',
-		url: '/product',
+		url: '/product/:productKey',
 		component: 'productPage'
 	},
 	{
 		name: 'products',
-		url: '/products',
+		url: '/category/:categoryId',
 		component: 'productsListPage'
 	},
 	{
