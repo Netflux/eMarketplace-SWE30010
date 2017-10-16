@@ -12,14 +12,17 @@ const product = {
 
             // Check local cache
             this.product = this.products.items.find(i => i.productKey === $stateParams.productKey)
-            this.category = this.categories.items.find(i => i.categoryId === this.product ? this.product.categoryId : -1)
+            this.category = this.product ? this.categories.items.find(i => i.categoryId === this.product.categoryId) : undefined
 
             // Populate breadcrumbs
             this.crumbs = [{
                 title:'Category',
                 url: 'category'
-            },{
+            }, {
                 title: this.category ? this.category.title : 'Category Title',
+                url: this.category ? `products({ categoryId: ${this.category.categoryId} })` : ''
+            }, {
+                title: this.product ? this.product.title : 'Product Title',
                 url: this.product ? `product({ productKey: '${this.product.productKey}' })` : ''
             }]
         })
