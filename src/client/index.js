@@ -25,6 +25,7 @@ import './index.css'
 		.component('footersection', components.footersection)
         .component('productlist',components.productlist)
         .component('categories',components.categories)
+        .component('listcategories',components.listcategories)
         .component('breadcrumbs',components.breadcrumbs)
 
 	angular.module('app.routes', ['ui.router', 'app.components'])
