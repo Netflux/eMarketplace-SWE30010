@@ -34,7 +34,7 @@
         <h2 id="{{listcategories.letter}}">{{listcategories.letter}}</h2><hr class="listviewhr"/>
         <div class="row">
             <div class="col-xs-4 col-md-4" ng-repeat="category in listcategories.items">
-                <a>{{category.title}}</a>
+                <a ui-sref="products({ categoryId: category.categoryId })">{{category.title}}</a>
             </div>
         </div>
     </div>
