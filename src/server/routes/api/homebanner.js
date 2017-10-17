@@ -3,6 +3,7 @@ import { validationResult } from 'express-validator/check'
 
 import db from 'server/database'
 import * as validators from './validators/homebanner'
+import multer from 'server/utils/multer'
 
 const router = Express.Router()
 
@@ -25,14 +26,18 @@ router.get('/', (req, res) => {
 		})
 })
 
-router.post('/', (req, res) => {
+router.post('/', multer.single('image'), (req, res) => {
 	if (!req.user || req.user.role !== 'Administrator') {
 		return res.sendStatus(403)
+	}
+	if (!req.file) {
+		return res.sendStatus(422)
 	}
 
 	db('HomeBanner')
 		.insert({
 			userId: req.user.userId,
+			imageUrl: `images/uploads/${req.file.filename}`,
 			validFrom: Date.now()
 		})
 		.then(() => res.sendStatus(204))
@@ -63,7 +68,7 @@ router.delete('/:homeBannerId', [
 	if (!req.user || req.user.role !== 'Administrator') {
 		return res.sendStatus(403)
 	}
-	
+
 	db('HomeBanner')
 		.where('homeBannerId', req.params.homeBannerId)
 		.whereNull('validTo')
