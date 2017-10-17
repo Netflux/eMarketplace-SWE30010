@@ -54,6 +54,30 @@ const productList = [
 		shippingPrice: 33.33,
 		discount: 50,
 		validFrom: 0
+	},
+	{
+		productId: 4,
+		userId: 1,
+		categoryId: 3,
+		productKey: 'ProductKey4',
+		title: 'Product Title 4',
+		description: 'Product Description 4',
+		price: 100.23,
+		shippingPrice: 10.33,
+		discount: 20,
+		validFrom: 0
+	},
+	{
+		productId: 5,
+		userId: 1,
+		categoryId: 3,
+		productKey: 'ProductKey5',
+		title: 'Product Title 5',
+		description: 'Product Description 5',
+		price: 55.50,
+		shippingPrice: 10.33,
+		discount: 10,
+		validFrom: 0
 	}
 ]
 const productStockList = [
@@ -68,6 +92,14 @@ const productStockList = [
 	{
 		productKey: 'ProductKey3',
 		stock: 15
+	},
+	{
+		productKey: 'ProductKey4',
+		stock: 5
+	},
+	{
+		productKey: 'ProductKey5',
+		stock: 10
 	}
 ]
 

@@ -21,8 +21,6 @@ const productslist = {
                 url: this.category ? `products({ categoryId: ${this.category.categoryId} })` : ''
             }]
         })
-
-        // Victor: Will put these into separate function files, to be called when needed in different controllers.
         // In cache not found, fetch from server
         fetchCategories($store, $http)
     }]

@@ -64,3 +64,10 @@
     color:black;
     background-color:#f4f4f4;
 }
+.productsuggestionwrap {
+    width: 80%;
+    margin: auto;
+}
+.productsuggesionbox img {
+    width:100%;
+}
