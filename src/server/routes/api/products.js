@@ -4,11 +4,12 @@ import ShortId from 'shortid'
 
 import db from 'server/database'
 import * as validators from './validators/products'
+import multer from 'server/utils/multer'
 
 const router = Express.Router()
 
-const validation = (req, res, next) => {
-	if (!req.user || req.user.role === 'Buyer') { return res.sendStatus(403) }
+const validation = userValidation => (req, res, next) => {
+	if (userValidation && (!req.user || req.user.role === 'Buyer')) { return res.sendStatus(403) }
 
 	const validationErrors = validationResult(req)
 	if (!validationErrors.isEmpty()) {
@@ -22,6 +23,14 @@ router.get('/', (req, res) => {
 	db('Product')
 		.innerJoin('ProductStock', 'ProductStock.productKey', 'Product.productKey')
 		.whereNull('validTo')
+		.then(rows => {
+			const promises = rows.map(row => {
+				return db.select('productImageId', 'imageUrl').from('ProductImage')
+					.where('productKey', row.productKey)
+					.then(images => ({ ...row, images }))
+			})
+			return Promise.all(promises)
+		})
 		.then(rows => res.status(200).json({ data: rows }))
 		.catch(err => {
 			console.error(err)
@@ -29,7 +38,7 @@ router.get('/', (req, res) => {
 		})
 })
 
-router.post('/', [
+router.post('/', multer.array('images', 8), [
 	validators.categoryId,
 	validators.title,
 	validators.description,
@@ -37,7 +46,7 @@ router.post('/', [
 	validators.shippingPrice,
 	validators.stock,
 	validators.discount,
-	validation
+	validation(true)
 ], (req, res) => {
 	const productKey = ShortId.generate()
 	db.transaction(trx => trx('Product')
@@ -59,6 +68,14 @@ router.post('/', [
 					stock: req.body.stock
 				})
 		})
+		.then(() => {
+			return trx('ProductImage')
+				.insert(req.files.map(file => ({
+					productKey,
+					imageUrl: `images/uploads/${file.filename}`,
+					validFrom: Date.now()
+				})))
+		})
 		.then(() => res.sendStatus(204)))
 		.catch(err => {
 			console.error(err)
@@ -66,8 +83,24 @@ router.post('/', [
 		})
 })
 
+router.delete('/images/:productImageId', [
+	validators.productImageId,
+	validation(true)
+], (req, res) => {
+	db('ProductImage')
+		.where('productImageId', req.params.productImageId)
+		.whereNull('validTo')
+		.update('validTo', Date.now())
+		.then(() => res.sendStatus(204))
+		.catch(err => {
+			console.error(err)
+			res.sendStatus(500)
+		})
+})
+
 router.get('/:productKey/reviews', [
-	validators.productKey
+	validators.productKey,
+	validation(false)
 ], (req, res) => {
 	db('ProductReview')
 		.where('productKey', req.params.productKey)
@@ -92,13 +125,19 @@ router.get('/:productKey/reviews', [
 // })
 
 router.get('/:productKey', [
-	validators.productKey
+	validators.productKey,
+	validation(false)
 ], (req, res) => {
 	db('Product')
 		.innerJoin('ProductStock', 'ProductStock.productKey', 'Product.productKey')
 		.where('Product.productKey', req.params.productKey)
 		.whereNull('validTo')
 		.first()
+		.then(row => {
+			return db.select('productImageId', 'imageUrl').from('ProductImage')
+				.where('productKey', req.params.productKey)
+				.then(images => ({ ...row, images }))
+		})
 		.then(row => res.status(200).json({ data: [row] }))
 		.catch(err => {
 			console.error(err)
@@ -115,17 +154,11 @@ router.post('/:productKey', [
 	validators.shippingPrice,
 	validators.stock,
 	validators.discount,
-	validation
+	validation(true)
 ], (req, res) => {
-	db.transaction(trx => trx('Product')
+	db.transaction(trx => trx('ProductStock')
 		.where('productKey', req.params.productKey)
-		.first()
-		.then(row => {
-			if (!row) { throw new Error(422) }
-			return trx('ProductStock')
-				.where('productKey', req.params.productKey)
-				.update('stock', req.body.stock)
-		})
+		.update('stock', req.body.stock)
 		.then(() => {
 			return trx('Product')
 				.where({
@@ -150,7 +183,6 @@ router.post('/:productKey', [
 		})
 		.then(() => res.sendStatus(204)))
 		.catch(err => {
-			if (err.message === '422') { return res.sendStatus(422) }
 			console.error(err)
 			res.sendStatus(500)
 		})
@@ -158,25 +190,16 @@ router.post('/:productKey', [
 
 router.delete('/:productKey', [
 	validators.productKey,
-	validation
+	validation(true)
 ], (req, res) => {
-	db.transaction(trx => trx('Product')
+	db('Product')
 		.where({
 			productKey: req.params.productKey,
 			userId: req.user.userId
 		})
-		.first()
-		.then(row => {
-			if (!row) { throw new Error(422) }
-			return trx('Product')
-				.where({
-					productKey: req.params.productKey,
-					userId: req.user.userId
-				})
-				.whereNull('validTo')
-				.update('validTo', Date.now())
-		})
-		.then(() => res.sendStatus(204)))
+		.whereNull('validTo')
+		.update('validTo', Date.now())
+		.then(() => res.sendStatus(204))
 		.catch(err => {
 			if (err.message === '422') { return res.sendStatus(422) }
 			console.error(err)

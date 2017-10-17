@@ -1,4 +1,4 @@
-import { hashPassword } from 'server/auth'
+import { hashPassword } from 'server/utils/auth'
 
 exports.seed = knex => {
 	return knex('User').del()

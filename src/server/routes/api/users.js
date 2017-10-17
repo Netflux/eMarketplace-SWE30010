@@ -3,7 +3,7 @@ import Passport from 'passport'
 import { validationResult } from 'express-validator/check'
 
 import db from 'server/database'
-import { hashPassword } from 'server/auth'
+import { hashPassword } from 'server/utils/auth'
 import * as validators from './validators/users'
 
 const router = Express.Router()

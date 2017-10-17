@@ -3,10 +3,11 @@ import { check } from 'express-validator/check'
 import db from 'server/database'
 import { categoryId } from './categories'
 
-const productId = check('productId')
+const productImageId = check('productImageId')
 	.trim()
 	.isInt({ min: 0 })
 	.toInt()
+	.custom(value => db('ProductImage').where('productImageId', value).count('* AS count').then(rows => rows[0].count !== 0)).withMessage('must be a valid product image')
 
 const productKey = check('productKey')
 	.trim()
@@ -46,7 +47,7 @@ const discount = check('discount')
 	.toInt()
 
 export {
-	productId,
+	productImageId,
 	categoryId,
 	productKey,
 	title,
