@@ -3,6 +3,7 @@ import { validationResult } from 'express-validator/check'
 
 import db from 'server/database'
 import * as validators from './validators/categories'
+import multer from 'server/utils/multer'
 
 const router = Express.Router()
 
@@ -24,7 +25,7 @@ router.get('/', (req, res) => {
 		})
 })
 
-router.post('/', [
+router.post('/', multer.single('image'), [
 	validators.title,
 	validation
 ], (req, res) => {
@@ -35,6 +36,7 @@ router.post('/', [
 	db('Category')
 		.insert({
 			title: req.body.title,
+			imageUrl: req.file ? `images/uploads/${req.file.filename}` : '',
 			validFrom: Date.now()
 		})
 		.then(() => res.sendStatus(204))
@@ -72,7 +74,7 @@ router.get('/:categoryId', [
 		})
 })
 
-router.post('/:categoryId', [
+router.post('/:categoryId', multer.single('image'), [
 	validators.categoryId,
 	validators.title,
 	validation
@@ -86,12 +88,13 @@ router.post('/:categoryId', [
 				.where('categoryId', req.params.categoryId)
 				.whereNull('validTo')
 				.update('validTo', Date.now())
-		})
-		.then(() => {
-			return trx('Category')
-				.insert({
-					title: req.body.title,
-					validFrom: Date.now()
+				.then(() => {
+					return trx('Category')
+						.insert({
+							title: req.body.title,
+							imageUrl: req.file ? `images/uploads/${req.file.filename}` : row.imageUrl,
+							validFrom: Date.now()
+						})
 				})
 		})
 		.then(() => res.sendStatus(204)))

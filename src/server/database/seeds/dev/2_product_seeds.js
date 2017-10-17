@@ -2,19 +2,19 @@ const categoryList = [
 	{
 		categoryId: 1,
 		title: 'Category 1',
-		imageUrl: '/',
+		imageUrl: '',
 		validFrom: 0
 	},
 	{
 		categoryId: 2,
 		title: 'Category 2',
-		imageUrl: '/',
+		imageUrl: '',
 		validFrom: 0
 	},
 	{
 		categoryId: 3,
 		title: 'Category 3',
-		imageUrl: '/',
+		imageUrl: '',
 		validFrom: 0
 	}
 ]
