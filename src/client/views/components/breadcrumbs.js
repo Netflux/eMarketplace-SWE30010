@@ -1,8 +1,8 @@
 const breadcrumbs = {
 	templateUrl: 'templates/components/BreadCrumbs.html',
-    bindings: {
-        crumbs: "="
-    }
+	bindings: {
+		crumbs: '='
+	}
     
 }
 

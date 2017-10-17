@@ -16,7 +16,7 @@ export const fetchProducts = ($store, $http, categoryId) => {
 					type: RECEIVE_PRODUCTS,
 					data: response.data.data
 				})
-			}, function failure(response) {
+			}, function failure() {
 				$store.update({
 					type: RECEIVE_PRODUCTS_ERROR
 				})

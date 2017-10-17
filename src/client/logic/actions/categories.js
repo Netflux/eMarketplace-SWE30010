@@ -9,13 +9,13 @@ export const fetchCategories = ($store, $http) => {
 		$store.update({
 			type: FETCH_CATEGORIES
 		})
-		$http.get("/api/categories")
+		$http.get('/api/categories')
 			.then(function success(response) {
 				$store.update({
 					type: RECEIVE_CATEGORIES,
 					data: response.data.data
 				})
-			}, function failure(response) {
+			}, function failure() {
 				$store.update({
 					type: RECEIVE_CATEGORIES_ERROR
 				})
