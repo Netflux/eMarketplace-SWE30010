@@ -34,15 +34,15 @@
             </div>
             <div class="col-xs-3 col-sm-3 col-md-3 sellerinfobox">
                 <p>Total Product Sold</p>
-                <p>{{ $ctrl.product.productsSold || 0 }}</p>
+                <p>{{ $ctrl.user.productsSold }}</p>
             </div>
             <div class="col-xs-3 col-sm-3 col-md-3 sellerinfobox">
                 <p>Total Product Rating</p>
-                <p>{{ $ctrl.user.rating || 0 }}</p>
+                <p>{{ $ctrl.user.averageRating || 'No rating' }}</p>
             </div>
             <div class="col-xs-3 col-sm-3 col-md-3 sellerinfobox">
                 <p>Joined </p>
-                <p>15 months ago</p>
+                <p>{{ $ctrl.user.createdAt | date:'dd/MM/yyyy'}}</p>
             </div>
         </div>
         <div class="row">
@@ -51,7 +51,7 @@
                 <ul class="nav nav-tabs productinfo2" role="navigation">
                     <li class="active"><a ui-sref="product({ '#': 'productdetailstab' })" data-toggle="tab">Product details</a></li>
                     <li><a ui-sref="product({ '#': 'reviewtab' })" data-toggle="tab">Review</a></li>
-                    <li><a ui-sref="product({ '#': 'commentstab' })" data-toggle="tab">Comments</a></li>
+                    <li><a ui-sref="product({ '#': 'discussiontab' })" data-toggle="tab">Discussion</a></li>
                 </ul>
                 <div class="tab-content clearfix productinfo2content">
                     <div class="tab-pane active" id="productdetailstab">
@@ -60,8 +60,8 @@
                     <div class="tab-pane" id="reviewtab">
                         <p>{{ $ctrl.product.reviews || 'No reviews available' }}</p>
                     </div>
-                    <div class="tab-pane" id="commentstab">
-                        <p>{{ $ctrl.product.comments || 'No comments available' }}</p>
+                    <div class="tab-pane" id="discussiontab">
+                        <p>Discussion here. </p>
                     </div>
                 </div>
                 <br><br>
