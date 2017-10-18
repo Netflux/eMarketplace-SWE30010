@@ -9,7 +9,8 @@ exports.seed = knex => {
 			password: hash,
 			email: 'root@root.com',
 			newsletter: 0,
-			role: 'Administrator'
+			role: 'Administrator',
+			createdAt: Date.now()
 		}))
 		.then(() => knex('UserAddress').insert({
 			userId: 1,

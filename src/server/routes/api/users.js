@@ -2,8 +2,7 @@ import Express from 'express'
 import Passport from 'passport'
 import { validationResult } from 'express-validator/check'
 
-import db from 'server/database'
-import { hashPassword } from 'server/utils/auth'
+import UserModel from 'server/models/users'
 import * as validators from './validators/users'
 
 const router = Express.Router()
@@ -17,10 +16,8 @@ const validation = (req, res, next) => {
 	next()
 }
 
-const authQuery = user => !user || user.role !== 'Administrator' ? db.select('userId', 'username').from('User') : db('User')
-
 router.get('/', (req, res) => {
-	authQuery(req.user)
+	UserModel.findAll()
 		.then(rows => res.status(200).json({ data: rows }))
 		.catch(err => {
 			console.error(err)
@@ -40,16 +37,15 @@ router.post('/', [
 		return res.sendStatus(403)
 	}
 
-	hashPassword(req.body.password)
-		.then(hash => {
-			return db('User').insert({
-				username: req.body.username,
-				password: hash,
-				email: req.body.email,
-				newsletter: req.body.newsletter,
-				role: req.body.role
-			})
-		})
+	const user = {
+		username: req.body.username,
+		password: req.body.password,
+		email: req.body.email,
+		newsletter: req.body.newsletter,
+		role: req.body.role
+	}
+
+	UserModel.create(user)
 		.then(() => res.sendStatus(204))
 		.catch(err => {
 			console.error(err)
@@ -112,16 +108,15 @@ router.post('/register', [
 	validators.newsletter,
 	validation
 ], (req, res) => {
-	hashPassword(req.body.password)
-		.then(hash => {
-			return db('User').insert({
-				username: req.body.username,
-				password: hash,
-				email: req.body.email,
-				newsletter: req.body.newsletter,
-				role: 'Buyer'
-			})
-		})
+	const user = {
+		username: req.body.username,
+		password: req.body.password,
+		email: req.body.email,
+		newsletter: req.body.newsletter,
+		role: 'Buyer'
+	}
+
+	UserModel.create(user)
 		.then(() => res.sendStatus(204))
 		.catch(err => {
 			console.error(err)
@@ -133,8 +128,7 @@ router.get('/:userId', [
 	validators.userId,
 	validation
 ], (req, res) => {
-	authQuery(req.user)
-		.where('userId', req.params.userId)
+	UserModel.findOne(req.params.userId)
 		.then(rows => res.status(200).json({ data: rows }))
 		.catch(err => {
 			console.error(err)
@@ -144,7 +138,6 @@ router.get('/:userId', [
 
 router.post('/:userId', [
 	validators.userId,
-	validators.password,
 	validators.email,
 	validators.newsletter,
 	validators.role,
@@ -160,15 +153,7 @@ router.post('/:userId', [
 	}
 	if (req.user.role === 'Administrator') { fields.role = req.body.role }
 
-	hashPassword(req.body.password)
-		.then(hash => {
-			return db('User')
-				.where('userId', req.params.userId)
-				.update({
-					...fields,
-					password: hash
-				})
-		})
+	UserModel.update(req.params.userId, fields)
 		.then(() => res.sendStatus(204))
 		.catch(err => {
 			console.error(err)
@@ -184,9 +169,7 @@ router.delete('/:userId', [
 		return res.sendStatus(403)
 	}
 
-	db('User')
-		.where('userId', req.params.userId)
-		.del()
+	UserModel.deleteOne(req.params.userId)
 		.then(() => res.sendStatus(204))
 		.catch(err => {
 			console.error(err)

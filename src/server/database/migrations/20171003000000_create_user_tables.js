@@ -6,6 +6,7 @@ exports.up = knex => {
 		table.string('email').notNullable()
 		table.integer('newsletter').unsigned().notNullable()
 		table.integer('role').unsigned().notNullable()
+		table.integer('createdAt').unsigned().notNullable()
 		table.unique(['username', 'email'])
 	})
 	const createUserAddressTable = () => knex.schema.createTable('UserAddress', table => {
