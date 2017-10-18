@@ -25,7 +25,10 @@ router.get('/', (req, res) => {
 		})
 })
 
-router.post('/', multer.single('image'), [
+router.post('/', multer.fields([
+	{ name: 'image', maxCount: 1 },
+	{ name: 'banner', maxCount: 1 }
+]), [
 	validators.title,
 	validation
 ], (req, res) => {
@@ -33,10 +36,18 @@ router.post('/', multer.single('image'), [
 		return res.sendStatus(403)
 	}
 
+	const imageFile = req.files['image'][0]
+	const bannerFile = req.files['banner'][0]
+
+	if (!imageFile || !bannerFile) {
+		return res.sendStatus(422)
+	}
+
 	db('Category')
 		.insert({
 			title: req.body.title,
-			imageUrl: req.file ? `images/uploads/${req.file.filename}` : '',
+			imageUrl: `images/uploads/${imageFile.filename}`,
+			bannerUrl: `images/uploads/${bannerFile.filename}`,
 			validFrom: Date.now()
 		})
 		.then(() => res.sendStatus(204))
@@ -74,11 +85,21 @@ router.get('/:categoryId', [
 		})
 })
 
-router.post('/:categoryId', multer.single('image'), [
+router.post('/:categoryId', multer.fields([
+	{ name: 'image', maxCount: 1 },
+	{ name: 'banner', maxCount: 1 }
+]), [
 	validators.categoryId,
 	validators.title,
 	validation
 ], (req, res) => {
+	if (!req.user || req.user.role !== 'Administrator') {
+		return res.sendStatus(403)
+	}
+
+	const imageFile = req.files['image'][0]
+	const bannerFile = req.files['banner'][0]
+
 	db.transaction(trx => trx('Category')
 		.where('categoryId', req.params.categoryId)
 		.first()
@@ -92,7 +113,8 @@ router.post('/:categoryId', multer.single('image'), [
 					return trx('Category')
 						.insert({
 							title: req.body.title,
-							imageUrl: req.file ? `images/uploads/${req.file.filename}` : row.imageUrl,
+							imageUrl: imageFile ? `images/uploads/${imageFile.filename}` : row.imageUrl,
+							bannerUrl: bannerFile ? `images/uploads/${bannerFile.filename}` : row.bannerUrl,
 							validFrom: Date.now()
 						})
 				})

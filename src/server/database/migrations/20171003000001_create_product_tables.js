@@ -3,6 +3,7 @@ exports.up = knex => {
 		table.increments('categoryId').unsigned().notNullable()
 		table.string('title').notNullable()
 		table.string('imageUrl').notNullable()
+		table.string('bannerUrl').notNullable()
 		table.integer('validFrom').unsigned().notNullable()
 		table.integer('validTo').unsigned()
 	})
