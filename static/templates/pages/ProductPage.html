@@ -9,12 +9,12 @@
     </div>
     <div class="col-xs-8 col-sm-8 col-md-8 productinfocontainer">
         <div>
-            <h1>{{$ctrl.product.title}}</h1>
-            <p>RM {{$ctrl.product.price | number:2 }}</p>
-            <p>Rating: &#9734; &#9734; &#9733; &#9733; &#9733; {{$ctrl.product.rating}}</p>
+            <h1>{{ $ctrl.product.title }}</h1>
+            <p>RM {{ $ctrl.product.price | number:2 }}</p>
+            <p>Rating: &#9734; &#9734; &#9733; &#9733; &#9733; {{ $ctrl.product.rating }}</p>
             <hr>
-            <p>Shipping Price: RM {{$ctrl.product.shippingPrice | number:2 }}</p>
-            <p>Stock available: {{$ctrl.product.stock}}</p>
+            <p>Shipping Price: RM {{ $ctrl.product.shippingPrice | number:2 }}</p>
+            <p>Stock available: {{ $ctrl.product.stock }}</p>
             <hr>
             <form>
                 <label>Quantity: </label>
@@ -30,15 +30,15 @@
         <div class="row productsellerinfo">
             <div class="col-xs-3 col-sm-3 col-md-3 sellerinfobox">
                 <img src="images/profile.jpg" alt="profile picture" id="profilepicture"/>
-                <p>{{$ctrl.user.username}}</p>
+                <p>{{ $ctrl.user.username }}</p>
             </div>
             <div class="col-xs-3 col-sm-3 col-md-3 sellerinfobox">
                 <p>Total Product Sold</p>
-                <p>153</p>
+                <p>{{ $ctrl.product.productsSold || 0 }}</p>
             </div>
             <div class="col-xs-3 col-sm-3 col-md-3 sellerinfobox">
                 <p>Total Product Rating</p>
-                <p>4/5</p>
+                <p>{{ $ctrl.user.rating || 0 }}</p>
             </div>
             <div class="col-xs-3 col-sm-3 col-md-3 sellerinfobox">
                 <p>Joined </p>
@@ -55,13 +55,13 @@
                 </ul>
                 <div class="tab-content clearfix productinfo2content">
                     <div class="tab-pane active" id="productdetailstab">
-                        <p>{{$ctrl.product.description}}</p>
+                        <p>{{$ctrl.product.description || 'No product description available' }}</p>
                     </div>
                     <div class="tab-pane" id="reviewtab">
-                        <p>Review here</p>
+                        <p>{{ $ctrl.product.reviews || 'No reviews available' }}</p>
                     </div>
                     <div class="tab-pane" id="commentstab">
-                        <p>Comments here</p>
+                        <p>{{ $ctrl.product.comments || 'No comments available' }}</p>
                     </div>
                 </div>
                 <br><br>

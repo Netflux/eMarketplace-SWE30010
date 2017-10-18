@@ -1,19 +1,37 @@
 const categoryList = [
 	{
 		categoryId: 1,
-		title: 'Category 1',
+		title: 'Jewellery',
 		imageUrl: '/',
 		validFrom: 0
 	},
 	{
 		categoryId: 2,
-		title: 'Category 2',
+		title: 'Soft Toys',
 		imageUrl: '/',
 		validFrom: 0
 	},
 	{
 		categoryId: 3,
-		title: 'Category 3',
+		title: 'Handmade items',
+		imageUrl: '/',
+		validFrom: 0
+	},
+	{
+		categoryId: 4,
+		title: 'Room decor',
+		imageUrl: '/',
+		validFrom: 0
+	},
+	{
+		categoryId: 5,
+		title: 'Vintage goods',
+		imageUrl: '/',
+		validFrom: 0
+	},
+	{
+		categoryId: 6,
+		title: 'Clothings',
 		imageUrl: '/',
 		validFrom: 0
 	}
@@ -21,7 +39,7 @@ const categoryList = [
 const productList = [
 	{
 		productId: 1,
-		userId: 1,
+		userId: 2,
 		categoryId: 1,
 		productKey: 'ProductKey1',
 		title: 'Product Title 1',
@@ -33,8 +51,8 @@ const productList = [
 	},
 	{
 		productId: 2,
-		userId: 1,
-		categoryId: 2,
+		userId: 2,
+		categoryId: 1,
 		productKey: 'ProductKey2',
 		title: 'Product Title 2',
 		description: 'Product Description 2',
@@ -45,7 +63,7 @@ const productList = [
 	},
 	{
 		productId: 3,
-		userId: 2,
+		userId: 3,
 		categoryId: 2,
 		productKey: 'ProductKey3',
 		title: 'Product Title 3',
@@ -58,7 +76,7 @@ const productList = [
 	{
 		productId: 4,
 		userId: 2,
-		categoryId: 3,
+		categoryId: 2,
 		productKey: 'ProductKey4',
 		title: 'Product Title 4',
 		description: 'Product Description 4',
@@ -74,8 +92,99 @@ const productList = [
 		productKey: 'ProductKey5',
 		title: 'Product Title 5',
 		description: 'Product Description 5',
+		price: 15.50,
+		shippingPrice: 10.00,
+		discount: 10,
+		validFrom: 0
+	}
+	,
+	{
+		productId: 6,
+		userId: 3,
+		categoryId: 3,
+		productKey: 'ProductKey6',
+		title: 'Product Title 6',
+		description: 'Product Description 6',
+		price: 20.00,
+		shippingPrice: 10.00,
+		discount: 10,
+		validFrom: 0
+	}
+	,
+	{
+		productId: 7,
+		userId: 2,
+		categoryId: 4,
+		productKey: 'ProductKey7',
+		title: 'Product Title 7',
+		description: 'Product Description 7',
+		price: 5.50,
+		shippingPrice: 6.00,
+		discount: 10,
+		validFrom: 0
+	}
+	,
+	{
+		productId: 8,
+		userId: 2,
+		categoryId: 4,
+		productKey: 'ProductKey8',
+		title: 'Product Title 8',
+		description: 'Product Description 8',
+		price: 9.50,
+		shippingPrice: 5.00,
+		discount: 10,
+		validFrom: 0
+	}
+	,
+	{
+		productId: 9,
+		userId: 3,
+		categoryId: 5,
+		productKey: 'ProductKey9',
+		title: 'Product Title 9',
+		description: 'Product Description 9',
+		price: 15.50,
+		shippingPrice: 15.00,
+		discount: 10,
+		validFrom: 0
+	}
+	,
+	{
+		productId: 10,
+		userId: 3,
+		categoryId: 5,
+		productKey: 'ProductKey10',
+		title: 'Product Title 10',
+		description: 'Product Description 10',
 		price: 55.50,
-		shippingPrice: 10.33,
+		shippingPrice: 8.00,
+		discount: 10,
+		validFrom: 0
+	}
+	,
+	{
+		productId: 11,
+		userId: 2,
+		categoryId: 6,
+		productKey: 'ProductKey11',
+		title: 'Product Title 11',
+		description: 'Product Description 11',
+		price: 65.50,
+		shippingPrice: 8.00,
+		discount: 10,
+		validFrom: 0
+	}
+	,
+	{
+		productId: 12,
+		userId: 3,
+		categoryId: 6,
+		productKey: 'ProductKey12',
+		title: 'Product Title 12',
+		description: 'Product Description 12',
+		price: 125.50,
+		shippingPrice: 0,
 		discount: 10,
 		validFrom: 0
 	}
@@ -99,6 +208,34 @@ const productStockList = [
 	},
 	{
 		productKey: 'ProductKey5',
+		stock: 13
+	},
+	{
+		productKey: 'ProductKey6',
+		stock: 4
+	},
+	{
+		productKey: 'ProductKey7',
+		stock: 9
+	},
+	{
+		productKey: 'ProductKey8',
+		stock: 100
+	},
+	{
+		productKey: 'ProductKey9',
+		stock: 5
+	},
+	{
+		productKey: 'ProductKey10',
+		stock: 30
+	},
+	{
+		productKey: 'ProductKey11',
+		stock: 0
+	},
+	{
+		productKey: 'ProductKey12',
 		stock: 10
 	}
 ]

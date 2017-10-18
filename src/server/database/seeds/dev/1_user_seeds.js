@@ -17,6 +17,13 @@ exports.seed = knex => {
 			email: 'root@root.com',
 			newsletter: 0,
 			role: 'Administrator'
+		},{
+			userId: 3,
+			username: 'kevin',
+			password: hash,
+			email: 'root@root.com',
+			newsletter: 0,
+			role: 'Administrator'
 		}]))
 		.then(() => knex('UserAddress').insert([{
 			userId: 1,
@@ -29,6 +36,14 @@ exports.seed = knex => {
 		},{
 			userId: 2,
 			name: 'victor',
+			street: 'Street',
+			city: 'City',
+			state: 'State',
+			zip: 12345,
+			phone: +60123456789
+		},{
+			userId: 3,
+			name: 'kevin',
 			street: 'Street',
 			city: 'City',
 			state: 'State',
