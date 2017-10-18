@@ -30,7 +30,7 @@
         <div class="row productsellerinfo">
             <div class="col-xs-3 col-sm-3 col-md-3 sellerinfobox">
                 <img src="images/profile.jpg" alt="profile picture" id="profilepicture"/>
-                <p>Seller name</p>
+                <p>{{$ctrl.user.username}}</p>
             </div>
             <div class="col-xs-3 col-sm-3 col-md-3 sellerinfobox">
                 <p>Total Product Sold</p>
@@ -50,15 +50,15 @@
                 <br>
                 <ul class="nav nav-tabs productinfo2" role="navigation">
                     <li class="active"><a ui-sref="product({ '#': 'productdetailstab' })" data-toggle="tab">Product details</a></li>
-                    <li><a ui-sref="product({ '#': 'ratingtab' })" data-toggle="tab">Rating</a></li>
+                    <li><a ui-sref="product({ '#': 'reviewtab' })" data-toggle="tab">Review</a></li>
                     <li><a ui-sref="product({ '#': 'commentstab' })" data-toggle="tab">Comments</a></li>
                 </ul>
                 <div class="tab-content clearfix productinfo2content">
                     <div class="tab-pane active" id="productdetailstab">
                         <p>{{$ctrl.product.description}}</p>
                     </div>
-                    <div class="tab-pane" id="ratingtab">
-                        <p>Rating here</p>
+                    <div class="tab-pane" id="reviewtab">
+                        <p>Review here</p>
                     </div>
                     <div class="tab-pane" id="commentstab">
                         <p>Comments here</p>

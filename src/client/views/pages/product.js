@@ -2,6 +2,7 @@ import './css/ProductPage.css'
 
 import { fetchCategories } from 'client/logic/actions/categories'
 import { fetchProducts } from 'client/logic/actions/products'
+import { fetchUsers } from 'client/logic/actions/users'
 
 const product = {
 	templateUrl: 'templates/pages/ProductPage.html',
@@ -9,11 +10,13 @@ const product = {
         this.$onDestroy = $store.subscribe(state => {
             this.products = state.products
             this.categories = state.categories
+            this.users = state.users
 
             // Check local cache
             this.product = this.products.items.find(i => i.productKey === $stateParams.productKey)
             this.category = this.product ? this.categories.items.find(i => i.categoryId === this.product.categoryId) : undefined
-
+            this.user = this.product ? this.users.items.'';'[;'[;/';'['['['find(i => i.userId === this.product.userId) : undefined
+ 
             // Populate breadcrumbs
             this.crumbs = [{
                 title:'Category',
@@ -41,7 +44,6 @@ const product = {
             // ui-sref doesnt reload the page
             while(i < 4){
                 var generatenumber = Math.floor((Math.random() * state.products.items.length) + 1)
-                console.log(generatenumber)
                 var resultObject = search(generatenumber, state.products.items)
                 if(search(generatenumber,this.productRandomization) != resultObject){
                     this.productRandomization.push(resultObject)
@@ -53,6 +55,7 @@ const product = {
         // In cache not found, fetch from server
 		fetchCategories($store, $http)
         fetchProducts($store, $http)
+        fetchUsers($store, $http)
 
         //Fetch seller information
         

@@ -45,7 +45,7 @@ const productList = [
 	},
 	{
 		productId: 3,
-		userId: 1,
+		userId: 2,
 		categoryId: 2,
 		productKey: 'ProductKey3',
 		title: 'Product Title 3',
@@ -57,7 +57,7 @@ const productList = [
 	},
 	{
 		productId: 4,
-		userId: 1,
+		userId: 2,
 		categoryId: 3,
 		productKey: 'ProductKey4',
 		title: 'Product Title 4',
@@ -69,7 +69,7 @@ const productList = [
 	},
 	{
 		productId: 5,
-		userId: 1,
+		userId: 2,
 		categoryId: 3,
 		productKey: 'ProductKey5',
 		title: 'Product Title 5',
