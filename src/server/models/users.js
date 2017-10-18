@@ -6,6 +6,7 @@ const defaultProjection = ['User.userId', 'User.username', 'User.createdAt']
 const findOne = userId => {
 	return findAll()
 		.where('User.userId', userId)
+		.first()
 }
 
 const findAll = () => {
