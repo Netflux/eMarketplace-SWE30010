@@ -4,17 +4,17 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-xs-12 col-sm-4 col-md-4">
+    <div class="col-xs-4 col-sm-4 col-md-4">
         <img src="images/product_craft_1.png" alt="product 1" class="productimage"/>
     </div>
-    <div class="col-xs-12 col-sm-8 col-md-8 productinfocontainer">
+    <div class="col-xs-8 col-sm-8 col-md-8 productinfocontainer">
         <div>
-            <h1>{{$ctrl.product.title}}</h1>
-            <p>RM 15.00</p>
-            <p>Rating: &#9734; &#9734; &#9733; &#9733; &#9733;</p>
+            <h1>{{ $ctrl.product.title }}</h1>
+            <p>RM {{ $ctrl.product.price | number:2 }}</p>
+            <p>Rating: &#9734; &#9734; &#9733; &#9733; &#9733; {{ $ctrl.product.rating }}</p>
             <hr>
-            <p>Shipping Price: RM 10</p>
-            <p>Stock available: 5</p>
+            <p>Shipping Price: RM {{ $ctrl.product.shippingPrice | number:2 }}</p>
+            <p>Stock available: {{ $ctrl.product.stock }}</p>
             <hr>
             <form>
                 <label>Quantity: </label>
@@ -24,21 +24,21 @@
         </div>
     </div>
 </div>
-<br><br>
+<br>
 <div class="row productsellercontainer">
     <div class="col-md-12">
         <div class="row productsellerinfo">
             <div class="col-xs-3 col-sm-3 col-md-3 sellerinfobox">
                 <img src="images/profile.jpg" alt="profile picture" id="profilepicture"/>
-                <p>Seller name</p>
+                <p>{{ $ctrl.user.username }}</p>
             </div>
             <div class="col-xs-3 col-sm-3 col-md-3 sellerinfobox">
                 <p>Total Product Sold</p>
-                <p>153</p>
+                <p>{{ $ctrl.product.productsSold || 0 }}</p>
             </div>
             <div class="col-xs-3 col-sm-3 col-md-3 sellerinfobox">
                 <p>Total Product Rating</p>
-                <p>4/5</p>
+                <p>{{ $ctrl.user.rating || 0 }}</p>
             </div>
             <div class="col-xs-3 col-sm-3 col-md-3 sellerinfobox">
                 <p>Joined </p>
@@ -48,23 +48,39 @@
         <div class="row">
             <div class="col-md-12">
                 <br>
-                <ul class="nav nav-tabs productinfo2">
-                    <li class="active"><a  href="#productdetailstab" data-toggle="tab">Product details</a></li>
-                    <li><a  href="#ratingtab" data-toggle="tab">Rating</a></li>
-                    <li><a  href="#commentstab" data-toggle="tab">Comments</a></li>
+                <ul class="nav nav-tabs productinfo2" role="navigation">
+                    <li class="active"><a ui-sref="product({ '#': 'productdetailstab' })" data-toggle="tab">Product details</a></li>
+                    <li><a ui-sref="product({ '#': 'reviewtab' })" data-toggle="tab">Review</a></li>
+                    <li><a ui-sref="product({ '#': 'commentstab' })" data-toggle="tab">Comments</a></li>
                 </ul>
                 <div class="tab-content clearfix productinfo2content">
                     <div class="tab-pane active" id="productdetailstab">
-                        <p>Product detail here</p>
+                        <p>{{$ctrl.product.description || 'No product description available' }}</p>
                     </div>
-                    <div class="tab-pane" id="ratingtab">
-                        <p>Rating here</p>
+                    <div class="tab-pane" id="reviewtab">
+                        <p>{{ $ctrl.product.reviews || 'No reviews available' }}</p>
                     </div>
                     <div class="tab-pane" id="commentstab">
-                        <p>Comments here</p>
+                        <p>{{ $ctrl.product.comments || 'No comments available' }}</p>
                     </div>
                 </div>
                 <br><br>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br>
+<div class="row">
+    <div class="col-md-12 productsuggestioncontainer">
+        <p class="text-center"> You may also like:</p><br>
+        <div class="row productsuggestionwrap">
+            <div class="col-xs-3" ng-repeat="rproduct in $ctrl.productRandomization track by $index">
+                <a ui-sref="product({ productKey: rproduct.productKey })">
+                    <div class="productsuggesionbox">
+                        <img src="images/product_craft_1.png" alt="product image" />
+                        <p class="text-center">{{rproduct.title}}</p>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
