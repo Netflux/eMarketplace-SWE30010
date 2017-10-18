@@ -3,18 +3,21 @@ const categoryList = [
 		categoryId: 1,
 		title: 'Category 1',
 		imageUrl: '',
+		bannerUrl: '',
 		validFrom: 0
 	},
 	{
 		categoryId: 2,
 		title: 'Category 2',
 		imageUrl: '',
+		bannerUrl: '',
 		validFrom: 0
 	},
 	{
 		categoryId: 3,
 		title: 'Category 3',
 		imageUrl: '',
+		bannerUrl: '',
 		validFrom: 0
 	}
 ]
