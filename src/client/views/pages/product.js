@@ -15,7 +15,7 @@ const product = {
             // Check local cache
             this.product = this.products.items.find(i => i.productKey === $stateParams.productKey)
             this.category = this.product ? this.categories.items.find(i => i.categoryId === this.product.categoryId) : undefined
-            this.user = this.product ? this.users.items.'';'[;'[;/';'['['['find(i => i.userId === this.product.userId) : undefined
+            this.user = this.product ? this.users.items.find(i => i.userId === this.product.userId) : undefined
  
             // Populate breadcrumbs
             this.crumbs = [{
