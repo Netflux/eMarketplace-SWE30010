@@ -58,7 +58,7 @@ a:hover {
 }
 
 
-.categorygridviewcontainer, .categorylistviewcontainer, .productlistcontainer, .productinfo, .productsuggestioncontainer, .productsuggesionbox {
+.categorygridviewcontainer, .categorylistviewcontainer, .productlistcontainer, .productinfo, .productsuggestioncontainer, .productsuggesionbox{
     background-color:white;
     padding: 3%;
     box-shadow: rgba(0,0,0,0.1) 0px 0px 3px 2px;
@@ -66,6 +66,7 @@ a:hover {
 
 .productlistfiltercontainer, .productimage, .productinfocontainer ,.productsellercontainer {
     background-color:white;
+	
 }
 
 .fa {

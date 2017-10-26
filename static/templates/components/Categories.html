@@ -1,3 +1,8 @@
-<div class="col-xs-2 nopadding categorybox" ng-repeat="products in $ctrl.categories.items">
-    <a ui-sref="products({ categoryId: products.categoryId })"><img src="images/category.jpg" alt="category"/></a>
+<div class="col-xs-2 nopadding categorywrap" ng-repeat="products in $ctrl.categories.items">
+	<div class="categorybox">
+		<a ui-sref="products({ categoryId: products.categoryId })">
+			<img src="{{ products.imageUrl }}" alt="category"/>
+			<p class="text-center">{{ products.title }}</p>
+		</a>
+	<div>
 </div>

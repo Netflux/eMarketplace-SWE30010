@@ -36,7 +36,8 @@ footer {
 /* Facebook */
 .fa-facebook {
     border-radius: 10%;
-    padding: 60% 80% 60% 80%;
+	/* Change Padding here */
+    padding: 60% 80% 60% 80%; 
     font-size: 5px;
     background: #3B5998;
     color: white;
@@ -45,6 +46,7 @@ footer {
 /* Twitter */
 .fa-twitter {
     border-radius: 100%;
+	/* Change Padding here */
     padding: 30%;
     font-size: 5px;
     background:#55ACEE;
@@ -54,6 +56,7 @@ footer {
 /* Intagram */
 .fa-instagram {
     border-radius: 100%;
+	/* Change Padding here */
     padding: 40%;
     font-size: 5px;
     background: #125688;

@@ -2,43 +2,43 @@ const categoryList = [
 	{
 		categoryId: 1,
 		title: 'Jewellery',
-		imageUrl: '/',
-		bannerUrl: '',
+		imageUrl: '/images/uploads/category_jewellery_thumb.png',
+		bannerUrl: '/images/uploads/category_jewellery_banner.png',
 		validFrom: 0
 	},
 	{
 		categoryId: 2,
 		title: 'Soft Toys',
-		imageUrl: '/',
-		bannerUrl: '',
+		imageUrl: '/images/uploads/category_softtoy_thumb.png',
+		bannerUrl: '/images/uploads/category_softtoy_banner.png',
 		validFrom: 0
 	},
 	{
 		categoryId: 3,
 		title: 'Handmade items',
-		imageUrl: '/',
-		bannerUrl: '',
+		imageUrl: '/images/uploads/category_handmade_thumb.png',
+		bannerUrl: '/images/uploads/category_handmade_banner.png',
 		validFrom: 0
 	},
 	{
 		categoryId: 4,
 		title: 'Room decor',
-		imageUrl: '/',
-		bannerUrl: '',
+		imageUrl: '/images/uploads/category_deco_thumb.png',
+		bannerUrl: '/images/uploads/category_deco_banner.png',
 		validFrom: 0
 	},
 	{
 		categoryId: 5,
 		title: 'Vintage goods',
-		imageUrl: '/',
-		bannerUrl: '',
+		imageUrl: '/images/uploads/category_vintage_thumb.png',
+		bannerUrl: '/images/uploads/category_vintage_banner.png',
 		validFrom: 0
 	},
 	{
 		categoryId: 6,
 		title: 'Clothings',
-		imageUrl: '/',
-		bannerUrl: '',
+		imageUrl: '/images/uploads/category_clothing_thumb.png',
+		bannerUrl: '/images/uploads/category_clothing_banner.png',
 		validFrom: 0
 	}
 ]
@@ -61,7 +61,7 @@ const productList = [
 		categoryId: 1,
 		productKey: 'ProductKey2',
 		title: 'FENDINA Jewelry 18K',
-		description: 'FENDINA is a fashion jewelry leader that equip with a collection of exclusive design, fine production and sales. We focus on the unique style of jewelry design, strictly control the quality of products and keeping up with fashion trends from 1993. Being the focus with the FENDINA in the wedding,engagement,cocktail,graduation, prom or other parties, FENDINA fashion jewelry, provide you an excellent gifts idea on Valentine's Day, Mother's Day, Christmas or jewelry gifts for her. Exquisite appearance with the can¡¯t beat price, choose FENDINA engagement rings wedding band, vintage crystal bracelets,CZ earrings pretty pendant necklace and jewelry sets. FENDINA, More than you expect!',
+		description: 'FENDINA is a fashion jewelry leader that equip with a collection of exclusive design, fine production and sales. We focus on the unique style of jewelry design, strictly control the quality of products and keeping up with fashion trends from 1993. Being the focus with the FENDINA in the wedding,engagement,cocktail,graduation, prom or other parties, FENDINA fashion jewelry, provide you an excellent gifts idea on Valentines Day, Mothers Day, Christmas or jewelry gifts for her. Exquisite appearance with the cant beat price, choose FENDINA engagement rings wedding band, vintage crystal bracelets,CZ earrings pretty pendant necklace and jewelry sets. FENDINA, More than you expect!',
 		price: 25.50,
 		shippingPrice: 10.25,
 		discount: 0,
@@ -72,8 +72,8 @@ const productList = [
 		userId: 3,
 		categoryId: 2,
 		productKey: 'ProductKey3',
-		title: 'Choo Choo express plush dunphy the elephant measures approximately 9" long x 8.5" wide, when sitting down. It is made of 100% polyester. Care instructions: machine wash in gentle cycle, tumble dry low and remove promptly.',
-		description: 'Product Description 3',
+		title: 'Choo Choo Elephant',
+		description: 'Choo Choo express plush dunphy the elephant measures approximately 9" long x 8.5" wide, when sitting down. It is made of 100% polyester. Care instructions: machine wash in gentle cycle, tumble dry low and remove promptly.',
 		price: 77.77,
 		shippingPrice: 33.33,
 		discount: 50,
@@ -246,11 +246,76 @@ const productStockList = [
 	}
 ]
 
+const productImage = [
+	{
+		productKey: 'ProductKey1',
+		imageUrl: 'images/uploads/product_jewellery_1.png',
+		validFrom: '0'
+	},
+	{
+		productKey: 'ProductKey2',
+		imageUrl: 'images/uploads/product_jewellery_2.png',
+		validFrom: '0'
+	},
+	{
+		productKey: 'ProductKey3',
+		imageUrl: 'images/uploads/product_softtoy_1.png',
+		validFrom: '0'
+	},
+	{
+		productKey: 'ProductKey4',
+		imageUrl: 'images/uploads/product_softtoy_2.png',
+		validFrom: '0'
+	},
+	{
+		productKey: 'ProductKey5',
+		imageUrl: 'images/uploads/product_homemade_1.png',
+		validFrom: '0'
+	},
+	{
+		productKey: 'ProductKey6',
+		imageUrl: 'images/uploads/product_homemade_2.png',
+		validFrom: '0'
+	},
+	{
+		productKey: 'ProductKey7',
+		imageUrl: 'images/uploads/product_deco_1.png',
+		validFrom: '0'
+	},
+	{
+		productKey: 'ProductKey8',
+		imageUrl: 'images/uploads/product_deco_2.png',
+		validFrom: '0'
+	},
+	{
+		productKey: 'ProductKey9',
+		imageUrl: 'images/uploads/product_vintage_1.png',
+		validFrom: '0'
+	},
+	{
+		productKey: 'ProductKey10',
+		imageUrl: 'images/uploads/product_vintage_2.png',
+		validFrom: '0'
+	},
+	{
+		productKey: 'ProductKey11',
+		imageUrl: 'images/uploads/product_clothing_2.png',
+		validFrom: '0'
+	}
+	,{
+		productKey: 'ProductKey12',
+		imageUrl: 'images/uploads/product_clothing_1.png',
+		validFrom: '0'
+	}
+]
+
 exports.seed = knex => {
-	return knex('ProductStock').del()
+	return knex('ProductImage').del()
+		.then(() => knex('ProductStock').del())
 		.then(() => knex('Product').del())
 		.then(() => knex('Category').del())
 		.then(() => knex('Category').insert(categoryList))
 		.then(() => knex('Product').insert(productList))
 		.then(() => knex('ProductStock').insert(productStockList))
+		.then(() => knex('ProductImage').insert(productImage))
 }

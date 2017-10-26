@@ -5,7 +5,7 @@
 </div>
 <div class="row">
     <div class="col-xs-4 col-sm-4 col-md-4">
-        <img src="images/product_craft_1.png" alt="product 1" class="productimage"/>
+        <img src="{{ $ctrl.product.images[0].imageUrl }}" alt="product 1" class="productimage"/>
     </div>
     <div class="col-xs-8 col-sm-8 col-md-8 productinfocontainer">
         <div>
@@ -19,7 +19,7 @@
             <form>
                 <label>Quantity: </label>
                 <input type="number" />
-                <input type="submit" value="Add to basket"/>
+                <input type="submit" value="Add to basket" />
             </form>
         </div>
     </div>
@@ -77,7 +77,7 @@
             <div class="col-xs-3" ng-repeat="rproduct in $ctrl.productRandomization track by $index">
                 <a ui-sref="product({ productKey: rproduct.productKey })">
                     <div class="productsuggesionbox">
-                        <img src="images/product_craft_1.png" alt="product image" />
+                        <img src="{{ rproduct.images[0].imageUrl }}" alt="product image" />
                         <p class="text-center">{{rproduct.title}}</p>
                     </div>
                 </a>

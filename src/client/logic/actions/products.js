@@ -4,7 +4,7 @@ export const RECEIVE_PRODUCTS_ERROR = 'RECEIVE_PRODUCTS_ERROR'
 
 export const fetchProducts = ($store, $http, categoryId) => {
 	const isFetching = $store.getState().products.isFetching
-	const url = categoryId ? `/api/categories/${categoryId}/products` : '/api/products'
+	const url = '/api/products'
 
 	if (!isFetching) {
 		$store.update({
