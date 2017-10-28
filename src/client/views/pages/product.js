@@ -6,7 +6,7 @@ import { fetchUsers } from 'client/logic/actions/users'
 
 const product = {
 	templateUrl: 'templates/pages/ProductPage.html',
-    controller:['$store','$stateParams','$http', function($store, $stateParams, $http){
+    controller:['$store','$stateParams','$http','$location', function($store, $stateParams, $http, $location){
         this.$onDestroy = $store.subscribe(state => {
             this.products = state.products
             this.categories = state.categories
@@ -49,6 +49,35 @@ const product = {
                 }
                 i++
             }
+            
+            
+            
+            
+            //Handle form submission 
+            this.addBasket = function () {
+                this.basket = {
+                    productKey: this.product.productKey,
+                    quantity: this.productqty
+                }
+                
+                if (this.basket.includes(productKey: this.product.productKey)){
+                    this.testing = "Yeap its inside"
+                }else {
+                    this.testing = "Nope not included"
+                }
+                
+                /*
+                $http({ withCredentials: true,
+                        method: 'post',
+                        url:'/api/basket',
+                        data: this.basket })
+                    .then(function sucessCall1back(response){
+                        alert("Successfully added to basket")
+                        $location.path("/basket")
+                    }, function errorCallback(response){
+                        alert("Database is currently down. Try again later") 
+                    })*/
+            }            
         })
         
         // In cache not found, fetch from server

@@ -16,11 +16,12 @@
             <p>Shipping Price: RM {{ $ctrl.product.shippingPrice | number:2 }}</p>
             <p>Stock available: {{ $ctrl.product.stock }}</p>
             <hr>
-            <form>
-                <label>Quantity: </label>
-                <input type="number" />
-                <input type="submit" value="Add to basket" />
+            <form ng-submit="$ctrl.addBasket()">
+                <label for="productqty">Quantity: </label>
+                <input type="number" id="productqty" ng-model="$ctrl.productqty"/>
+                <input type="submit" value="Add to basket"/>
             </form>
+            {{ $ctrl.testing }}
         </div>
     </div>
 </div>
