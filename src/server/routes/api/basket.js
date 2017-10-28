@@ -1,7 +1,7 @@
 import Express from 'express'
 import { validationResult } from 'express-validator/check'
 
-import db from 'server/database'
+import BasketModel from 'server/models/basket'
 import * as validators from './validators/basket'
 
 const router = Express.Router()
@@ -18,8 +18,7 @@ const validation = (req, res, next) => {
 }
 
 router.get('/', validation, (req, res) => {
-	db('UserBasket')
-		.where('userId', req.user.userId)
+	BasketModel.findAll(req.user.userId)
 		.then(rows => res.status(200).json({ data: rows }))
 		.catch(err => {
 			console.error(err)
@@ -32,24 +31,15 @@ router.post('/', [
 	validators.quantity,
 	validation
 ], (req, res) => {
-	db.transaction(trx => trx('UserBasket')
-		.where({
-			userId: req.user.userId,
-			productKey: req.body.productKey
-		})
-		.first()
-		.then(row => {
-			if (row) { throw new Error(422) }
-			return trx('UserBasket')
-				.insert({
-					userId: req.user.userId,
-					productKey: req.body.productKey,
-					quantity: req.body.quantity
-				})
-		})
-		.then(() => res.sendStatus(204)))
+	const basketItem = {
+		userId: req.user.userId,
+		productKey: req.body.productKey,
+		quantity: req.body.quantity
+	}
+
+	BasketModel.upsert(basketItem)
+		.then(() => res.sendStatus(204))
 		.catch(err => {
-			if (err.message === '422') { return res.sendStatus(422) }
 			console.error(err)
 			res.sendStatus(500)
 		})
@@ -60,24 +50,15 @@ router.post('/:productKey', [
 	validators.quantity,
 	validation
 ], (req, res) => {
-	db.transaction(trx => trx('UserBasket')
-		.where({
-			userId: req.user.userId,
-			productKey: req.params.productKey
-		})
-		.first()
-		.then(row => {
-			if (!row) { throw new Error(422) }
-			return trx('UserBasket')
-				.where({
-					userId: req.user.userId,
-					productKey: req.params.productKey
-				})
-				.update('quantity', req.body.quantity)
-		})
-		.then(() => res.sendStatus(204)))
+	const basketItem = {
+		userId: req.user.userId,
+		productKey: req.params.productKey,
+		quantity: req.body.quantity
+	}
+
+	BasketModel.upsert(basketItem)
+		.then(() => res.sendStatus(204))
 		.catch(err => {
-			if (err.message === '422') { return res.sendStatus(422) }
 			console.error(err)
 			res.sendStatus(500)
 		})
@@ -87,24 +68,9 @@ router.delete('/:productKey', [
 	validators.productKey,
 	validation
 ], (req, res) => {
-	db.transaction(trx => trx('UserBasket')
-		.where({
-			userId: req.user.userId,
-			productKey: req.params.productKey
-		})
-		.first()
-		.then(row => {
-			if (!row) { throw new Error(422) }
-			return db('UserBasket')
-				.where({
-					productKey: req.params.productKey,
-					userId: req.user.userId
-				})
-				.del()
-		})
-		.then(() => res.sendStatus(204)))
+	BasketModel.deleteOne(req.params.productKey, req.user.userId)
+		.then(() => res.sendStatus(204))
 		.catch(err => {
-			if (err.message === '422') { return res.sendStatus(422) }
 			console.error(err)
 			res.sendStatus(500)
 		})
