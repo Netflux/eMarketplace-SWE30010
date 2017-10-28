@@ -3,6 +3,7 @@ import './css/ProductPage.css'
 import { fetchCategories } from 'client/logic/actions/categories'
 import { fetchProducts } from 'client/logic/actions/products'
 import { fetchUsers } from 'client/logic/actions/users'
+import { fetchBaskets } from 'client/logic/actions/baskets'
 
 const product = {
 	templateUrl: 'templates/pages/ProductPage.html',
@@ -11,11 +12,13 @@ const product = {
             this.products = state.products
             this.categories = state.categories
             this.users = state.users
+            this.baskets = state.baskets
 
             // Check local cache
             this.product = this.products.items.find(i => i.productKey === $stateParams.productKey)
             this.category = this.product ? this.categories.items.find(i => i.categoryId === this.product.categoryId) : undefined
             this.user = this.product ? this.users.items.find(i => i.userId === this.product.userId) : undefined
+            this.basket = this.product ? this.baskets.items.find(i => i.productKey === this.product.productKey) : undefined
  
             // Populate breadcrumbs
             this.crumbs = [{
@@ -51,7 +54,7 @@ const product = {
             }
             
             
-            
+            console.log(this.baskets)
             
             //Handle form submission 
             this.addBasket = function () {
@@ -59,10 +62,22 @@ const product = {
                     productKey: this.product.productKey,
                     quantity: this.productqty
                 }
+                $http({ withCredentials: true,
+                            method: 'post',
+                            url:'/api/basket',
+                            data: this.basket })
+                        .then(function sucessCall1back(response){
+                            alert("Successfully added to basket")
+                            $location.path("/basket")
+                        }, function errorCallback(response){
+                            alert("Database is currently down. Try again later") 
+                        })
+                /*
                 console.log(this.product.productKey)
                 console.log(this.productqty)
                 console.log(this.basket)
-                console.log(this.basket.length)
+                console.log(Object.keys(this.basket).length)
+                
                 if (this.basket.length == undefined ){
                     this.testing = "Empty"
                 }
@@ -72,18 +87,8 @@ const product = {
                         this.testing = "Yeap its inside"
                     }else {
                         this.testing = "Nope not included"
-                        /*$http({ withCredentials: true,
-                            method: 'post',
-                            url:'/api/basket',
-                            data: this.basket })
-                        .then(function sucessCall1back(response){
-                            alert("Successfully added to basket")
-                            $location.path("/basket")
-                        }, function errorCallback(response){
-                            alert("Database is currently down. Try again later") 
-                        })*/
                     }    
-                }
+                }*/
             }            
         })
         
@@ -91,6 +96,7 @@ const product = {
 		fetchCategories($store, $http)
         fetchProducts($store, $http)
         fetchUsers($store, $http)
+        fetchBaskets($store,$http)
     }]
 }
 
