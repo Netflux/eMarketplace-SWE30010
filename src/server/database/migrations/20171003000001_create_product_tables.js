@@ -4,8 +4,6 @@ exports.up = knex => {
 		table.string('title').notNullable()
 		table.string('imageUrl').notNullable()
 		table.string('bannerUrl').notNullable()
-		table.integer('validFrom').unsigned().notNullable()
-		table.integer('validTo').unsigned()
 	})
 	const createProductTable = () => knex.schema.createTable('Product', table => {
 		table.increments('productId').unsigned().notNullable()

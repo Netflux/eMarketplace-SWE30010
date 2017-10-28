@@ -3,43 +3,37 @@ const categoryList = [
 		categoryId: 1,
 		title: 'Jewellery',
 		imageUrl: '/images/uploads/category_jewellery_thumb.png',
-		bannerUrl: '/images/uploads/category_jewellery_banner.png',
-		validFrom: 0
+		bannerUrl: '/images/uploads/category_jewellery_banner.png'
 	},
 	{
 		categoryId: 2,
 		title: 'Soft Toys',
 		imageUrl: '/images/uploads/category_softtoy_thumb.png',
-		bannerUrl: '/images/uploads/category_softtoy_banner.png',
-		validFrom: 0
+		bannerUrl: '/images/uploads/category_softtoy_banner.png'
 	},
 	{
 		categoryId: 3,
 		title: 'Handmade items',
 		imageUrl: '/images/uploads/category_handmade_thumb.png',
-		bannerUrl: '/images/uploads/category_handmade_banner.png',
-		validFrom: 0
+		bannerUrl: '/images/uploads/category_handmade_banner.png'
 	},
 	{
 		categoryId: 4,
 		title: 'Room decor',
 		imageUrl: '/images/uploads/category_deco_thumb.png',
-		bannerUrl: '/images/uploads/category_deco_banner.png',
-		validFrom: 0
+		bannerUrl: '/images/uploads/category_deco_banner.png'
 	},
 	{
 		categoryId: 5,
 		title: 'Vintage goods',
 		imageUrl: '/images/uploads/category_vintage_thumb.png',
-		bannerUrl: '/images/uploads/category_vintage_banner.png',
-		validFrom: 0
+		bannerUrl: '/images/uploads/category_vintage_banner.png'
 	},
 	{
 		categoryId: 6,
 		title: 'Clothings',
 		imageUrl: '/images/uploads/category_clothing_thumb.png',
-		bannerUrl: '/images/uploads/category_clothing_banner.png',
-		validFrom: 0
+		bannerUrl: '/images/uploads/category_clothing_banner.png'
 	}
 ]
 const productList = [
