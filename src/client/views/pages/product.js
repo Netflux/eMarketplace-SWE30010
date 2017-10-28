@@ -59,24 +59,31 @@ const product = {
                     productKey: this.product.productKey,
                     quantity: this.productqty
                 }
-                
-                if (this.basket.includes(productKey: this.product.productKey)){
-                    this.testing = "Yeap its inside"
-                }else {
-                    this.testing = "Nope not included"
+                console.log(this.product.productKey)
+                console.log(this.productqty)
+                console.log(this.basket)
+                console.log(this.basket.length)
+                if (this.basket.length == undefined ){
+                    this.testing = "Empty"
                 }
                 
-                /*
-                $http({ withCredentials: true,
-                        method: 'post',
-                        url:'/api/basket',
-                        data: this.basket })
-                    .then(function sucessCall1back(response){
-                        alert("Successfully added to basket")
-                        $location.path("/basket")
-                    }, function errorCallback(response){
-                        alert("Database is currently down. Try again later") 
-                    })*/
+                for (var i = 0; i < this.basket.length; i++){
+                    if (this.basket[i].productKey == this.product.productKey){
+                        this.testing = "Yeap its inside"
+                    }else {
+                        this.testing = "Nope not included"
+                        /*$http({ withCredentials: true,
+                            method: 'post',
+                            url:'/api/basket',
+                            data: this.basket })
+                        .then(function sucessCall1back(response){
+                            alert("Successfully added to basket")
+                            $location.path("/basket")
+                        }, function errorCallback(response){
+                            alert("Database is currently down. Try again later") 
+                        })*/
+                    }    
+                }
             }            
         })
         
