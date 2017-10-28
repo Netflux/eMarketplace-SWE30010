@@ -4,6 +4,8 @@ exports.up = knex => {
 		table.string('title').notNullable()
 		table.string('imageUrl').notNullable()
 		table.string('bannerUrl').notNullable()
+		table.integer('createdAt').unsigned().notNullable()
+		table.integer('updatedAt').unsigned().notNullable()
 	})
 	const createProductTable = () => knex.schema.createTable('Product', table => {
 		table.increments('productId').unsigned().notNullable()
@@ -22,6 +24,8 @@ exports.up = knex => {
 		table.string('productKey').notNullable().references('productKey').inTable('Product')
 		table.integer('stock').unsigned().notNullable()
 		table.primary('productKey')
+		table.integer('createdAt').unsigned().notNullable()
+		table.integer('updatedAt').unsigned().notNullable()
 	})
 	const createProductImageTable = () => knex.schema.createTable('ProductImage', table => {
 		table.increments('productImageId').unsigned().notNullable()

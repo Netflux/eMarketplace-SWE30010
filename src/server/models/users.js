@@ -21,12 +21,14 @@ const findAll = () => {
 }
 
 const create = user => {
+	const timestamp = Date.now()
 	return hashPassword(user.password)
 		.then(hash => {
 			return db('User').insert({
 				...user,
 				password: hash,
-				createdAt: Date.now()
+				createdAt: timestamp,
+				updatedAt: timestamp
 			})
 		})
 }
@@ -38,7 +40,8 @@ const update = (userId, user) => {
 				.where('userId', userId)
 				.update({
 					...user,
-					password: hash
+					password: hash,
+					updatedAt: Date.now()
 				})
 		})
 }

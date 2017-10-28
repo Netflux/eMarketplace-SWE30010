@@ -3,6 +3,8 @@ exports.up = knex => {
 		table.integer('userId').unsigned().notNullable().references('userId').inTable('User')
 		table.string('productKey').notNullable().references('productKey').inTable('Product')
 		table.integer('quantity').unsigned().notNullable()
+		table.integer('createdAt').unsigned().notNullable()
+		table.integer('updatedAt').unsigned().notNullable()
 		table.primary(['userId', 'productKey'])
 	})
 

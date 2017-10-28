@@ -9,6 +9,7 @@ const findAll = userId => {
 }
 
 const upsert = basketItem => {
+	const timestamp = Date.now()
 	return db.transaction(trx => trx('UserBasket')
 		.where({
 			userId: basketItem.userId,
@@ -22,14 +23,19 @@ const upsert = basketItem => {
 						userId: basketItem.userId,
 						productKey: basketItem.productKey
 					})
-					.update('quantity', basketItem.quantity)
+					.update({
+						quantity: basketItem.quantity,
+						updatedAt: timestamp
+					})
 			}
 
 			return trx('UserBasket')
 				.insert({
 					userId: basketItem.userId,
 					productKey: basketItem.productKey,
-					quantity: basketItem.quantity
+					quantity: basketItem.quantity,
+					createdAt: timestamp,
+					updatedAt: timestamp
 				})
 		}))
 }
