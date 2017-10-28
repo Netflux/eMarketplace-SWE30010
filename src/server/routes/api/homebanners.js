@@ -1,8 +1,8 @@
 import Express from 'express'
 import { validationResult } from 'express-validator/check'
 
-import db from 'server/database'
-import * as validators from './validators/homebanner'
+import HomeBannerModel from 'server/models/homebanners'
+import * as validators from './validators/homebanners'
 import multer from 'server/utils/multer'
 
 const router = Express.Router()
@@ -17,8 +17,7 @@ const validation = (req, res, next) => {
 }
 
 router.get('/', (req, res) => {
-	db('HomeBanner')
-		.whereNull('validTo')
+	HomeBannerModel.findAll()
 		.then(rows => res.status(200).json({ data: rows }))
 		.catch(err => {
 			console.error(err)
@@ -34,27 +33,14 @@ router.post('/', multer.single('image'), (req, res) => {
 		return res.sendStatus(422)
 	}
 
-	db('HomeBanner')
-		.insert({
-			userId: req.user.userId,
-			imageUrl: `images/uploads/${req.file.filename}`,
-			validFrom: Date.now()
-		})
-		.then(() => res.sendStatus(204))
-		.catch(err => {
-			console.error(err)
-			res.sendStatus(500)
-		})
-})
+	const homeBanner = {
+		userId: req.user.userId,
+		imageUrl: `images/uploads/${req.file.filename}`,
+		validFrom: Date.now()
+	}
 
-router.get('/:homeBannerId', [
-	validators.homeBannerId,
-	validation
-], (req, res) => {
-	db('HomeBanner')
-		.where('homeBannerId', req.params.homeBannerId)
-		.first()
-		.then(row => res.status(200).json({ data: [row] }))
+	HomeBannerModel.create(homeBanner)
+		.then(() => res.sendStatus(204))
 		.catch(err => {
 			console.error(err)
 			res.sendStatus(500)
@@ -69,10 +55,7 @@ router.delete('/:homeBannerId', [
 		return res.sendStatus(403)
 	}
 
-	db('HomeBanner')
-		.where('homeBannerId', req.params.homeBannerId)
-		.whereNull('validTo')
-		.update('validTo', Date.now())
+	HomeBannerModel.deleteOne(req.params.homeBannerId)
 		.then(() => res.sendStatus(204))
 		.catch(err => {
 			console.error(err)
