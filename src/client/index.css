@@ -1,81 +1,81 @@
 @import url('https://fonts.googleapis.com/css?family=Oxygen:400,700');
 
 body {
-    font-family: 'Oxygen', sans-serif;
-    background-color:#f4f4f4;
+	font-family: 'Oxygen', sans-serif;
+	background-color:#f4f4f4;
 }
 
 a {
-    color: black;
+	color: black;
 }
 
 a:hover {
-    color: #9c7242;
-    text-decoration: none;
+	color: #9c7242;
+	text-decoration: none;
 }
 
 .nopadding {
-    margin:0;
-    padding:0;
+	margin:0;
+	padding:0;
 }
 
 .margintop {
-    margin-top: 1%;
+	margin-top: 1%;
 }
 
 .col-xs-5ths,
 .col-sm-5ths,
 .col-md-5ths,
 .col-lg-5ths {
-    position: relative;
-    min-height: 1px;
+	position: relative;
+	min-height: 1px;
 }
 
 .col-xs-5ths {
-    width: 20%;
-    float: left;
+	width: 20%;
+	float: left;
 }
 
 @media (min-width: 768px) {
-    .col-sm-5ths {
-        width: 20%;
-        float: left;
-    }
+	.col-sm-5ths {
+		width: 20%;
+		float: left;
+	}
 }
 
 @media (min-width: 992px) {
-    .col-md-5ths {
-        width: 20%;
-        float: left;
-    }
+	.col-md-5ths {
+		width: 20%;
+		float: left;
+	}
 }
 
 @media (min-width: 1200px) {
-    .col-lg-5ths {
-        width: 20%;
-        float: left;
-    }
+	.col-lg-5ths {
+		width: 20%;
+		float: left;
+	}
 }
 
 
 .categorygridviewcontainer, .categorylistviewcontainer, .productlistcontainer, .productinfo, .productsuggestioncontainer, .productsuggesionbox{
-    background-color:white;
-    padding: 3%;
-    box-shadow: rgba(0,0,0,0.1) 0px 0px 3px 2px;
+	background-color:white;
+	padding: 3%;
+	box-shadow: rgba(0,0,0,0.1) 0px 0px 3px 2px;
 }
 
 .productlistfiltercontainer, .productimage, .productinfocontainer ,.productsellercontainer {
-    background-color:white;
+	background-color:white;
 	
 }
 
 .fa {
-    font-size: 25px;
-    text-align: center;
-    text-decoration: none;
+	font-size: 25px;
+	text-align: center;
+	text-decoration: none;
 }
 
 .fa:hover {
-    opacity: 0.7;
+	opacity: 0.7;
 }
 

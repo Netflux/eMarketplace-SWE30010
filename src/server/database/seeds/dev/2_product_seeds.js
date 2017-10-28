@@ -60,7 +60,7 @@ const productList = [
 		price: 50.00,
 		shippingPrice: 25.00,
 		discount: 10,
-		validFrom: 0
+		validFrom: timestamp
 	},
 	{
 		productId: 2,
@@ -72,7 +72,7 @@ const productList = [
 		price: 25.50,
 		shippingPrice: 10.25,
 		discount: 0,
-		validFrom: 0
+		validFrom: timestamp
 	},
 	{
 		productId: 3,
@@ -84,7 +84,7 @@ const productList = [
 		price: 77.77,
 		shippingPrice: 33.33,
 		discount: 50,
-		validFrom: 0
+		validFrom: timestamp
 	},
 	{
 		productId: 4,
@@ -96,7 +96,7 @@ const productList = [
 		price: 30.23,
 		shippingPrice: 10.33,
 		discount: 20,
-		validFrom: 0
+		validFrom: timestamp
 	},
 	{
 		productId: 5,
@@ -108,7 +108,7 @@ const productList = [
 		price: 15.50,
 		shippingPrice: 10.00,
 		discount: 10,
-		validFrom: 0
+		validFrom: timestamp
 	},
 	{
 		productId: 6,
@@ -120,7 +120,7 @@ const productList = [
 		price: 7.00,
 		shippingPrice: 10.00,
 		discount: 10,
-		validFrom: 0
+		validFrom: timestamp
 	},
 	{
 		productId: 7,
@@ -132,7 +132,7 @@ const productList = [
 		price: 105.50,
 		shippingPrice: 6.00,
 		discount: 10,
-		validFrom: 0
+		validFrom: timestamp
 	},
 	{
 		productId: 8,
@@ -144,7 +144,7 @@ const productList = [
 		price: 209.50,
 		shippingPrice: 5.00,
 		discount: 10,
-		validFrom: 0
+		validFrom: timestamp
 	},
 	{
 		productId: 9,
@@ -156,7 +156,7 @@ const productList = [
 		price: 75.50,
 		shippingPrice: 15.00,
 		discount: 10,
-		validFrom: 0
+		validFrom: timestamp
 	},
 	{
 		productId: 10,
@@ -168,7 +168,7 @@ const productList = [
 		price: 55.50,
 		shippingPrice: 8.00,
 		discount: 10,
-		validFrom: 0
+		validFrom: timestamp
 	},
 	{
 		productId: 11,
@@ -180,7 +180,7 @@ const productList = [
 		price: 65.50,
 		shippingPrice: 8.00,
 		discount: 10,
-		validFrom: 0
+		validFrom: timestamp
 	},
 	{
 		productId: 12,
@@ -192,7 +192,7 @@ const productList = [
 		price: 125.50,
 		shippingPrice: 0,
 		discount: 10,
-		validFrom: 0
+		validFrom: timestamp
 	}
 ]
 const productStockList = [

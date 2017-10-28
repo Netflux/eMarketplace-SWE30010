@@ -4,6 +4,7 @@ import { validationResult } from 'express-validator/check'
 import CategoryModel from 'server/models/categories'
 import ProductModel from 'server/models/products'
 import * as validators from './validators/categories'
+import * as sharedValidators from './validators/shared'
 import multer from 'server/utils/multer'
 
 const router = Express.Router()
@@ -60,9 +61,10 @@ router.post('/', multer.fields([
 
 router.get('/:categoryId/products', [
 	validators.categoryId,
+	sharedValidators.timestamp,
 	validation
 ], (req, res) => {
-	ProductModel.findAll(req.params.categoryId)
+	ProductModel.findAll(req.params.categoryId, req.query.timestamp)
 		.then(rows => res.status(200).json({ data: rows }))
 		.catch(err => {
 			console.error(err)

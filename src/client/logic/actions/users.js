@@ -3,19 +3,21 @@ export const RECEIVE_USERS = 'RECEIVE_USERS'
 export const RECEIVE_USERS_ERROR = 'RECEIVE_USERS_ERROR'
 
 export const fetchUsers = ($store, $http) => {
-	const isFetching = $store.getState().users.isFetching
+	const state = $store.getState().users
 
-	if (!isFetching) {
+	if (!state.isFetching) {
+		const timestamp = Date.now()
 		$store.update({
 			type: FETCH_USERS
 		})
-		$http.get("/api/users")
+		$http.get(`/api/users?timestamp=${state.lastFetched}`)
 			.then(function success(response) {
 				$store.update({
 					type: RECEIVE_USERS,
-					data: response.data.data
+					data: response.data.data,
+					timestamp
 				})
-			}, function failure(response) {
+			}, function failure() {
 				$store.update({
 					type: RECEIVE_USERS_ERROR
 				})

@@ -15,10 +15,9 @@ const productsReducer = (state = {
 		const items = state.items.filter(i => action.data.filter(j => i.productKey === j.productKey).length === 0)
 		return {
 			...state,
-			lastFetched: Date.now(),
+			lastFetched: action.timestamp,
 			isFetching: false,
 			items: [...items, ...action.data]
-
 		}
 	}
 	case actions.RECEIVE_PRODUCTS_ERROR:

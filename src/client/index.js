@@ -36,7 +36,7 @@ import './index.css'
 		}])
 
 	angular.module('app', ['app.services', 'app.routes'])
-    
-    
-    
+	
+	
+	
 })(window.angular)
