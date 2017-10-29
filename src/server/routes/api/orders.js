@@ -28,6 +28,17 @@ router.get('/', validation, (req, res) => {
 		})
 })
 
+router.get('/sales', (req, res) => {
+	if (!req.user || req.user.role === 'Buyer') { return res.sendStatus(403) }
+
+	OrderModel.findAllBySeller(req.user.userId)
+		.then(rows => res.status(200).json({ data: rows }))
+		.catch(err => {
+			console.error(err)
+			res.sendStatus(500)
+		})
+})
+
 router.post('/', validation, (req, res) => {
 	OrderModel.create(req.user.userId)
 		.then(() => res.sendStatus(204))

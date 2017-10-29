@@ -11,7 +11,7 @@ import './index.css'
 	angular.module('app.services', [])
 		.service('$store', $store)
 
-	angular.module('app.components', ['app.services'])
+	angular.module('app.components', ['app.services', 'chart.js'])
 		.component('accountPage', pages.account)
 		.component('adminPage', pages.admin)
 		.component('basketPage', pages.basket)
@@ -24,10 +24,11 @@ import './index.css'
 		.component('signupPage', pages.signup)
 		.component('navbar', components.navbar)
 		.component('footersection', components.footersection)
-		.component('productlist',components.productlist)
+		.component('breadcrumbs',components.breadcrumbs)
 		.component('categories',components.categories)
 		.component('listcategories',components.listcategories)
-		.component('breadcrumbs',components.breadcrumbs)
+		.component('productlist',components.productlist)
+		.component('salesanalysis',components.salesanalysis)
 
 	angular.module('app.routes', ['ui.router', 'app.components'])
 		.config(['$stateProvider', '$urlRouterProvider', '$transitionsProvider', ($stateProvider, $urlRouterProvider, $transitionsProvider) => {

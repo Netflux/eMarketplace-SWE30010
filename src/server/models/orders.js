@@ -21,6 +21,36 @@ const findAll = userId => {
 	})
 }
 
+const findAllBySeller = userId => {
+	return db.transaction(trx => {
+		return trx('Order')
+			.select(['orderId', 'date'])
+			.then(orders => {
+				return trx('OrderProduct')
+					.select([
+						'OrderProduct.orderId',
+						'OrderProduct.quantity',
+						'Product.price',
+						'Product.shippingPrice',
+						'Product.discount'
+					])
+					.innerJoin('Product', 'OrderProduct.productId', 'Product.productId')
+					.where('Product.userId', userId)
+					.then(orderProducts => {
+						return trx('Product')
+							.select(['price', 'shippingPrice', 'discount'])
+							.then(products => orderProducts.map(orderProduct => {
+								const order = orders.find(i => i.orderId === orderProduct.orderId)
+								return {
+									...orderProduct,
+									date: order.date
+								}
+							}))
+					})
+			})
+	})
+}
+
 const create = userId => {
 	return db.transaction(trx => trx('UserBasket')
 		.innerJoin('Product', function() {
@@ -59,6 +89,7 @@ const deleteOne = (orderId, userId) => {
 
 export default {
 	findAll,
+	findAllBySeller,
 	create,
 	deleteOne
 }

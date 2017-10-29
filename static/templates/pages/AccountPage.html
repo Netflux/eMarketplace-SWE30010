@@ -32,66 +32,73 @@
     <div class="col-md-12">
         <span class="box-header" id="users">
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#orderTab" data-toggle="tab">Orders</a></li>
-                <li><a href="#productsTab" data-toggle="tab">Products</a></li>
+                <li class="active"><a ui-sref="account({ '#': 'ordersTab' })" data-toggle="tab">Orders</a></li>
+                <li><a ui-sref="account({ '#': 'productsTab' })" data-toggle="tab">Products</a></li>
+                <li><a ui-sref="account({ '#': 'salesTab' })" data-toggle="tab">Sales Analysis</a></li>
             </ul>
         </span>
         <div class="tab-content">
-            <table class="table table-striped table-hover" >
-                <tr>
-                    <th>Order ID</th>
-                    <th>Date Ordered</th>
-                    <th>Price</th>
-                </tr>
-                <tr>
-                    <td>item1</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>item2</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>item3</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>item4</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-        <div id="productsTab" class="col-md-12 tab-pane">
-            <table class="table table-striped table-hover" >
-                <tr>
-                    <th>Product ID</th>
-                    <th>Date</th>
-                    <th>Price</th>
-                </tr>
-                <tr>
-                    <td>item1</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>item2</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>item3</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>item4</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
+			<div id="ordersTab" class="col-md-12 tab-pane fade in active">
+	            <table class="table table-striped table-hover" >
+	                <tr>
+	                    <th>Order ID</th>
+	                    <th>Date Ordered</th>
+	                    <th>Price</th>
+	                </tr>
+	                <tr>
+	                    <td>item1</td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>item2</td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>item3</td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>item4</td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	            </table>
+			</div>
+	        <div id="productsTab" class="col-md-12 tab-pane fade">
+	            <table class="table table-striped table-hover" >
+	                <tr>
+	                    <th>Product ID</th>
+	                    <th>Date</th>
+	                    <th>Price</th>
+	                </tr>
+	                <tr>
+	                    <td>item1</td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>item2</td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>item3</td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>item4</td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	            </table>
+	        </div>
+	        <div id="salesTab" class="col-md-12 tab-pane fade">
+	            <salesanalysis></salesanalysis>
+	        </div>
+		</div>
     </div>
 </div>
