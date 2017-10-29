@@ -5,16 +5,15 @@ const signup = {
 	bindings:{
 		user: '='
 	},
-	controller:['$store', '$http', '$log', function($store, $http, $log){
-
-		this.user={
+	controller:['$http', function($http) {
+		this.user = {
 			username: this.user.name,
 			password: this.user.password,
 			email: this.user.email,
 			tnc: this.user.tnc
-		};
-		
-		this.submit = function(user){
+		}
+
+		this.submit = function(user) {
 			$http({
 				method: 'POST',
 				url: 'api/users/login',
@@ -24,36 +23,35 @@ const signup = {
 				}
 			})
 		}
-		console.log(this.user.name);
-}],
-
-	directive:['passwordVerify', function(){
-		return{
+	}],
+	directive: ['passwordVerify', function() {
+		return {
 			restrict:'A',
 			require:'?ngModel',
-			link: function(scope, elem, attrs, ngModel){
-				// do nothing if no ng-model			 
-				if (!ngModel) return;
-				
+			link: function(scope, elem, attrs, ngModel) {
+				// do nothing if no ng-model
+				if (!ngModel) return
+
 				this.$watch(attrs.ngModel, function() {
-					validate();
-				});
+					validate()
+				})
 
 				// observe the other value and re-validate on change
-				attrs.$observe('passwordVerify', function(val) {
-				  validate();
-				});
+				attrs.$observe('passwordVerify', function() {
+					validate()
+				})
 
 				var validate = function() {
-				  // values
-				  var val1 = ngModel.$viewValue;
-				  var val2 = attrs.passwordVerify;
+					// values
+					var val1 = ngModel.$viewValue
+					var val2 = attrs.passwordVerify
 
-				  // set validity
-				  ngModel.$setValidity('passwordVerify', val1 === val2);
-				};
+					// set validity
+					ngModel.$setValidity('passwordVerify', val1 === val2)
+				}
+			}
 		}
-	};		
-}]}
+	}]
+}
 
 export default signup

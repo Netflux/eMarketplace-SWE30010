@@ -6,7 +6,7 @@ export const fetchProducts = ($store, $http, categoryId) => {
 	const state = $store.getState().products
 
 	if (!state.isFetching) {
-		const timestamp = Date.now()
+		const timestamp = categoryId ? state.lastFetched : Date.now()
 		const url = categoryId ? `/api/categories/${categoryId}/products?timestamp=${state.lastFetched}` : `/api/products?timestamp=${state.lastFetched}`
 		$store.update({
 			type: FETCH_PRODUCTS

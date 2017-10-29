@@ -6,7 +6,7 @@ const productlist = {
 	bindings: {
 		$stateParams: '='
 	},
-	controller:['$http', '$store', function($http, $store){
+	controller:['$http', '$store', function($http, $store) {
 		this.$onInit = () => {
 			this.$onDestroy = $store.subscribe(state => {
 				this.categories = state.categories
@@ -14,9 +14,8 @@ const productlist = {
 					...state.products,
 					items: state.products.items.filter(i => i.categoryId === parseInt(this.parentComp.$stateParams.categoryId))
 				}
-				console.log(this.products)
 			})
-			
+
 			//Error Handling here
 			// 1. Check local cache
 			// 2. if not found, try to fetch from server

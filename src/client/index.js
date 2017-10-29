@@ -30,13 +30,14 @@ import './index.css'
 		.component('breadcrumbs',components.breadcrumbs)
 
 	angular.module('app.routes', ['ui.router', 'app.components'])
-		.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) => {
+		.config(['$stateProvider', '$urlRouterProvider', '$transitionsProvider', ($stateProvider, $urlRouterProvider, $transitionsProvider) => {
 			routes.forEach(route => $stateProvider.state(route))
 			$urlRouterProvider.otherwise('/')
+			$transitionsProvider.onSuccess({}, () => window.scrollTo(0, 0))
 		}])
 
 	angular.module('app', ['app.services', 'app.routes'])
-	
-	
-	
+
+
+
 })(window.angular)
