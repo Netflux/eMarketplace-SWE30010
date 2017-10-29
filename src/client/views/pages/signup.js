@@ -7,10 +7,10 @@ const signup = {
 	},
 	controller:['$http', function($http) {
 		this.user = {
-			username: this.user.name,
-			password: this.user.password,
-			email: this.user.email,
-			tnc: this.user.tnc
+			username: this.name,
+			password: this.password,
+			email: this.email,
+			tnc: this.tnc
 		}
 
 		this.submit = function(user) {
