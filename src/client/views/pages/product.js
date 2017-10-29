@@ -12,13 +12,11 @@ const product = {
             this.products = state.products
             this.categories = state.categories
             this.users = state.users
-            this.baskets = state.baskets
 
             // Check local cache
             this.product = this.products.items.find(i => i.productKey === $stateParams.productKey)
             this.category = this.product ? this.categories.items.find(i => i.categoryId === this.product.categoryId) : undefined
             this.user = this.product ? this.users.items.find(i => i.userId === this.product.userId) : undefined
-            this.basket = this.product ? this.baskets.items.find(i => i.productKey === this.product.productKey) : undefined
  
             // Populate breadcrumbs
             this.crumbs = [{
@@ -53,42 +51,25 @@ const product = {
                 i++
             }
             
-            
-            console.log(this.baskets)
-            
             //Handle form submission 
             this.addBasket = function () {
-                this.basket = {
-                    productKey: this.product.productKey,
-                    quantity: this.productqty
-                }
-                $http({ withCredentials: true,
-                            method: 'post',
-                            url:'/api/basket',
-                            data: this.basket })
+                if (this.productqty <= this.product.stock){
+                    this.basket = {
+                        productKey: this.product.productKey,
+                        quantity: this.productqty
+                    }
+
+                    $http({ withCredentials: true, method: 'post', url:'/api/basket', data: this.basket })
                         .then(function sucessCall1back(response){
                             alert("Successfully added to basket")
                             $location.path("/basket")
                         }, function errorCallback(response){
                             alert("Database is currently down. Try again later") 
                         })
-                /*
-                console.log(this.product.productKey)
-                console.log(this.productqty)
-                console.log(this.basket)
-                console.log(Object.keys(this.basket).length)
-                
-                if (this.basket.length == undefined ){
-                    this.testing = "Empty"
                 }
-                
-                for (var i = 0; i < this.basket.length; i++){
-                    if (this.basket[i].productKey == this.product.productKey){
-                        this.testing = "Yeap its inside"
-                    }else {
-                        this.testing = "Nope not included"
-                    }    
-                }*/
+                else {
+                    alert ("Not enough stock available for purchase")
+                }
             }            
         })
         
