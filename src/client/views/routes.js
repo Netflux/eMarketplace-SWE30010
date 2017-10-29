@@ -1,5 +1,10 @@
 const routes = [
 	{
+		name: 'account',
+		url: '/account',
+		component: 'accountPage'
+	},
+	{
 		name: 'admin',
 		url: '/admin',
 		component: 'adminPage'
@@ -18,11 +23,6 @@ const routes = [
 		name: 'checkout',
 		url: '/checkout',
 		component: 'checkoutPage'
-	},
-	{
-		name: 'customer',
-		url: '/customer',
-		component: 'customerPage'
 	},
 	{
 		name: 'home',

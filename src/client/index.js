@@ -12,11 +12,11 @@ import './index.css'
 		.service('$store', $store)
 
 	angular.module('app.components', ['app.services'])
+		.component('accountPage', pages.account)
 		.component('adminPage', pages.admin)
 		.component('basketPage', pages.basket)
 		.component('categoryPage', pages.category)
 		.component('checkoutPage', pages.checkout)
-		.component('customerPage', pages.customer)
 		.component('homePage', pages.home)
 		.component('loginPage', pages.login)
 		.component('productPage', pages.product)
