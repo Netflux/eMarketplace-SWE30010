@@ -5,37 +5,24 @@ const login = {
 	bindings:{
 		user: '='
 	},
-	controller: ['$http', function($http){
-
-//		var state = false;
+	controller: ['$http', '$location', function($http, $location){
 		
 		this.user = {
-			username: this.user.username,
-			password: this.user.password
+			username: this.username,
+			password: this.password
 		}
 		
-		this.login = function(user){
-			$http({
-				method: 'POST',
-				url: 'api/customer',
-				data: this.user,
-				headers:{
-					'Content-Type': 'application/json'
-				}
-			}).then(function successCallback(response) {
-				
-			  }, function errorCallback(response) {
-				
-			  });
+		this.login = function(){
+			if(this.user.username == 'test' && this.user.password == 'test'){
+				$http({withCredentials: true, method:'POST', url:'api/users/login', data: this.user})
+					.then(function successCallback(response) {
+					alert("Login Success")
+					$location.path("/account")
+				  }, function errorCallback(response) {
+					alert("Can't do that right now. Try again later")
+				  });
+			}
 		}
-		
-//		if(this.username != null && this.username === test){
-//			state = true;
-//			
-//		}else
-//			state = false;
-//		
-//		
 	}]
 }
 
