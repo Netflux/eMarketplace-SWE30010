@@ -34,7 +34,11 @@ import './index.css'
 		.config(['$stateProvider', '$urlRouterProvider', '$transitionsProvider', ($stateProvider, $urlRouterProvider, $transitionsProvider) => {
 			routes.forEach(route => $stateProvider.state(route))
 			$urlRouterProvider.otherwise('/')
-			$transitionsProvider.onSuccess({}, () => window.scrollTo(0, 0))
+			$transitionsProvider.onSuccess({}, transition => {
+				if (transition.from().name !== transition.to().name) {
+					window.scrollTo(0, 0)
+				}
+			})
 		}])
 
 	angular.module('app', ['app.services', 'app.routes'])
