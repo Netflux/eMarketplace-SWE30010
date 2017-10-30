@@ -9,7 +9,7 @@ const checkout = {
         this.$onDestory = $store.subscribe(state => {
             this.basket = state.basket
             this.products = state.products
-            this.checkoutitems = []
+            this.checkoutitems = {}
             this.totalprice 
             
             this.checkoutitems = findBasketDetails(this.basket,this.products)

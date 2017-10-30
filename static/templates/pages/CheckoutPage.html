@@ -57,7 +57,7 @@
                 <th class="text-right">Shipping Price</th>
             </tr>
             <tr ng-repeat="sumcheckoutitem in $ctrl.checkoutitems">
-                <td><img src="{{ sumcheckoutitem.images }}"></td>
+                <td>{{ $index + 1 }}.</td>
                 <td>{{ sumcheckoutitem.title }}</td>
                 <td class="text-right">RM {{ sumcheckoutitem.sumprice | number: 2 }}</td>
                 <td class="text-right">RM {{ sumcheckoutitem.shipping | number: 2 }}</td>
