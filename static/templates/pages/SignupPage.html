@@ -1,97 +1,97 @@
 <div class="row">
-    <div class="col-md-12">
-        <h1>Sign Up</h1>
-        <hr>
-        <form ng-submit="$ctrl.submit()">
-            <div class="row container">
-                <div>
-                    <p class="col-md-3 signupFont margintop">Username</p>
-                    <div class="col-md-5">
-                        <input class="form-control" type="text" name="username" 
+	<div class="col-md-12">
+		<h1>Sign Up</h1>
+		<hr>
+		<form ng-submit="$ctrl.submit()">
+			<div class="row container">
+				<div>
+					<p class="col-md-3 signupFont margintop">Username</p>
+					<div class="col-md-5">
+						<input class="form-control" type="text" name="username" 
 						required 
 						placeholder="Between 6 - 24 characters"
 						maxlength="24"
 						minlength="6"
 						ng-model="$ctrl.user.name">
-                    </div>
-                </div>
-            </div>
-            <div class="row container">
-                <div>
-                    <p class="col-md-3 signupFont margintop">Password</p>
-                    <div class="col-md-5">
-                        <input class="form-control" 
-                            type="password" 
-                            name="password" 
-                            ng-model="$ctrl.user.password" 
-                            password-verify="{{$ctrl.user.confirm_pass}}" 
-                            required 
-                            placeholder="At least 1 number in 8 or more characters" 
-                            minlength="8" 
+					</div>
+				</div>
+			</div>
+			<div class="row container">
+				<div>
+					<p class="col-md-3 signupFont margintop">Password</p>
+					<div class="col-md-5">
+						<input class="form-control" 
+							type="password" 
+							name="password" 
+							ng-model="$ctrl.user.password" 
+							password-verify="{{$ctrl.user.confirm_pass}}" 
+							required 
+							placeholder="At least 1 number in 8 or more characters" 
+							minlength="8" 
 							pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
-                    </div>
-                </div>
-            </div>
-            <div class="row container">
-                <div>
-                    <p class="col-md-3 signupFont margintop">Email</p>
-                    <div class="col-md-5">
-                        <input class="email form-control" type="email" name="email" required placeholder="E-mail" ng-model="$ctrl.user.email">
-                    </div>
-                </div>
-            </div>
+					</div>
+				</div>
+			</div>
+			<div class="row container">
+				<div>
+					<p class="col-md-3 signupFont margintop">Email</p>
+					<div class="col-md-5">
+						<input class="email form-control" type="email" name="email" required placeholder="E-mail" ng-model="$ctrl.user.email">
+					</div>
+				</div>
+			</div>
 			<div class="row container">
 				<div>
 					<p class="col-md-3 signupFont margintop">Address</p>
-                    <div class="col-md-5">
-                        <input class="email form-control" type="textarea" 
+					<div class="col-md-5">
+						<input class="email form-control" type="textarea" 
 							   name="email" 
 							   required 
 							   placeholder="Address" 
 							   ng-model="$ctrl.user.address">
-                    </div>
+					</div>
 				</div>
 			</div>
 			<div class="row container">
 				<div>
 					<p class="col-md-3 signupFont margintop">Postcode</p>
-                    <div class="col-md-5">
-                        <input class="email form-control" type="text" 
+					<div class="col-md-5">
+						<input class="email form-control" type="text" 
 							   name="email" 
 							   required 
 							   placeholder="Post Code" 
 							   ng-model="$ctrl.user.postcode">
-                    </div>
+					</div>
 				</div>
 			</div>
 			<div class="row container">
 				<div>
 					<p class="col-md-3 signupFont margintop">Phone</p>
-                    <div class="col-md-5">
-                        <input class="email form-control" type="text" 
+					<div class="col-md-5">
+						<input class="email form-control" type="text" 
 							   name="phone" 
 							   required 
 							   placeholder="Phone Number" 
 							   ng-model="$ctrl.user.phone">
-                    </div>
+					</div>
 				</div>
 			</div>
 			<pre>user={{$ctrl.user}}</pre>
-            <div class="smallPrintSignup margintop tandc">
-                <input type="checkbox" name="termsandconditions" checked ng-model="$ctrl.user.news">  Subscribe to Newsletter
-            </div>
-            <div class="smallPrintSignup margintop tandc">
-                <input type="checkbox" name="termsandconditions" required ng-model="$ctrl.user.tnc">  Terms &#38 Conditions
-            </div>
-            <div>
-                <button class="margintop signupbtn btn" type="submit" id="submit" value="Submit">
-                    Sign Up
-                </button>
-            </div>
-            <div class="smallPrintSignup margintop">
-                <p>Already registered? <a ui-sref="login">Login Now</a></p>
-            </div>
-        </form>
-    </div>
+			<div class="smallPrintSignup margintop tandc">
+				<input type="checkbox" name="termsandconditions" checked ng-model="$ctrl.user.news">  Subscribe to Newsletter
+			</div>
+			<div class="smallPrintSignup margintop tandc">
+				<input type="checkbox" name="termsandconditions" required ng-model="$ctrl.user.tnc">  Terms &#38 Conditions
+			</div>
+			<div>
+				<button class="margintop signupbtn btn" type="submit" id="submit" value="Submit">
+					Sign Up
+				</button>
+			</div>
+			<div class="smallPrintSignup margintop">
+				<p>Already registered? <a ui-sref="login">Login Now</a></p>
+			</div>
+		</form>
+	</div>
 </div>
 <br><br>

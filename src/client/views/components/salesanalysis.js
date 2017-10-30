@@ -16,6 +16,7 @@ const salesanalysis = {
 		const ctrl = this
 		ctrl.stats = { isLoading: true }
 		ctrl.reload = () => {
+			ctrl.stats.isLoading = true
 			$http.get('/api/orders/sales')
 				.then(function success(response) {
 					const data = response.data

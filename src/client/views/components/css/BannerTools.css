@@ -1,0 +1,23 @@
+.banner-delete {
+	cursor: pointer;
+}
+
+.banner-delete span {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: calc(100% - 30px);
+	height: 100%;
+	position: absolute;
+	left: 15px;
+	color: red;
+	background-color: rgba(0, 0, 0, 0.5);
+	border-radius: 4px;
+	font-size: 3rem;
+	opacity: 0;
+	transition: opacity 0.2s;
+}
+
+.banner-delete:hover span {
+	opacity: 1;
+}

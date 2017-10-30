@@ -24,6 +24,7 @@ import './index.css'
 		.component('signupPage', pages.signup)
 		.component('navbar', components.navbar)
 		.component('footersection', components.footersection)
+		.component('bannertools', components.bannertools)
 		.component('breadcrumbs',components.breadcrumbs)
 		.component('categories',components.categories)
 		.component('listcategories',components.listcategories)

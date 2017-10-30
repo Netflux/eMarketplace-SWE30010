@@ -1,0 +1,23 @@
+<div class="spinner" ng-if="$ctrl.banners.isLoading">
+	<div class="rect1"></div>
+	<div class="rect2"></div>
+	<div class="rect3"></div>
+	<div class="rect4"></div>
+	<div class="rect5"></div>
+</div>
+
+<div class="container-fluid" ng-if="!$ctrl.banners.isLoading">
+	<form name="addBanner" ng-submit="$ctrl.submit()">
+		<p><label for="image">Add Banner:</label> <input type="file" accept="image/jpeg,image/png" name="image" id="image" required /></p>
+		<p><input type="submit" value="Submit" /></p>
+	</form>
+	<hr/>
+	<div class="row" ng-if="$ctrl.banners.items.length">
+		<div class="col-md-4 banner-delete" ng-repeat="banner in $ctrl.banners.items" ng-click="$ctrl.delete(banner.homeBannerId)">
+			<span class="text-center">X</span>
+			<img class="img-thumbnail" src="{{ banner.imageUrl }}" alt="Banner Image" />
+		</div>
+	</div>
+
+	<p ng-if="!$ctrl.banners.items.length">No data available</p>
+</div>

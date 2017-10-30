@@ -1,104 +1,108 @@
 <div class="row">
-    <div class="col-md-12">
-        <h1 id="to-top">My Account</h1>
-        <hr>
-    </div>
+	<div class="col-md-12">
+		<h1 id="to-top">My Account</h1>
+		<hr>
+	</div>
 </div>
 
 <!-- info boxes -->
 <div class="row">
-    <div class="col-md-4">
-        <div class="info-box">
-            <span class="info-box-icon"><p class="glyphicon glyphicon-user"></p></span>
-            <div class="info-box-content">
-                <span class="c-info-box-text">Personal Info</span>
-                <span class="c-info-box-number"><p>personal info here</p></span>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="info-box">
-            <span class="info-box-icon"><p class="glyphicon glyphicon-shopping-cart"></p></span>
-            <div class="c-info-box-content">
-                <span class="c-info-box-text">Address</span>
-                <span class="c-info-box-number"><p>address go here</p></span>
-            </div>
-        </div>
-    </div>
+	<div class="col-md-4">
+		<div class="info-box">
+			<span class="info-box-icon"><p class="glyphicon glyphicon-user"></p></span>
+			<div class="info-box-content">
+				<span class="c-info-box-text">Personal Info</span>
+				<span class="c-info-box-number"><p>personal info here</p></span>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="info-box">
+			<span class="info-box-icon"><p class="glyphicon glyphicon-shopping-cart"></p></span>
+			<div class="c-info-box-content">
+				<span class="c-info-box-text">Address</span>
+				<span class="c-info-box-number"><p>address go here</p></span>
+			</div>
+		</div>
+	</div>
 </div>
 
 <!-- Order history -->
 <div class="row well">
-    <div class="col-md-12">
-        <span class="box-header" id="users">
-            <ul class="nav nav-tabs">
-                <li class="active"><a ui-sref="account({ '#': 'ordersTab' })" data-toggle="tab">Orders</a></li>
-                <li><a ui-sref="account({ '#': 'productsTab' })" data-toggle="tab">Products</a></li>
-                <li><a ui-sref="account({ '#': 'salesTab' })" data-toggle="tab">Sales Analysis</a></li>
-            </ul>
-        </span>
-        <div class="tab-content">
+	<div class="col-md-12">
+		<span class="box-header" id="users">
+			<ul class="nav nav-tabs">
+				<li class="active"><a ui-sref="account({ '#': 'ordersTab' })" data-toggle="tab">Orders</a></li>
+				<li><a ui-sref="account({ '#': 'productsTab' })" data-toggle="tab">Products</a></li>
+				<li><a ui-sref="account({ '#': 'salesTab' })" data-toggle="tab">Sales Analysis</a></li>
+				<li><a ui-sref="account({ '#': 'bannersTab' })" data-toggle="tab">Home Banners</a></li>
+			</ul>
+		</span>
+		<div class="tab-content">
 			<div id="ordersTab" class="col-md-12 tab-pane fade in active">
-	            <table class="table table-striped table-hover" >
-	                <tr>
-	                    <th>Order ID</th>
-	                    <th>Date Ordered</th>
-	                    <th>Price</th>
-	                </tr>
-	                <tr>
-	                    <td>item1</td>
-	                    <td></td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>item2</td>
-	                    <td></td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>item3</td>
-	                    <td></td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>item4</td>
-	                    <td></td>
-	                    <td></td>
-	                </tr>
-	            </table>
+				<table class="table table-striped table-hover" >
+					<tr>
+						<th>Order ID</th>
+						<th>Date Ordered</th>
+						<th>Price</th>
+					</tr>
+					<tr>
+						<td>item1</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>item2</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>item3</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>item4</td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
 			</div>
-	        <div id="productsTab" class="col-md-12 tab-pane fade">
-	            <table class="table table-striped table-hover" >
-	                <tr>
-	                    <th>Product ID</th>
-	                    <th>Date</th>
-	                    <th>Price</th>
-	                </tr>
-	                <tr>
-	                    <td>item1</td>
-	                    <td></td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>item2</td>
-	                    <td></td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>item3</td>
-	                    <td></td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>item4</td>
-	                    <td></td>
-	                    <td></td>
-	                </tr>
-	            </table>
-	        </div>
-	        <div id="salesTab" class="col-md-12 tab-pane fade">
-	            <salesanalysis></salesanalysis>
-	        </div>
+			<div id="productsTab" class="col-md-12 tab-pane fade">
+				<table class="table table-striped table-hover" >
+					<tr>
+						<th>Product ID</th>
+						<th>Date</th>
+						<th>Price</th>
+					</tr>
+					<tr>
+						<td>item1</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>item2</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>item3</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>item4</td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+			<div id="salesTab" class="col-md-12 tab-pane fade">
+				<salesanalysis></salesanalysis>
+			</div>
+			<div id="bannersTab" class="col-md-12 tab-pane fade">
+				<bannertools></bannertools>
+			</div>
 		</div>
-    </div>
+	</div>
 </div>
