@@ -1,45 +1,52 @@
+const timestamp = Date.now()
 const categoryList = [
 	{
 		categoryId: 1,
 		title: 'Jewellery',
 		imageUrl: '/images/uploads/category_jewellery_thumb.png',
 		bannerUrl: '/images/uploads/category_jewellery_banner.png',
-		validFrom: 0
+		createdAt: timestamp,
+		updatedAt: timestamp
 	},
 	{
 		categoryId: 2,
 		title: 'Soft Toys',
 		imageUrl: '/images/uploads/category_softtoy_thumb.png',
 		bannerUrl: '/images/uploads/category_softtoy_banner.png',
-		validFrom: 0
+		createdAt: timestamp,
+		updatedAt: timestamp
 	},
 	{
 		categoryId: 3,
 		title: 'Handmade items',
 		imageUrl: '/images/uploads/category_handmade_thumb.png',
 		bannerUrl: '/images/uploads/category_handmade_banner.png',
-		validFrom: 0
+		createdAt: timestamp,
+		updatedAt: timestamp
 	},
 	{
 		categoryId: 4,
 		title: 'Room decor',
 		imageUrl: '/images/uploads/category_deco_thumb.png',
 		bannerUrl: '/images/uploads/category_deco_banner.png',
-		validFrom: 0
+		createdAt: timestamp,
+		updatedAt: timestamp
 	},
 	{
 		categoryId: 5,
 		title: 'Vintage goods',
 		imageUrl: '/images/uploads/category_vintage_thumb.png',
 		bannerUrl: '/images/uploads/category_vintage_banner.png',
-		validFrom: 0
+		createdAt: timestamp,
+		updatedAt: timestamp
 	},
 	{
 		categoryId: 6,
 		title: 'Clothings',
 		imageUrl: '/images/uploads/category_clothing_thumb.png',
 		bannerUrl: '/images/uploads/category_clothing_banner.png',
-		validFrom: 0
+		createdAt: timestamp,
+		updatedAt: timestamp
 	}
 ]
 const productList = [
@@ -102,8 +109,7 @@ const productList = [
 		shippingPrice: 10.00,
 		discount: 10,
 		validFrom: 0
-	}
-	,
+	},
 	{
 		productId: 6,
 		userId: 3,
@@ -115,8 +121,7 @@ const productList = [
 		shippingPrice: 10.00,
 		discount: 10,
 		validFrom: 0
-	}
-	,
+	},
 	{
 		productId: 7,
 		userId: 2,
@@ -128,8 +133,7 @@ const productList = [
 		shippingPrice: 6.00,
 		discount: 10,
 		validFrom: 0
-	}
-	,
+	},
 	{
 		productId: 8,
 		userId: 2,
@@ -141,8 +145,7 @@ const productList = [
 		shippingPrice: 5.00,
 		discount: 10,
 		validFrom: 0
-	}
-	,
+	},
 	{
 		productId: 9,
 		userId: 3,
@@ -154,8 +157,7 @@ const productList = [
 		shippingPrice: 15.00,
 		discount: 10,
 		validFrom: 0
-	}
-	,
+	},
 	{
 		productId: 10,
 		userId: 3,
@@ -167,8 +169,7 @@ const productList = [
 		shippingPrice: 8.00,
 		discount: 10,
 		validFrom: 0
-	}
-	,
+	},
 	{
 		productId: 11,
 		userId: 2,
@@ -180,8 +181,7 @@ const productList = [
 		shippingPrice: 8.00,
 		discount: 10,
 		validFrom: 0
-	}
-	,
+	},
 	{
 		productId: 12,
 		userId: 3,
@@ -198,51 +198,75 @@ const productList = [
 const productStockList = [
 	{
 		productKey: 'ProductKey1',
-		stock: 100
+		stock: 100,
+		createdAt: timestamp,
+		updatedAt: timestamp
 	},
 	{
 		productKey: 'ProductKey2',
-		stock: 0
+		stock: 0,
+		createdAt: timestamp,
+		updatedAt: timestamp
 	},
 	{
 		productKey: 'ProductKey3',
-		stock: 15
+		stock: 15,
+		createdAt: timestamp,
+		updatedAt: timestamp
 	},
 	{
 		productKey: 'ProductKey4',
-		stock: 5
+		stock: 5,
+		createdAt: timestamp,
+		updatedAt: timestamp
 	},
 	{
 		productKey: 'ProductKey5',
-		stock: 13
+		stock: 13,
+		createdAt: timestamp,
+		updatedAt: timestamp
 	},
 	{
 		productKey: 'ProductKey6',
-		stock: 4
+		stock: 4,
+		createdAt: timestamp,
+		updatedAt: timestamp
 	},
 	{
 		productKey: 'ProductKey7',
-		stock: 9
+		stock: 9,
+		createdAt: timestamp,
+		updatedAt: timestamp
 	},
 	{
 		productKey: 'ProductKey8',
-		stock: 100
+		stock: 100,
+		createdAt: timestamp,
+		updatedAt: timestamp
 	},
 	{
 		productKey: 'ProductKey9',
-		stock: 5
+		stock: 5,
+		createdAt: timestamp,
+		updatedAt: timestamp
 	},
 	{
 		productKey: 'ProductKey10',
-		stock: 30
+		stock: 30,
+		createdAt: timestamp,
+		updatedAt: timestamp
 	},
 	{
 		productKey: 'ProductKey11',
-		stock: 0
+		stock: 0,
+		createdAt: timestamp,
+		updatedAt: timestamp
 	},
 	{
 		productKey: 'ProductKey12',
-		stock: 10
+		stock: 10,
+		createdAt: timestamp,
+		updatedAt: timestamp
 	}
 ]
 
@@ -250,62 +274,62 @@ const productImage = [
 	{
 		productKey: 'ProductKey1',
 		imageUrl: 'images/uploads/product_jewellery_1.png',
-		validFrom: '0'
+		validFrom: timestamp
 	},
 	{
 		productKey: 'ProductKey2',
 		imageUrl: 'images/uploads/product_jewellery_2.png',
-		validFrom: '0'
+		validFrom: timestamp
 	},
 	{
 		productKey: 'ProductKey3',
 		imageUrl: 'images/uploads/product_softtoy_1.png',
-		validFrom: '0'
+		validFrom: timestamp
 	},
 	{
 		productKey: 'ProductKey4',
 		imageUrl: 'images/uploads/product_softtoy_2.png',
-		validFrom: '0'
+		validFrom: timestamp
 	},
 	{
 		productKey: 'ProductKey5',
 		imageUrl: 'images/uploads/product_homemade_1.png',
-		validFrom: '0'
+		validFrom: timestamp
 	},
 	{
 		productKey: 'ProductKey6',
 		imageUrl: 'images/uploads/product_homemade_2.png',
-		validFrom: '0'
+		validFrom: timestamp
 	},
 	{
 		productKey: 'ProductKey7',
 		imageUrl: 'images/uploads/product_deco_1.png',
-		validFrom: '0'
+		validFrom: timestamp
 	},
 	{
 		productKey: 'ProductKey8',
 		imageUrl: 'images/uploads/product_deco_2.png',
-		validFrom: '0'
+		validFrom: timestamp
 	},
 	{
 		productKey: 'ProductKey9',
 		imageUrl: 'images/uploads/product_vintage_1.png',
-		validFrom: '0'
+		validFrom: timestamp
 	},
 	{
 		productKey: 'ProductKey10',
 		imageUrl: 'images/uploads/product_vintage_2.png',
-		validFrom: '0'
+		validFrom: timestamp
 	},
 	{
 		productKey: 'ProductKey11',
 		imageUrl: 'images/uploads/product_clothing_2.png',
-		validFrom: '0'
-	}
-	,{
+		validFrom: timestamp
+	},
+	{
 		productKey: 'ProductKey12',
 		imageUrl: 'images/uploads/product_clothing_1.png',
-		validFrom: '0'
+		validFrom: timestamp
 	}
 ]
 

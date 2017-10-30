@@ -34,7 +34,7 @@ const findOne = productKey => {
 	})
 }
 
-const findAll = () => {
+const findAll = categoryId => {
 	return db.transaction(trx => {
 		return trx('ProductImage')
 			.select(['productImageId', 'productKey', 'imageUrl'])
@@ -43,6 +43,11 @@ const findAll = () => {
 				return trx('Product')
 					.select(defaultProjection)
 					.innerJoin('ProductStock', 'ProductStock.productKey', 'Product.productKey')
+					.modify(queryBuilder => {
+						if (categoryId !== undefined) {
+							queryBuilder.where('categoryId', categoryId)
+						}
+					})
 					.whereNull('validTo')
 					.then(rows => rows.map(row => ({
 						...row,
@@ -58,13 +63,16 @@ const findAll = () => {
 }
 
 const create = (product, stock, images) => {
+	const timestamp = Date.now()
 	return db.transaction(trx => trx('Product')
-		.insert({ ...product, validFrom: Date.now() })
+		.insert({ ...product, validFrom: timestamp })
 		.then(() => {
 			return trx('ProductStock')
 				.insert({
 					productKey: product.productKey,
-					stock: stock
+					stock,
+					createdAt: timestamp,
+					updatedAt: timestamp
 				})
 		})
 		.then(() => {
@@ -72,15 +80,19 @@ const create = (product, stock, images) => {
 				.insert(images.map(image => ({
 					productKey: product.productKey,
 					imageUrl: `images/uploads/${image.filename}`,
-					validFrom: Date.now()
+					validFrom: timestamp
 				})))
 		}))
 }
 
 const update = (product, stock) => {
+	const timestamp = Date.now()
 	return db.transaction(trx => trx('ProductStock')
 		.where('productKey', product.productKey)
-		.update('stock', stock)
+		.update({
+			stock,
+			updatedAt: timestamp
+		})
 		.then(() => {
 			return trx('Product')
 				.where({
@@ -88,13 +100,13 @@ const update = (product, stock) => {
 					userId: product.userId
 				})
 				.whereNull('validTo')
-				.update('validTo', Date.now())
+				.update('validTo', timestamp)
 		})
 		.then(() => {
 			return trx('Product')
 				.insert({
 					...product,
-					validFrom: Date.now()
+					validFrom: timestamp
 				})
 		}))
 }
