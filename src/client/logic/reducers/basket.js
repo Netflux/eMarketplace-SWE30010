@@ -1,17 +1,17 @@
-import * as actions from 'client/logic/actions/baskets'
+import * as actions from 'client/logic/actions/basket'
 
-const basketsReducer = (state = {
+const basketReducer = (state = {
 	lastFetched: 0,
 	isFetching: false,
 	items: []
 }, action) => {
 	switch (action.type) {
-	case actions.FETCH_BASKETS:
+	case actions.FETCH_BASKET:
 		return {
 			...state,
 			isFetching: true
 		}
-	case actions.RECEIVE_BASKETS: {
+	case actions.RECEIVE_BASKET: {
 		const items = state.items.filter(i => action.data.filter(j => i.productKey === j.productKey).length === 0)
 		return {
 			...state,
@@ -20,7 +20,7 @@ const basketsReducer = (state = {
 			items: [...items, ...action.data]
 		}
 	}
-	case actions.RECEIVE_BASKETS_ERROR:
+	case actions.RECEIVE_BASKET_ERROR:
 		return {
 			...state,
 			isFetching: false
@@ -30,4 +30,4 @@ const basketsReducer = (state = {
 	}
 }
 
-export default basketsReducer
+export default basketReducer

@@ -3,7 +3,7 @@ import './css/ProductPage.css'
 import { fetchCategories } from 'client/logic/actions/categories'
 import { fetchProducts } from 'client/logic/actions/products'
 import { fetchUsers } from 'client/logic/actions/users'
-import { fetchBaskets } from 'client/logic/actions/baskets'
+import { fetchBasket } from 'client/logic/actions/basket'
 
 const product = {
 	templateUrl: 'templates/pages/ProductPage.html',
@@ -77,9 +77,8 @@ const product = {
 		fetchCategories($store, $http)
         fetchProducts($store, $http)
         fetchUsers($store, $http)
-        fetchBaskets($store,$http)
+        fetchBasket($store,$http)
     }]
 }
-
 
 export default product

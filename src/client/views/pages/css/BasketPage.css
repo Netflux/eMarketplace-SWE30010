@@ -1,13 +1,8 @@
-.moreMargintop {
-    margin-top: 10%
-}
-
-.flatButton {
-    border: 0;
-    font-size: 16px;
-    line-height: 38px;
-    background-color: #9c7242;
-    width: 100%;
-    color: white;
+.btnbasket {
     text-transform: uppercase;
+    color:white;
+    background-color: #9c7242;
+    width:100%;
+    display:block;
+    margin:auto;
 }

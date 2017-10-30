@@ -5,7 +5,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-6 col-sm-6 well">
+    <div class="col-md-6 col-sm-6 basketitembox">
         <div class="row"> 
             <div class="col-md-12 col-xs-12 well" ng-repeat="basketitem in $ctrl.basketitems">
                 <a ui-sref="product({ productKey: basketitem.productKey })">
@@ -24,9 +24,10 @@
                     </form>
                 </div>
             </div>
+            <div class="text-center" ng-show="$ctrl.basketitems.length == 0"><i>No products in basket.</i></div>
         </div>
     </div>
-    <div class="col-md-5 col-sm-5 col-md-push-1 col-sm-push-1 well">
+    <div class="col-md-5 col-sm-5 col-md-push-1 col-sm-push-1 sumbasketitembox">
         <h3>Order Summary</h3>
         <br>
         <div class="row"> 
@@ -48,7 +49,7 @@
             </div>
             <hr>
         </div>
-        <br>
+        <br><br>
         <div class="row">
             <div class="col-md-12 col-xs-12">
                 <p class="text-right">Total Amount: <span class="h4 text-success"><strong>RM {{ $ctrl.totalprice | number: 2 }}</strong></span></p>
@@ -56,8 +57,9 @@
         </div>
         <div class="row"> 
             <div class="col-md-12 col-xs-12">
-                <button class="flatButton">Proceed to Buy</button>
+                <a ui-sref="checkout"><button class="btn btnbasket" ng-disabled="$ctrl.basketitems.length == 0">Proceed to Buy</button></a>
             </div>
         </div>
     </div>
 </div>
+<br>
