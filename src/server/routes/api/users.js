@@ -57,12 +57,59 @@ router.post('/', [
 		})
 })
 
+router.post('/address', [
+	validators.name,
+	validators.street,
+	validators.city,
+	validators.state,
+	validators.zip,
+	validators.phone,
+	validation
+], (req, res) => {
+	if (!req.user) { return res.sendStatus(403) }
+
+	const address = {
+		name: req.body.name,
+		street: req.body.street,
+		city: req.body.city,
+		state: req.body.state,
+		zip: req.body.zip,
+		phone: req.body.phone
+	}
+
+	UserModel.address.upsert(req.user.userId, address)
+		.then(() => res.sendStatus(204))
+		.catch(err => {
+			console.error(err)
+			res.sendStatus(500)
+		})
+})
+
+router.delete('/address', (req, res) => {
+	if (!req.user) { return res.sendStatus(403) }
+
+	UserModel.address.deleteOne(req.user.userId)
+		.then(() => res.sendStatus(204))
+		.catch(err => {
+			console.error(err)
+			res.sendStatus(500)
+		})
+})
+
 router.get('/login', (req, res) => {
 	if (req.user) {
 		return res.status(200).json({
 			data: {
 				username: req.user.username,
 				email: req.user.email,
+				address: {
+					name: req.user.name,
+					street: req.user.street,
+					city: req.user.city,
+					state: req.user.state,
+					zip: req.user.zip,
+					phone: req.user.phone
+				},
 				newsletter: req.user.newsletter,
 				role: req.user.role
 			}
@@ -92,6 +139,14 @@ router.post('/login', [
 				data: {
 					username: user.username,
 					email: user.email,
+					address: {
+						name: user.name,
+						street: user.street,
+						city: user.city,
+						state: user.state,
+						zip: user.zip,
+						phone: user.phone
+					},
 					newsletter: user.newsletter,
 					role: user.role
 				}
