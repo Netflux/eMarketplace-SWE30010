@@ -3,24 +3,25 @@
     <hr>
     <div class="col-md-4 col-md-push-4 container">
 
-        <form class="text-center well" ng-submit="login()">
+        <form class="text-center well" ng-submit="$ctrl.login()">
             <div class="nopadding">
                 <h3 class="">Username</h3>
-                <input type="text" name="username" required ng-model="$ctrl.username">
+                <input type="text" name="username" required form-control ng-model="$ctrl.username">
             </div>
             <div class="nopadding">
                 <h3 class="">Password</h3>
-                <input type="password" name="password" required ng-model="$ctrl.password">
+                <input type="password" name="password" required form-control ng-model="$ctrl.password">
             </div>
-			<pre>
-				input = {{$ctrl.password}} , {{$ctrl.username}}
-			</pre>
             <div class="smallPrintLogin margintop">
                 <a href="#">Forgot Password?</a>
             </div>
             <div class="margintop">
-                <button class="loginbtn" type="submit">Login</button>
+                <button class="loginbtn btn" type="submit" id="submit" value="Submit">Login</button>
             </div>
         </form>
+		<pre>
+				input = {{$ctrl.username}}, {{$ctrl.password}}
+				out = {{$ctrl.user}}
+			</pre>
     </div>
 </div>

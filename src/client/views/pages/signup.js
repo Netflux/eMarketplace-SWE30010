@@ -6,6 +6,7 @@ const signup = {
 		user: '='
 	},
 	controller:['$http', function($http) {
+		
 		this.user = {
 			username: this.name,
 			password: this.password,
@@ -13,15 +14,22 @@ const signup = {
 			tnc: this.tnc
 		}
 
-		this.submit = function(user) {
+		this.submit = function() {
 			$http({
 				method: 'POST',
-				url: 'api/users/login',
-				data: user,
+				url: '/api/users',
+				data: this.user,
 				headers: {
 					'Content-Type': 'application/json; charset=utf-8'
 				}
 			})
+				.then(function successCallback(response) {
+					alert("signup Success")
+					$location.path("/login")
+				  }, function errorCallback(response) {
+					alert("Can't do that right now. Try again later")
+					alert(response.data)
+				  })
 		}
 	}],
 	directive: ['passwordVerify', function() {

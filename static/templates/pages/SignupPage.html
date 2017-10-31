@@ -12,7 +12,7 @@
 						placeholder="Between 6 - 24 characters"
 						maxlength="24"
 						minlength="6"
-						ng-model="$ctrl.user.name">
+						ng-model="$ctrl.name">
                     </div>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                             type="password" 
                             name="password" 
                             ng-model="$ctrl.user.password" 
-                            password-verify="{{$ctrl.user.confirm_pass}}" 
+                            password-verify="{{$ctrl.confirm_pass}}" 
                             required 
                             placeholder="At least 1 number in 8 or more characters" 
                             minlength="8" 
@@ -41,7 +41,7 @@
 							   name="email" 
 							   required 
 							   placeholder="E-mail" 
-							   ng-model="$ctrl.user.email">
+							   ng-model="$ctrl.email">
                     </div>
                 </div>
             </div>
@@ -54,7 +54,7 @@
 							   name="email" 
 							   required 
 							   placeholder="Address" 
-							   ng-model="$ctrl.user.address">
+							   ng-model="$ctrl.address">
                     </div>
 				</div>
 			</div>
@@ -67,7 +67,7 @@
 							   name="email" 
 							   required 
 							   placeholder="Post Code" 
-							   ng-model="$ctrl.user.postcode">
+							   ng-model="$ctrl.postcode">
                     </div>
 				</div>
 			</div>
@@ -80,16 +80,16 @@
 							   name="phone" 
 							   required 
 							   placeholder="Phone Number" 
-							   ng-model="$ctrl.user.phone">
+							   ng-model="$ctrl.phone">
                     </div>
 				</div>
 			</div>
 			<pre>user={{$ctrl.user}}</pre>
             <div class="smallPrintSignup margintop tandc">
-                <input type="checkbox" name="termsandconditions" checked ng-model="$ctrl.user.news">  Subscribe to Newsletter
+                <input type="checkbox" name="termsandconditions" checked ng-model="$ctrl.news">  Subscribe to Newsletter
             </div>
             <div class="smallPrintSignup margintop tandc">
-                <input type="checkbox" name="termsandconditions" required ng-model="$ctrl.user.tnc">  Terms &#38 Conditions
+                <input type="checkbox" name="termsandconditions" required ng-model="$ctrl.tnc">  Terms &#38 Conditions
             </div>
             <div>
                 <button class="margintop signupbtn btn" type="submit" id="submit" value="Submit">
