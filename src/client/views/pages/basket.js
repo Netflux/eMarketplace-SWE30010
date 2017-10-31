@@ -9,7 +9,7 @@ const basket = {
 		this.$onDestroy = $store.subscribe(state => {
             this.basket = state.basket
             this.products = state.products
-            this.basketitems = {}
+            this.basketitems = []
             this.totalprice = 0
             
             this.basketitems = findBasketDetails(this.basket,this.products)
