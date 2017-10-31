@@ -1,11 +1,11 @@
 .navbar {
-    background-color: #060e20;
+	background-color: #060e20;
 }
 
 #myNavbar ul li a {
-    color: white;
+	color: white;
 }
 
 #myNavbar ul li a:hover {
-    color: #9c7242;
+	color: #9c7242;
 }

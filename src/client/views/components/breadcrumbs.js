@@ -3,7 +3,7 @@ const breadcrumbs = {
 	bindings: {
 		crumbs: '='
 	}
-    
+	
 }
 
 export default breadcrumbs

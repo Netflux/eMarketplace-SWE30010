@@ -1,90 +1,88 @@
 <div class="row">
-    <div class="col-md-12">
-        <breadcrumbs crumbs="$ctrl.crumbs"></breadcrumbs>
-    </div>
+	<div class="col-md-12">
+		<breadcrumbs crumbs="$ctrl.crumbs"></breadcrumbs>
+	</div>
 </div>
 <div class="row">
-    <div class="col-xs-4 col-sm-4 col-md-4">
-        <img src="{{ $ctrl.product.images[0].imageUrl }}" alt="product 1" class="productimage"/>
-    </div>
-    <div class="col-xs-8 col-sm-8 col-md-8 productinfocontainer">
-        <div>
-            <h1>{{ $ctrl.product.title }}</h1>
-            <p>RM {{ $ctrl.product.price | number:2 }}</p>
-            <p>Rating: &#9734; &#9734; &#9733; &#9733; &#9733; {{ $ctrl.product.rating }}</p>
-            <hr>
-            <p>Shipping Price: RM {{ $ctrl.product.shippingPrice | number:2 }}</p>
-            <p>Stock available: {{ $ctrl.product.stock }}</p>
-            <hr>
-            <form ng-submit="$ctrl.addBasket()">
-                <label for="productqty">Quantity: </label>
-                <input type="number" id="productqty" ng-model="$ctrl.productqty"/>
-                <input type="submit" value="Add to basket"/>
-            </form>
-            
-            {{ $ctrl.testing }}
-        </div>
-    </div>
+	<div class="col-xs-4 col-sm-4 col-md-4">
+		<img src="{{ $ctrl.product.images[0].imageUrl }}" alt="product 1" class="productimage"/>
+	</div>
+	<div class="col-xs-8 col-sm-8 col-md-8 productinfocontainer">
+		<div>
+			<h1>{{ $ctrl.product.title }}</h1>
+			<p>RM {{ $ctrl.product.price | number:2 }}</p>
+			<p>Rating: &#9734; &#9734; &#9733; &#9733; &#9733; {{ $ctrl.product.rating }}</p>
+			<hr>
+			<p>Shipping Price: RM {{ $ctrl.product.shippingPrice | number:2 }}</p>
+			<p>Stock available: {{ $ctrl.product.stock }}</p>
+			<hr>
+			<form>
+				<label>Quantity: </label>
+				<input type="number" />
+				<input type="submit" value="Add to basket" />
+			</form>
+		</div>
+	</div>
 </div>
 <br>
 <div class="row productsellercontainer">
-    <div class="col-md-12">
-        <div class="row productsellerinfo">
-            <div class="col-xs-3 col-sm-3 col-md-3 sellerinfobox">
-                <img src="images/profile.jpg" alt="profile picture" id="profilepicture"/>
-                <p>{{ $ctrl.user.username }}</p>
-            </div>
-            <div class="col-xs-3 col-sm-3 col-md-3 sellerinfobox">
-                <p>Total Product Sold</p>
-                <p>{{ $ctrl.user.productsSold }}</p>
-            </div>
-            <div class="col-xs-3 col-sm-3 col-md-3 sellerinfobox">
-                <p>Total Product Rating</p>
-                <p>{{ $ctrl.user.averageRating || 'No rating' }}</p>
-            </div>
-            <div class="col-xs-3 col-sm-3 col-md-3 sellerinfobox">
-                <p>Joined </p>
-                <p>{{ $ctrl.user.createdAt | date:'dd/MM/yyyy'}}</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <br>
-                <ul class="nav nav-tabs productinfo2" role="navigation">
-                    <li class="active"><a ui-sref="product({ '#': 'productdetailstab' })" data-toggle="tab">Product details</a></li>
-                    <li><a ui-sref="product({ '#': 'reviewtab' })" data-toggle="tab">Review</a></li>
-                    <li><a ui-sref="product({ '#': 'discussiontab' })" data-toggle="tab">Discussion</a></li>
-                </ul>
-                <div class="tab-content clearfix productinfo2content">
-                    <div class="tab-pane active" id="productdetailstab">
-                        <p>{{$ctrl.product.description || 'No product description available' }}</p>
-                    </div>
-                    <div class="tab-pane" id="reviewtab">
-                        <p>{{ $ctrl.product.reviews || 'No reviews available' }}</p>
-                    </div>
-                    <div class="tab-pane" id="discussiontab">
-                        <p>Discussion here. </p>
-                    </div>
-                </div>
-                <br><br>
-            </div>
-        </div>
-    </div>
+	<div class="col-md-12">
+		<div class="row productsellerinfo">
+			<div class="col-xs-3 col-sm-3 col-md-3 sellerinfobox">
+				<img src="images/profile.jpg" alt="profile picture" id="profilepicture"/>
+				<p>{{ $ctrl.user.username }}</p>
+			</div>
+			<div class="col-xs-3 col-sm-3 col-md-3 sellerinfobox">
+				<p>Total Product Sold</p>
+				<p>{{ $ctrl.user.productsSold }}</p>
+			</div>
+			<div class="col-xs-3 col-sm-3 col-md-3 sellerinfobox">
+				<p>Total Product Rating</p>
+				<p>{{ $ctrl.user.averageRating || 'No rating' }}</p>
+			</div>
+			<div class="col-xs-3 col-sm-3 col-md-3 sellerinfobox">
+				<p>Joined </p>
+				<p>{{ $ctrl.user.createdAt | date:'dd/MM/yyyy'}}</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<br>
+				<ul class="nav nav-tabs productinfo2">
+					<li class="active"><a ui-sref="product({ '#': 'productdetailstab' })" data-toggle="tab">Product details</a></li>
+					<li><a ui-sref="product({ '#': 'reviewtab' })" data-toggle="tab">Review</a></li>
+					<li><a ui-sref="product({ '#': 'discussiontab' })" data-toggle="tab">Discussion</a></li>
+				</ul>
+				<div class="tab-content clearfix productinfo2content">
+					<div class="tab-pane active" id="productdetailstab">
+						<p>{{$ctrl.product.description || 'No product description available' }}</p>
+					</div>
+					<div class="tab-pane" id="reviewtab">
+						<p>{{ $ctrl.product.reviews || 'No reviews available' }}</p>
+					</div>
+					<div class="tab-pane" id="discussiontab">
+						<p>Discussion here. </p>
+					</div>
+				</div>
+				<br><br>
+			</div>
+		</div>
+	</div>
 </div>
 <br><br>
 <div class="row">
-    <div class="col-md-12 productsuggestioncontainer">
-        <p class="text-center"> You may also like:</p><br>
-        <div class="row productsuggestionwrap">
-            <div class="col-xs-3" ng-repeat="rproduct in $ctrl.productRandomization track by $index">
-                <a ui-sref="product({ productKey: rproduct.productKey })">
-                    <div class="productsuggesionbox">
-                        <img src="{{ rproduct.images[0].imageUrl }}" alt="product image" />
-                        <p class="text-center">{{rproduct.title}}</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
+	<div class="col-md-12 productsuggestioncontainer">
+		<p class="text-center"> You may also like:</p><br>
+		<div class="row productsuggestionwrap">
+			<div class="col-xs-3" ng-repeat="rproduct in $ctrl.productRandomization track by $index">
+				<a ui-sref="product({ productKey: rproduct.productKey })">
+					<div class="productsuggesionbox">
+						<img src="{{ rproduct.images[0].imageUrl }}" alt="product image" />
+						<p class="text-center">{{rproduct.title}}</p>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
 </div>
 <br><br>

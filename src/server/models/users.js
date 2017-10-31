@@ -9,9 +9,11 @@ const findOne = userId => {
 		.first()
 }
 
-const findAll = () => {
+const findAll = (timestamp = 0) => {
 	return db('User')
 		.select(defaultProjection)
+		.where('createdAt', '>=', timestamp)
+		.orWhere('updatedAt', '>=', timestamp)
 		.count('OrderProduct.productId as productsSold')
 		.avg('ProductReview.rating as averageRating')
 		.leftJoin('Product', 'Product.userId', 'User.userId')

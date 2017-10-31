@@ -4,6 +4,7 @@ import ShortId from 'shortid'
 
 import ProductModel from 'server/models/products'
 import * as validators from './validators/products'
+import * as sharedValidators from './validators/shared'
 import multer from 'server/utils/multer'
 
 const router = Express.Router()
@@ -19,8 +20,11 @@ const validation = userValidation => (req, res, next) => {
 	next()
 }
 
-router.get('/', (req, res) => {
-	ProductModel.findAll()
+router.get('/', [
+	sharedValidators.timestamp,
+	validation(false)
+], (req, res) => {
+	ProductModel.findAll(null, req.query.timestamp)
 		.then(rows => res.status(200).json({ data: rows }))
 		.catch(err => {
 			console.error(err)

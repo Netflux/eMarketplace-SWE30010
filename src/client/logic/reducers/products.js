@@ -12,13 +12,13 @@ const productsReducer = (state = {
 			isFetching: true
 		}
 	case actions.RECEIVE_PRODUCTS: {
-		const items = state.items.filter(i => action.data.filter(j => i.productKey === j.productKey).length === 0)
+		const filterKeys = action.data.map(i => i.productKey)
+		const items = state.items.filter(i => !filterKeys.includes(i.productKey))
 		return {
 			...state,
-			lastFetched: Date.now(),
+			lastFetched: action.timestamp,
 			isFetching: false,
 			items: [...items, ...action.data]
-
 		}
 	}
 	case actions.RECEIVE_PRODUCTS_ERROR:

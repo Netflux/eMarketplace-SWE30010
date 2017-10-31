@@ -1,0 +1,45 @@
+<div class="spinner" ng-if="$ctrl.stats.isLoading">
+	<div class="rect1"></div>
+	<div class="rect2"></div>
+	<div class="rect3"></div>
+	<div class="rect4"></div>
+	<div class="rect5"></div>
+</div>
+
+<div class="container-fluid" ng-if="!$ctrl.stats.isLoading">
+	<div class="row" ng-if="!$ctrl.stats.error">
+		<div class="col-md-6">
+			<h2>Sales by Month</h2>
+			<canvas class="chart chart-bar" chart-labels="$ctrl.stats.byMonth.labels" chart-data="$ctrl.stats.byMonth.data"></canvas>
+		</div>
+		<div class="col-md-6">
+			<h2>Sales by Day</h2>
+			<canvas class="chart chart-bar" chart-labels="$ctrl.stats.byDay.labels" chart-data="$ctrl.stats.byDay.data"></canvas>
+		</div>
+		<div class="col-md-12">
+			<h2>Statistics</h2>
+			<div class="row">
+				<div class="col-md-4">
+					<h3>Overall</h3>
+					<p>Total Sales: {{$ctrl.stats.raw.totalSold}}</p>
+					<p>Total Earnings: {{$ctrl.stats.raw.totalPrice}}</p>
+					<p>Total Shipping Cost: {{$ctrl.stats.raw.totalShipping}}</p>
+				</div>
+				<div class="col-md-4">
+					<h3>This Week</h3>
+					<p>Total Sales: {{$ctrl.stats.raw.thisWeek.totalSold}}</p>
+					<p>Total Earnings: {{$ctrl.stats.raw.thisWeek.totalPrice}}</p>
+					<p>Total Shipping Cost: {{$ctrl.stats.raw.thisWeek.totalShipping}}</p>
+				</div>
+				<div class="col-md-4">
+					<h3>This Month</h3>
+					<p>Total Sales: {{$ctrl.stats.raw.thisMonth.totalSold}}</p>
+					<p>Total Earnings: {{$ctrl.stats.raw.thisMonth.totalPrice}}</p>
+					<p>Total Shipping Cost: {{$ctrl.stats.raw.thisMonth.totalShipping}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<p ng-if="$ctrl.stats.error">No data available</p>
+</div>

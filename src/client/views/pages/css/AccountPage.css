@@ -27,19 +27,19 @@
 	background: rgba(0,0,0,0.2);
 }
 
-.info-box-content {
+.c-info-box-content {
 	padding: 5px 10px;
 	margin-left: 90px;
 }
 
-.info-box-text {
+.c-info-box-text {
 	text-transform: uppercase;
+	font-weight: bold;
 }
 
-.info-box-number {
+.c-info-box-number {
 	display: block;
-	font-weight: bold;
-	font-size: 18px;
+	font-size: 15px;
 }
 
 .box-header {

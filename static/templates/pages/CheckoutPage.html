@@ -13,27 +13,26 @@
                 <label for="fullname">Full name: </label>
                 <input type="text" id="fullname" name="fullname" class="form-control" required="required" ng-model="fullname"/>
                 <span ng-show="checkoutform.fullname.$touched && checkoutform.fullname.$invalid" class="text-danger">Full name is required.</span>
-                <span ng-show="checkoutform.fullname.$touched && checkoutform.fullname.$valid" class="text-success">Valid</span>
             </div>
             <div class="form-group">
                 <label for="street">Street: </label>
-                <input type="text" id="street" name="street" class="form-control"/>
+                <input type="text" id="street" name="street" class="form-control" required="required" ng-model="street"/>
             </div>
             <div class="form-group">
                 <label for="city">City: </label>
-                <input type="text" id="city" name="city" class="form-control"/>
+                <input type="text" id="city" name="city" class="form-control" required="required" ng-model="city"/>
             </div>
             <div class="form-group">
                 <label for="state">State: </label>
-                <input type="text" id="state" name="state" class="form-control"/>
+                <input type="text" id="state" name="state" class="form-control" required="required" ng-model="state"/>
             </div>
             <div class="form-group">
                 <label for="zipcode">Zipcode: </label>
-                <input type="text" id="zipcode" name="zipcode" class="form-control"/>
+                <input type="text" id="zipcode" name="zipcode" class="form-control" ng-model="zipcode"/>
             </div>
             <div class="form-group">
                 <label for="phoneno">Phone Number: </label>
-                <input type="text" id="phoneno" name="phoneno" class="form-control"/>
+                <input type="text" id="phoneno" name="phoneno" class="form-control" ng-model="phoneno"/>
             </div>
             <br>
             <h3>Payment Method</h3>
@@ -45,7 +44,7 @@
                 </label>
             </div>
             <br>
-            <button class="btn btncheckout">Checkout</button>
+            <button class="btn btncheckout" ng-disabled="checkoutform.$invalid">Checkout</button>
         </form>
     </div>
     <div class="col-md-5 col-sm-5 col-md-push-1 col-sm-push-1 sumcheckoutbox">
@@ -69,6 +68,6 @@
                 <p class="text-right">Total Amount: <span class="h4 text-success"><strong>RM {{ $ctrl.totalprice | number: 2 }}</strong></span></p>
             </div>
         </div>
-    </div> 
+    </div>
 </div>
 <br>

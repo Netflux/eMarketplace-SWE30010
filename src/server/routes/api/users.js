@@ -4,6 +4,7 @@ import { validationResult } from 'express-validator/check'
 
 import UserModel from 'server/models/users'
 import * as validators from './validators/users'
+import * as sharedValidators from './validators/shared'
 
 const router = Express.Router()
 
@@ -16,8 +17,11 @@ const validation = (req, res, next) => {
 	next()
 }
 
-router.get('/', (req, res) => {
-	UserModel.findAll()
+router.get('/', [
+	sharedValidators.timestamp,
+	validation
+], (req, res) => {
+	UserModel.findAll(req.query.timestamp)
 		.then(rows => res.status(200).json({ data: rows }))
 		.catch(err => {
 			console.error(err)

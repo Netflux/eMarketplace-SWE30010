@@ -3,10 +3,11 @@ export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS'
 export const RECEIVE_PRODUCTS_ERROR = 'RECEIVE_PRODUCTS_ERROR'
 
 export const fetchProducts = ($store, $http, categoryId) => {
-	const isFetching = $store.getState().products.isFetching
-	const url = '/api/products'
+	const state = $store.getState().products
 
-	if (!isFetching) {
+	if (!state.isFetching) {
+		const timestamp = categoryId ? state.lastFetched : Date.now()
+		const url = categoryId ? `/api/categories/${categoryId}/products?timestamp=${state.lastFetched}` : `/api/products?timestamp=${state.lastFetched}`
 		$store.update({
 			type: FETCH_PRODUCTS
 		})
@@ -14,7 +15,8 @@ export const fetchProducts = ($store, $http, categoryId) => {
 			.then(function success(response) {
 				$store.update({
 					type: RECEIVE_PRODUCTS,
-					data: response.data.data
+					data: response.data.data,
+					timestamp
 				})
 			}, function failure() {
 				$store.update({

@@ -34,7 +34,7 @@ const findOne = productKey => {
 	})
 }
 
-const findAll = categoryId => {
+const findAll = (categoryId, timestamp = 0) => {
 	return db.transaction(trx => {
 		return trx('ProductImage')
 			.select(['productImageId', 'productKey', 'imageUrl'])
@@ -44,10 +44,11 @@ const findAll = categoryId => {
 					.select(defaultProjection)
 					.innerJoin('ProductStock', 'ProductStock.productKey', 'Product.productKey')
 					.modify(queryBuilder => {
-						if (categoryId !== undefined) {
+						if (categoryId !== null && categoryId !== undefined) {
 							queryBuilder.where('categoryId', categoryId)
 						}
 					})
+					.where('validFrom', '>=', timestamp)
 					.whereNull('validTo')
 					.then(rows => rows.map(row => ({
 						...row,
