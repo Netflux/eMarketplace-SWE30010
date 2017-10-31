@@ -4,25 +4,25 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-xs-4 col-sm-4 col-md-4">
-		<img src="{{ $ctrl.product.images[0].imageUrl }}" alt="product 1" class="productimage"/>
-	</div>
-	<div class="col-xs-8 col-sm-8 col-md-8 productinfocontainer">
-		<div>
-			<h1>{{ $ctrl.product.title }}</h1>
-			<p>RM {{ $ctrl.product.price | number:2 }}</p>
-			<p>Rating: &#9734; &#9734; &#9733; &#9733; &#9733; {{ $ctrl.product.rating }}</p>
-			<hr>
-			<p>Shipping Price: RM {{ $ctrl.product.shippingPrice | number:2 }}</p>
-			<p>Stock available: {{ $ctrl.product.stock }}</p>
-			<hr>
-			<form>
-				<label>Quantity: </label>
-				<input type="number" />
-				<input type="submit" value="Add to basket" />
-			</form>
-		</div>
-	</div>
+    <div class="col-xs-4 col-sm-4 col-md-4">
+        <img src="{{ $ctrl.product.images[0].imageUrl }}" alt="product 1" class="productimage"/>
+    </div>
+    <div class="col-xs-8 col-sm-8 col-md-8 productinfocontainer">
+        <div>
+            <h1>{{ $ctrl.product.title }}</h1>
+            <p>RM {{ $ctrl.product.price | number:2 }}</p>
+            <p>Rating: &#9734; &#9734; &#9733; &#9733; &#9733; {{ $ctrl.product.rating }}</p>
+            <hr>
+            <p>Shipping Price: RM {{ $ctrl.product.shippingPrice | number:2 }}</p>
+            <p>Stock available: {{ $ctrl.product.stock }}</p>
+            <hr>
+            <form ng-submit="$ctrl.addBasket()">
+                <label for="productqty">Quantity: </label>
+                <input type="number" id="productqty" ng-model="$ctrl.productqty"/>
+                <input type="submit" value="Add to basket"/>
+            </form>
+        </div>
+    </div>
 </div>
 <br>
 <div class="row productsellercontainer">
@@ -48,7 +48,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<br>
-				<ul class="nav nav-tabs productinfo2" role="navigation">
+				<ul class="nav nav-tabs productinfo2">
 					<li class="active"><a ui-sref="product({ '#': 'productdetailstab' })" data-toggle="tab">Product details</a></li>
 					<li><a ui-sref="product({ '#': 'reviewtab' })" data-toggle="tab">Review</a></li>
 					<li><a ui-sref="product({ '#': 'discussiontab' })" data-toggle="tab">Discussion</a></li>
