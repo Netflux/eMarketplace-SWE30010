@@ -1,6 +1,7 @@
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES'
 export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES'
 export const RECEIVE_CATEGORIES_ERROR = 'RECEIVE_CATEGORIES_ERROR'
+export const REMOVE_CATEGORY = 'REMOVE_CATEGORY'
 
 export const fetchCategories = ($store, $http) => {
 	const isFetching = $store.getState().categories.isFetching
