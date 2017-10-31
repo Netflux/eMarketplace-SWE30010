@@ -22,20 +22,20 @@
 				<div class="col-md-4">
 					<h3>Overall</h3>
 					<p>Total Sales: {{$ctrl.stats.raw.totalSold}}</p>
-					<p>Total Earnings: {{$ctrl.stats.raw.totalPrice}}</p>
-					<p>Total Shipping Cost: {{$ctrl.stats.raw.totalShipping}}</p>
+					<p>Total Earnings: RM{{$ctrl.stats.raw.totalPrice | number: 2}}</p>
+					<p>Total Shipping Cost: RM{{$ctrl.stats.raw.totalShipping | number: 2}}</p>
 				</div>
 				<div class="col-md-4">
 					<h3>This Week</h3>
 					<p>Total Sales: {{$ctrl.stats.raw.thisWeek.totalSold}}</p>
-					<p>Total Earnings: {{$ctrl.stats.raw.thisWeek.totalPrice}}</p>
-					<p>Total Shipping Cost: {{$ctrl.stats.raw.thisWeek.totalShipping}}</p>
+					<p>Total Earnings: RM{{$ctrl.stats.raw.thisWeek.totalPrice | number: 2}}</p>
+					<p>Total Shipping Cost: RM{{$ctrl.stats.raw.thisWeek.totalShipping | number: 2}}</p>
 				</div>
 				<div class="col-md-4">
 					<h3>This Month</h3>
 					<p>Total Sales: {{$ctrl.stats.raw.thisMonth.totalSold}}</p>
-					<p>Total Earnings: {{$ctrl.stats.raw.thisMonth.totalPrice}}</p>
-					<p>Total Shipping Cost: {{$ctrl.stats.raw.thisMonth.totalShipping}}</p>
+					<p>Total Earnings: RM{{$ctrl.stats.raw.thisMonth.totalPrice | number: 2}}</p>
+					<p>Total Shipping Cost: RM{{$ctrl.stats.raw.thisMonth.totalShipping | number: 2}}</p>
 				</div>
 			</div>
 		</div>

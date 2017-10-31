@@ -19,7 +19,7 @@ const salesanalysis = {
 			ctrl.stats.isLoading = true
 			$http.get('/api/orders/sales')
 				.then(function success(response) {
-					const data = response.data
+					const data = response.data.data
 					const raw = {
 						totalSold: 0,
 						totalPrice: 0,
@@ -68,6 +68,7 @@ const salesanalysis = {
 					ctrl.stats = {
 						isLoading: false,
 						error: false,
+						raw,
 						byMonth,
 						byDay
 					}
