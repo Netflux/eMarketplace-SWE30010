@@ -10,6 +10,7 @@ import multer from 'server/utils/multer'
 const router = Express.Router()
 
 const validation = userValidation => (req, res, next) => {
+	
 	if (userValidation && (!req.user || req.user.role === 'Buyer')) { return res.sendStatus(403) }
 
 	const validationErrors = validationResult(req)

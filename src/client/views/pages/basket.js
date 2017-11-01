@@ -5,7 +5,7 @@ import { fetchProducts } from 'client/logic/actions/products'
 
 const basket = {
 	templateUrl: 'templates/pages/BasketPage.html',
-    controller:['$store','$http','$window', function($store, $http, $window){
+	controller:['$store','$http','$window', function($store, $http, $window){
 		this.$onDestroy = $store.subscribe(state => {
             this.basket = state.basket
             this.products = state.products
@@ -15,7 +15,7 @@ const basket = {
             this.basketitems = findBasketDetails(this.basket,this.products)
             this.totalprice = calculateTotalPrice(this.basket,this.products,this.basketitems)
             
-            this.deleteItem = function(productKey) {
+            this.deleteBasketItem = function(productKey) {
                 $http({ withCredentials: true, method: 'delete', url:`/api/basket/${productKey}`})
                     .then(function sucessCallback(response){
                         alert("Item removed")

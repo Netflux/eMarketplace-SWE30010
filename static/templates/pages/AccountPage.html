@@ -33,8 +33,11 @@
 			<ul class="nav nav-tabs">
 				<li class="active"><a ui-sref="account({ '#': 'ordersTab' })" data-toggle="tab">Orders</a></li>
 				<li><a ui-sref="account({ '#': 'productsTab' })" data-toggle="tab">Products</a></li>
+                <li><a ui-sref="account({ '#': 'addproductsTab' })" data-toggle="tab">Add Products</a></li>
+                <li><a ui-sref="account({ '#': 'updateproductsTab' })" data-toggle="tab">Update Products</a></li>
 				<li><a ui-sref="account({ '#': 'salesTab' })" data-toggle="tab">Sales Analysis</a></li>
 				<li><a ui-sref="account({ '#': 'bannersTab' })" data-toggle="tab">Home Banners</a></li>
+				<li><a ui-sref="account({ '#': 'categoriesTab' })" data-toggle="tab">Categories</a></li>
 			</ul>
 		</span>
 		<div class="tab-content">
@@ -68,32 +71,22 @@
 				</table>
 			</div>
 			<div id="productsTab" class="col-md-12 tab-pane fade">
-				<table class="table table-striped table-hover" >
-					<tr>
-						<th>Product ID</th>
-						<th>Name</th>
-						<th>Stock</th>
-                        <th>Price</th>
-						<th>Shipping Price</th>
-                        <th>Discount</th>
-                        <th></th>
-					</tr>
-					<tr ng-repeat="userproduct in $ctrl.userproducts | orderBy: 'productId'">
-						<td>{{ userproduct.productId }}.</td>
-                        <td>{{ userproduct.title }}</td>
-                        <td>{{ userproduct.stock }}</td>
-                        <td>RM {{ userproduct.price | number: 2}}</td>
-                        <td>RM {{ userproduct.shippingPrice | number: 2}}</td>
-                        <td>{{ userproduct.discount }}</td>
-                        <td><input type="button" value="Delete" class="btn btn-basic"/></td>
-					</tr>
-				</table>
+                <sellerproducts></sellerproducts>
 			</div>
+			<div id="addproductsTab" class="col-md-12 tab-pane fade">
+                <selleraddproducts></selleraddproducts>
+            </div>
+            <div id="updateproductsTab" class="col-md-12 tab-pane fade">
+                <sellerupdateproducts></sellerupdateproducts>
+            </div>
 			<div id="salesTab" class="col-md-12 tab-pane fade">
 				<salesanalysis></salesanalysis>
 			</div>
 			<div id="bannersTab" class="col-md-12 tab-pane fade">
 				<bannertools></bannertools>
+			</div>
+			<div id="categoriesTab" class="col-md-12 tab-pane fade">
+				<categorytools></categorytools>
 			</div>
 		</div>
 	</div>

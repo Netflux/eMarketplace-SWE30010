@@ -1,0 +1,38 @@
+<div class="spinner" ng-if="$ctrl.categories.isFetching">
+	<div class="rect1"></div>
+	<div class="rect2"></div>
+	<div class="rect3"></div>
+	<div class="rect4"></div>
+	<div class="rect5"></div>
+</div>
+
+<div class="container-fluid" ng-if="!$ctrl.categories.isFetching">
+	<form name="addCategory" ng-submit="$ctrl.submit()">
+		<p><label for="number">Category ID to Edit (Optional):</label> <input type="number" name="number" id="number" min="1" ng-model="$ctrl.categoryId" /></p>
+		<p><label for="title">Title:</label> <input type="text" name="title" id="title" required /></p>
+		<p><label for="image">Image:</label> <input type="file" accept="image/jpeg,image/png" name="image" id="image" required /></p>
+		<p><label for="banner">Banner:</label> <input type="file" accept="image/jpeg,image/png" name="banner" id="banner" required /></p>
+		<p><input type="submit" value="Submit" /></p>
+	</form>
+	<hr/>
+	<div class="row" ng-if="$ctrl.categories.items.length">
+		<table class="table table-striped table-hover" >
+			<tr>
+				<th>Category ID</th>
+				<th>Title</th>
+				<th>Image URL</th>
+				<th>Banner URL</th>
+				<th></th>
+			</tr>
+			<tr ng-repeat="category in $ctrl.categories.items | orderBy: 'categoryId'">
+				<td>{{ category.categoryId }}.</td>
+				<td>{{ category.title }}</td>
+				<td><a href="{{ category.imageUrl }}" target="_blank">Click to View</a></td>
+				<td><a href="{{ category.bannerUrl }}" target="_blank">Click to View</a></td>
+				<td><input type="button" value="Delete" class="btn btn-basic" ng-click="$ctrl.delete(category.categoryId)"/></td>
+			</tr>
+		</table>
+	</div>
+
+	<p ng-if="!$ctrl.categories.items.length">No data available</p>
+</div>
