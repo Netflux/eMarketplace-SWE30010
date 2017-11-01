@@ -23,6 +23,17 @@ const account = {
                     })
                 }
             }  
+            
+            this.deleteProductItem = function(productKey){
+                $http({ withCredentials: true, method: 'delete', url:`/api/product/${productKey}`})
+                    .then(function sucessCallback(response){
+                        alert("Item removed")
+                        $window.location.reload()
+                    }, function errorCallback(response){
+                        alert("Database is currently down. Try again later") 
+                    })
+            }
+            
         })
          
         fetchProducts($store,$http)

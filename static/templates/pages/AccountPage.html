@@ -85,7 +85,7 @@
                         <td>RM {{ userproduct.price | number: 2}}</td>
                         <td>RM {{ userproduct.shippingPrice | number: 2}}</td>
                         <td>{{ userproduct.discount }}</td>
-                        <td><input type="button" value="Delete" class="btn btn-basic"/></td>
+                        <td><input type="button" value="Delete" class="btn btn-basic"  ng-confirm-click="Are you sure you want to remove {{ userproduct.title }} from your account?" confirmed-click="$ctrl.deleteProductItem('{{ userproduct.productKey }}')"/></td>
 					</tr>
 				</table>
 			</div>

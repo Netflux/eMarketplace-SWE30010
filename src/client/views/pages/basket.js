@@ -15,7 +15,7 @@ const basket = {
             this.basketitems = findBasketDetails(this.basket,this.products)
             this.totalprice = calculateTotalPrice(this.basket,this.products,this.basketitems)
             
-            this.deleteItem = function(productKey) {
+            this.deleteBasketItem = function(productKey) {
                 $http({ withCredentials: true, method: 'delete', url:`/api/basket/${productKey}`})
                     .then(function sucessCallback(response){
                         alert("Item removed")
