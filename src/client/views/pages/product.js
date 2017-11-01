@@ -7,7 +7,7 @@ import { fetchBasket } from 'client/logic/actions/basket'
 
 const product = {
 	templateUrl: 'templates/pages/ProductPage.html',
-	controller:['$store','$stateParams','$http','$location', function($store, $stateParams, $http, $location){
+	controller:['$store','$stateParams','$http', function($store, $stateParams, $http){
 		this.$onDestroy = $store.subscribe(state => {
 			this.products = state.products
 			this.categories = state.categories
@@ -60,9 +60,9 @@ const product = {
 					}
 
 					$http({ withCredentials: true, method: 'post', url:'/api/basket', data: this.basket })
-						.then(function sucessCall1back(){
+						.then(function sucessCallback(){
 							alert('Successfully added to basket')
-							$location.path('/basket')
+                            fetchBasket($store,$http)
 						}, function errorCallback(){
 							alert('Database is currently down. Try again later')
 						})
