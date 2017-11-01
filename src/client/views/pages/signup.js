@@ -5,22 +5,23 @@ const signup = {
 	bindings:{
 		user: '='
 	},
-	controller:['$http', function($http) {
-		
-		this.user = {
-			username: this.name,
-			password: this.password,
-			email: this.email,
-			tnc: this.tnc
-		}
-
+	controller:['$store', '$http', '$location', function($store, $http, $location) {
+	
 		this.submit = function() {
+			
+			this.user = {
+				username: this.username,
+				password: this.password,
+				email: this.email,
+				newsletter: this.news ? 1 : 0
+			}
+			console.log(this.user)
 			$http({
 				method: 'POST',
-				url: '/api/users',
+				url: 'api/users/register',
 				data: this.user,
 				headers: {
-					'Content-Type': 'application/json; charset=utf-8'
+					'Content-Type': 'application/json'
 				}
 			})
 				.then(function successCallback(response) {
@@ -59,7 +60,7 @@ const signup = {
 				}
 			}
 		}
-	}]
+	}]	
 }
 
 export default signup

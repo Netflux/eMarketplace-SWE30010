@@ -11,7 +11,7 @@ import './index.css'
 	angular.module('app.services', [])
 		.service('$store', $store)
 
-	angular.module('app.components', ['app.services'])
+	angular.module('app.components', ['app.services', 'chart.js'])
 		.component('accountPage', pages.account)
 		.component('adminPage', pages.admin)
 		.component('basketPage', pages.basket)
@@ -24,20 +24,40 @@ import './index.css'
 		.component('signupPage', pages.signup)
 		.component('navbar', components.navbar)
 		.component('footersection', components.footersection)
-		.component('productlist',components.productlist)
+		.component('bannertools', components.bannertools)
+		.component('breadcrumbs',components.breadcrumbs)
 		.component('categories',components.categories)
 		.component('listcategories',components.listcategories)
-		.component('breadcrumbs',components.breadcrumbs)
+		.component('productlist',components.productlist)
+		.component('salesanalysis',components.salesanalysis)
 
 	angular.module('app.routes', ['ui.router', 'app.components'])
 		.config(['$stateProvider', '$urlRouterProvider', '$transitionsProvider', ($stateProvider, $urlRouterProvider, $transitionsProvider) => {
 			routes.forEach(route => $stateProvider.state(route))
 			$urlRouterProvider.otherwise('/')
-			$transitionsProvider.onSuccess({}, () => window.scrollTo(0, 0))
+			$transitionsProvider.onSuccess({}, transition => {
+				if (transition.from().name !== transition.to().name) {
+					window.scrollTo(0, 0)
+				}
+			})
 		}])
 
 	angular.module('app', ['app.services', 'app.routes'])
-
-
-
+    
+    angular.module('app', ['app.services', 'app.routes'])
+        .directive('ngConfirmClick', [function() 
+            { 
+                return { 
+                link: function (scope, element, attr) {
+                    var msg = attr.ngConfirmClick || "Are you sure?"
+                    var clickAction = attr.confirmedClick
+                    element.bind('click',function (event) {
+                        if ( window.confirm(msg) ) {
+                            scope.$eval(clickAction)
+                        }
+                    })
+                }
+                }
+            }])
+    
 })(window.angular)

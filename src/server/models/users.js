@@ -54,10 +54,43 @@ const deleteOne = userId => {
 		.del()
 }
 
+const address = {
+	upsert: (userId, address) => {
+		const timestamp = Date.now()
+		return db.transaction(trx => trx('UserAddress')
+			.where('userId', userId)
+			.first()
+			.then(row => {
+				if (row) {
+					return trx('UserAddress')
+						.where('userId', userId)
+						.update({
+							...address,
+							updatedAt: timestamp
+						})
+				}
+
+				return trx('UserAddress')
+					.insert({
+						userId,
+						...address,
+						createdAt: timestamp,
+						updatedAt: timestamp
+					})
+			}))
+	},
+	deleteOne: userId => {
+		return db('UserAddress')
+			.where('userId', userId)
+			.del()
+	}
+}
+
 export default {
 	findOne,
 	findAll,
 	create,
 	update,
-	deleteOne
+	deleteOne,
+	address
 }

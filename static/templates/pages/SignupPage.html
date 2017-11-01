@@ -1,18 +1,18 @@
 <div class="row">
-    <div class="col-md-12">
-        <h1>Sign Up</h1>
-        <hr>
-        <form ng-submit="$ctrl.submit()">
-            <div class="row container">
-                <div>
-                    <p class="col-md-3 signupFont margintop">Username</p>
-                    <div class="col-md-5">
-                        <input class="form-control" type="text" name="username" 
+	<div class="col-md-12">
+		<h1>Sign Up</h1>
+		<hr>
+		<form ng-submit="$ctrl.submit()">
+			<div class="row container">
+				<div>
+					<p class="col-md-3 signupFont margintop">Username</p>
+					<div class="col-md-5">
+						<input class="form-control" type="text" name="username" 
 						required 
 						placeholder="Between 6 - 24 characters"
 						maxlength="24"
 						minlength="6"
-						ng-model="$ctrl.name">
+						ng-model="$ctrl.username">
                     </div>
                 </div>
             </div>
@@ -23,7 +23,7 @@
                         <input class="form-control" 
                             type="password" 
                             name="password" 
-                            ng-model="$ctrl.user.password" 
+                            ng-model="$ctrl.password" 
                             password-verify="{{$ctrl.confirm_pass}}" 
                             required 
                             placeholder="At least 1 number in 8 or more characters" 
@@ -45,46 +45,7 @@
                     </div>
                 </div>
             </div>
-			<div class="row container">
-				<div>
-					<p class="col-md-3 signupFont margintop">Address</p>
-                    <div class="col-md-5">
-                        <input class="form-control" 
-							   type="text" 
-							   name="email" 
-							   required 
-							   placeholder="Address" 
-							   ng-model="$ctrl.address">
-                    </div>
-				</div>
-			</div>
-			<div class="row container">
-				<div>
-					<p class="col-md-3 signupFont margintop">Postcode</p>
-                    <div class="col-md-5">
-                        <input class="email form-control" 
-							   type="text" 
-							   name="email" 
-							   required 
-							   placeholder="Post Code" 
-							   ng-model="$ctrl.postcode">
-                    </div>
-				</div>
-			</div>
-			<div class="row container">
-				<div>
-					<p class="col-md-3 signupFont margintop">Phone</p>
-                    <div class="col-md-5">
-                        <input class="email form-control" 
-							   type="text" 
-							   name="phone" 
-							   required 
-							   placeholder="Phone Number" 
-							   ng-model="$ctrl.phone">
-                    </div>
-				</div>
-			</div>
-			<pre>user={{$ctrl.user}}</pre>
+			<pre>user={{$ctrl.password}}</pre>
             <div class="smallPrintSignup margintop tandc">
                 <input type="checkbox" name="termsandconditions" checked ng-model="$ctrl.news">  Subscribe to Newsletter
             </div>

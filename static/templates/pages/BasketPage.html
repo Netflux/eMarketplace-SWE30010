@@ -1,26 +1,65 @@
 <div class="row">
-    <div class="col-md-12">
-        <h1>My Basket</h1>
-        <hr>
-    </div>
+	<div class="col-md-12">
+		<h1>My Basket</h1>
+		<hr>
+	</div>
 </div>
 <div class="row">
-    <div class="col-md-6 col-sm-6 well">
-        <div class="col-md-6">
-            <img src="images/category.jpg" alt="Product Picture">
-        </div>
-        <div class="col-md-6">
-            <h3>Item 1</h3>
-            <p>Price: </p>
-            <p>Qty: </p>
+    <div class="col-md-6 col-sm-6 basketitembox">
+        <div class="row"> 
+            <div class="col-md-12 col-xs-12 well" ng-repeat="basketitem in $ctrl.basketitems">
+                <a ui-sref="product({ productKey: basketitem.productKey })">
+                    <div class="col-md-3 col-xs-3">
+                       <img src="{{ basketitem.images }}" alt="{{ basketitem.title }}">
+                    </div>
+                    <div class="col-md-8 col-xs-8">
+                        <h3>{{ basketitem.title }}</h3>
+                        <p>Price: RM {{ basketitem.price | number: 2 }}</p>
+                        <p>Quantity: {{ basketitem.quantity }}</p>
+                    </div>
+                </a>     
+                <div class="col-md-1 col-xs-1">
+                    <form>
+                        <button type="submit" class="btn btn-basic" ng-confirm-click="Are you sure you want to remove {{ basketitem.title }} from your basket?" confirmed-click="$ctrl.deleteItem('{{ basketitem.productKey }}')"><span class="glyphicon glyphicon-remove"></span></button>
+                    </form>
+                </div>
+            </div>
+            <div class="text-center" ng-show="$ctrl.basketitems.length == 0"><i>No products in basket.</i></div>
         </div>
     </div>
-    <div class="col-md-5 col-sm-5 col-md-push-1 col-sm-push-1 well ">
+    <div class="col-md-5 col-sm-5 col-md-push-1 col-sm-push-1 sumbasketitembox">
         <h3>Order Summary</h3>
-        <hr>
-        <p>Item 1</p>
-        <hr>
-        <p>Total: </p>
-        <button class="flatButton">Proceed to Buy</button>
+        <br>
+        <div class="row"> 
+            <div class="col-md-12 col-xs-12">
+                <table class="table table-striped">
+                    <tr>
+                        <th>No</th>
+                        <th>Product Name</th>
+                        <th class="text-right">Price</th>
+                        <th class="text-right">Shipping Price</th>
+                    </tr>
+                    <tr ng-repeat="sumbasketitem in $ctrl.basketitems">
+                        <td>{{ $index + 1 }}.</td>
+                        <td>{{ sumbasketitem.title }}</td>
+                        <td class="text-right">RM {{ sumbasketitem.sumprice | number: 2 }}</td>
+                        <td class="text-right">RM {{ sumbasketitem.shipping | number: 2 }}</td>
+                    </tr>
+                </table>
+            </div>
+            <hr>
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <p class="text-right">Total Amount: <span class="h4 text-success"><strong>RM {{ $ctrl.totalprice | number: 2 }}</strong></span></p>
+            </div>
+        </div>
+        <div class="row"> 
+            <div class="col-md-12 col-xs-12">
+                <a ui-sref="checkout"><button class="btn btnbasket" ng-disabled="$ctrl.basketitems.length == 0">Proceed to Checkout</button></a>
+            </div>
+        </div>
     </div>
 </div>
+<br>

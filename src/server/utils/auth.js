@@ -28,8 +28,8 @@ const verifyPassword = (password, combined) => new Promise((resolve, reject) => 
 })
 
 // Helper functions for finding users based on ID or username
-const findUserById = id => db('User').where('userId', id).first()
-const findUserByUsername = username => db('User').where('username', username).first()
+const findUserById = id => db('User').where('User.userId', id).innerJoin('UserAddress', 'UserAddress.userId', 'User.userId').first()
+const findUserByUsername = username => db('User').where('User.username', username).innerJoin('UserAddress', 'UserAddress.userId', 'User.userId').first()
 
 // Helper function to set up user authentication for API
 const setupAuth = app => {
