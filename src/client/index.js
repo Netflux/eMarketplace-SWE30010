@@ -25,11 +25,12 @@ import './index.css'
 		.component('navbar', components.navbar)
 		.component('footersection', components.footersection)
 		.component('bannertools', components.bannertools)
-		.component('breadcrumbs',components.breadcrumbs)
-		.component('categories',components.categories)
-		.component('listcategories',components.listcategories)
-		.component('productlist',components.productlist)
-		.component('salesanalysis',components.salesanalysis)
+		.component('breadcrumbs', components.breadcrumbs)
+		.component('categories', components.categories)
+		.component('categorytools', components.categorytools)
+		.component('listcategories', components.listcategories)
+		.component('productlist', components.productlist)
+		.component('salesanalysis', components.salesanalysis)
 
 	angular.module('app.routes', ['ui.router', 'app.components'])
 		.config(['$stateProvider', '$urlRouterProvider', '$transitionsProvider', ($stateProvider, $urlRouterProvider, $transitionsProvider) => {
@@ -41,23 +42,20 @@ import './index.css'
 				}
 			})
 		}])
-
+		
 	angular.module('app', ['app.services', 'app.routes'])
-    
-    angular.module('app', ['app.services', 'app.routes'])
-        .directive('ngConfirmClick', [function() 
-            { 
-                return { 
-                link: function (scope, element, attr) {
-                    var msg = attr.ngConfirmClick || "Are you sure?"
-                    var clickAction = attr.confirmedClick
-                    element.bind('click',function (event) {
-                        if ( window.confirm(msg) ) {
-                            scope.$eval(clickAction)
-                        }
-                    })
-                }
-                }
-            }])
-    
+		.directive('ngConfirmClick', [function() {
+			return {
+				link: function (scope, element, attr) {
+					var msg = attr.ngConfirmClick || 'Are you sure?'
+					var clickAction = attr.confirmedClick
+					element.bind('click', function () {
+						if ( window.confirm(msg) ) {
+							scope.$eval(clickAction)
+						}
+					})
+				}
+			}
+		}])
+
 })(window.angular)

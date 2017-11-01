@@ -24,33 +24,33 @@ export const fetchBasket = ($store, $http) => {
 }
 
 export const findBasketDetails = (basket, products) => {
-    var basketitems = []
-    for (var j = 0; j < basket.items.length; j++){ 
-        for (var i = 0; i < products.items.length; i++){
-             if (products.items[i].productKey == basket.items[j].productKey){
-                basketitems.push({
-                    productKey: products.items[i].productKey,
-                    title: products.items[i].title,
-                    images: products.items[i].images[0].imageUrl,
-                    shipping: products.items[i].shippingPrice,
-                    price: products.items[i].price,
-                    sumprice: products.items[i].price * basket.items[j].quantity,
-                    quantity: basket.items[j].quantity
-                }) 
-            }    
-        } 
-    }
-    return basketitems
+	var basketitems = []
+	for (var j = 0; j < basket.items.length; j++){ 
+		for (var i = 0; i < products.items.length; i++){
+			if (products.items[i].productKey == basket.items[j].productKey){
+				basketitems.push({
+					productKey: products.items[i].productKey,
+					title: products.items[i].title,
+					images: products.items[i].images[0].imageUrl,
+					shipping: products.items[i].shippingPrice,
+					price: products.items[i].price,
+					sumprice: products.items[i].price * basket.items[j].quantity,
+					quantity: basket.items[j].quantity
+				}) 
+			}    
+		} 
+	}
+	return basketitems
 }
 
 export const calculateTotalPrice = (basket, products, basketitems) => {
-    var totalprice = 0
-    for (var j = 0; j < basket.items.length; j++){
-        for (var i = 0; i < products.items.length; i++){
-            if (products.items[i].productKey == basket.items[j].productKey){
-                totalprice += basketitems[j].sumprice + basketitems[j].shipping
-            }
-        }
-    }
-    return totalprice
+	var totalprice = 0
+	for (var j = 0; j < basket.items.length; j++){
+		for (var i = 0; i < products.items.length; i++){
+			if (products.items[i].productKey == basket.items[j].productKey){
+				totalprice += basketitems[j].sumprice + basketitems[j].shipping
+			}
+		}
+	}
+	return totalprice
 }

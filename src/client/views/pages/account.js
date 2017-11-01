@@ -4,12 +4,12 @@ import { fetchProducts } from 'client/logic/actions/products'
 
 const account = {
 	templateUrl: 'templates/pages/AccountPage.html',
-     controller:['$store','$http', function($store, $http){
-        this.$onDestroy = $store.subscribe(state => {
-            this.products = state.products
-            //Temporary check userId
-            var userid = 2;
-            this.userproducts = []
+	controller:['$store','$http', function($store, $http){
+		this.$onDestroy = $store.subscribe(state => {
+			this.products = state.products
+			//Temporary check userId
+			var userid = 2
+			this.userproducts = []
 
             for (var j = 0; j < this.products.items.length; j++){
                 if(this.products.items[j].userId == userid){
@@ -36,8 +36,8 @@ const account = {
             
         })
          
-        fetchProducts($store,$http)
-     }]
+		fetchProducts($store,$http)
+	}]
 }
 
 export default account

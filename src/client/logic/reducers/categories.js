@@ -25,6 +25,11 @@ const categoriesReducer = (state = {
 			...state,
 			isFetching: false
 		}
+	case actions.REMOVE_CATEGORY:
+		return {
+			...state,
+			items: state.items.filter(i => i.categoryId !== action.data)
+		}
 	default:
 		return state
 	}

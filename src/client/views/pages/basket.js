@@ -5,7 +5,7 @@ import { fetchProducts } from 'client/logic/actions/products'
 
 const basket = {
 	templateUrl: 'templates/pages/BasketPage.html',
-    controller:['$store','$http','$window', function($store, $http, $window){
+	controller:['$store','$http','$window', function($store, $http, $window){
 		this.$onDestroy = $store.subscribe(state => {
             this.basket = state.basket
             this.products = state.products
