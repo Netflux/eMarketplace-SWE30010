@@ -50,22 +50,30 @@ const create = userId => {
 		.innerJoin('Product', function() {
 			this.on('Product.productKey', '=', 'UserBasket.productKey').onNull('Product.validTo')
 		})
+		.innerJoin('ProductStock', 'ProductStock.productKey', 'UserBasket.productKey')
 		.where('UserBasket.userId', userId)
 		.then(rows => {
 			if (rows.length === 0) { throw new Error(422) }
-			return trx('Order')
-				.insert({
-					userId,
-					date: Date.now()
-				})
-				.then(response => {
-					return trx('OrderProduct')
-						.insert(rows.map(row => ({
-							orderId: response[0],
-							productId: row.productId,
-							quantity: row.quantity
-						})))
-				})
+			return Promise.all(rows.map(row => {
+				return trx('ProductStock')
+					.where('productKey', row.productKey)
+					.update({ stock: Math.max(0, row.stock - row.quantity) })
+			}))
+			.then(() => {
+				return trx('Order')
+					.insert({
+						userId,
+						date: Date.now()
+					})
+					.then(response => {
+						return trx('OrderProduct')
+							.insert(rows.map(row => ({
+								orderId: response[0],
+								productId: row.productId,
+								quantity: row.quantity
+							})))
+					})
+			})
 		})
 		.then(() => {
 			return trx('UserBasket')
