@@ -40,6 +40,7 @@ router.post('/', [
 	BasketModel.upsert(basketItem)
 		.then(() => res.sendStatus(204))
 		.catch(err => {
+			if (err.message === '422') { return res.sendStatus(422) }
 			console.error(err)
 			res.sendStatus(500)
 		})

@@ -10,12 +10,18 @@ const findAll = userId => {
 
 const upsert = basketItem => {
 	const timestamp = Date.now()
-	return db.transaction(trx => trx('UserBasket')
-		.where({
-			userId: basketItem.userId,
-			productKey: basketItem.productKey
-		})
+	return db.transaction(trx => trx('ProductStock')
+		.where('productKey', basketItem.productKey)
 		.first()
+		.then(row => {
+			if (!row || row.stock < basketItem.quantity) { throw new Error(422) }
+			return trx('UserBasket')
+				.where({
+					userId: basketItem.userId,
+					productKey: basketItem.productKey
+				})
+				.first()
+		})
 		.then(row => {
 			if (row) {
 				return trx('UserBasket')
