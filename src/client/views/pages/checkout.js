@@ -12,9 +12,18 @@ const checkout = {
 			this.checkoutitems = []
 			this.totalprice 
             
-			this.checkoutitems = findBasketDetails(this.basket,this.products)
-			this.totalprice = calculateTotalPrice(this.basket,this.products,this.checkoutitems)
+            this.checkoutitems = findBasketDetails(this.basket,this.products)
+            this.totalprice = calculateTotalPrice(this.basket,this.products,this.checkoutitems)
 		})
+        
+        this.checkout = function () {
+            $http({ withCredentials: true, method: 'post', url:'/api/orders'})
+                    .then(function sucessCallback(response){
+                        alert("Order sent to seller")
+                    }, function errorCallback(response){
+                        alert("Database is currently down. Try again later") 
+                    })
+        }
         
 		fetchBasket($store,$http)
 		fetchProducts($store,$http)

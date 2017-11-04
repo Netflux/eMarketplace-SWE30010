@@ -17,12 +17,11 @@ const sellerupdateproducts = {
         var userId = 2
 
         this.showproduct = function(productKey) {
-            this.updateform = true;
+            this.updateform = true
             this.userproduct = this.products.items.find(i => i.productKey === productKey)  
         }
 
         this.updateProduct = function () {
-            console.log(this.userproduct)
              $http.post(`/api/products/${this.userproduct.productKey}`, this.userproduct)
                     .then(function sucessCallback(){
                         alert("Successfully updated your product")

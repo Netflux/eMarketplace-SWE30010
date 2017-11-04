@@ -34,6 +34,7 @@ import './index.css'
         .component('sellerproducts', components.sellerproducts)
         .component('selleraddproducts', components.selleraddproducts)
         .component('sellerupdateproducts', components.sellerupdateproducts)
+        .component('sellerorders', components.sellerorders)
 
 	angular.module('app.routes', ['ui.router', 'app.components'])
 		.config(['$stateProvider', '$urlRouterProvider', '$transitionsProvider', ($stateProvider, $urlRouterProvider, $transitionsProvider) => {

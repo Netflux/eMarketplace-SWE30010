@@ -54,13 +54,13 @@
 					<li><a ui-sref="product({ '#': 'discussiontab' })" data-toggle="tab">Discussion</a></li>
 				</ul>
 				<div class="tab-content clearfix productinfo2content">
-					<div class="tab-pane active" id="productdetailstab">
+					<div class="col-md-12 tab-pane active" id="productdetailstab">
 						<p>{{$ctrl.product.description || 'No product description available' }}</p>
 					</div>
-					<div class="tab-pane" id="reviewtab">
+					<div class="col-md-12 tab-pane fade" id="reviewtab">
 						<p>{{ $ctrl.product.reviews || 'No reviews available' }}</p>
 					</div>
-					<div class="tab-pane" id="discussiontab">
+					<div class="col-md-12 tab-pane fade" id="discussiontab">
 						<p>Discussion here. </p>
 					</div>
 				</div>

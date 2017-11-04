@@ -64,7 +64,7 @@ const product = {
 							alert('Successfully added to basket')
                             fetchBasket($store,$http)
 						}, function errorCallback(){
-							alert('Database is currently down. Try again later')
+							alert('You must be logged in to buy a product.')
 						})
 				}
 				else {
