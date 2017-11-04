@@ -3,7 +3,15 @@ import db from 'server/database'
 const findAll = userId => {
 	return db.transaction(trx => {
 		return trx('OrderProduct')
-			.select(['orderId', 'productId', 'quantity'])
+			.innerJoin('Product', 'Product.productId', 'OrderProduct.productId')
+			.select([
+				'OrderProduct.orderId',
+				'Product.title',
+				'Product.price',
+				'Product.shippingPrice',
+				'Product.discount',
+				'OrderProduct.quantity'
+			])
 			.then(orderProducts => {
 				return trx('Order')
 					.select(['orderId', 'date'])
@@ -13,7 +21,10 @@ const findAll = userId => {
 						products: orderProducts
 							.filter(product => product.orderId === row.orderId)
 							.map(product => ({
-								productId: product.productId,
+								title: product.title,
+								price: product.price,
+								shippingPrice: product.shippingPrice,
+								discount: product.discount,
 								quantity: product.quantity
 							}))
 					})))
@@ -33,7 +44,7 @@ const findAllBySeller = userId => {
 					'Product.shippingPrice',
 					'Product.discount'
 				])
-				.innerJoin('Product', 'OrderProduct.productId', 'Product.productId')
+				.innerJoin('Product', 'Product.productId', 'OrderProduct.productId')
 				.where('Product.userId', userId)
 				.then(orderProducts => orderProducts.map(orderProduct => {
 					const order = orders.find(i => i.orderId === orderProduct.orderId)
