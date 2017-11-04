@@ -70,21 +70,21 @@ const create = userId => {
 					.where('productKey', row.productKey)
 					.update({ stock: Math.max(0, row.stock - row.quantity) })
 			}))
-			.then(() => {
-				return trx('Order')
-					.insert({
-						userId,
-						date: Date.now()
-					})
-					.then(response => {
-						return trx('OrderProduct')
-							.insert(rows.map(row => ({
-								orderId: response[0],
-								productId: row.productId,
-								quantity: row.quantity
-							})))
-					})
-			})
+				.then(() => {
+					return trx('Order')
+						.insert({
+							userId,
+							date: Date.now()
+						})
+						.then(response => {
+							return trx('OrderProduct')
+								.insert(rows.map(row => ({
+									orderId: response[0],
+									productId: row.productId,
+									quantity: row.quantity
+								})))
+						})
+				})
 		})
 		.then(() => {
 			return trx('UserBasket')
