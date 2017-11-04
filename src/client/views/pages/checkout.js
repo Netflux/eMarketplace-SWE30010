@@ -20,6 +20,7 @@ const checkout = {
             $http({ withCredentials: true, method: 'post', url:'/api/orders'})
                     .then(function sucessCallback(response){
                         alert("Order sent to seller")
+                        fetchBasket($store,$http)        
                     }, function errorCallback(response){
                         alert("Database is currently down. Try again later") 
                     })

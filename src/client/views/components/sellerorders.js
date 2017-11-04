@@ -6,11 +6,18 @@ const sellerorders = {
         this.$onDestroy = $store.subscribe(state => this.orders = state.orders)
         
         this.checker = false
+        this.totalprice = 0
         
-        this.showDetails = function(orderId) {
+        this.showDetails = function(orderId,orderProducts) {
             this.orderDetailsId = orderId
+            this.orderProducts = orderProducts     
             this.checker = true
+            
+            for (var i = 0; i < orderProducts.length; i++){
+                this.totalprice += orderProducts[i].price * orderProducts[i].quantity + orderProducts[i].shippingPrice
+            }
         }
+        
         this.backToOrders = function() {
             this.checker = false
         }
