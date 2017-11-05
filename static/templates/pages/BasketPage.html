@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-md-6 col-sm-6 basketitembox">
         <div class="row"> 
-            <div class="ol-md-12 col-xs-12 well" ng-repeat="basketitem in $ctrl.basketitems">
+            <div class="col-md-12 col-xs-12 well" ng-repeat="basketitem in $ctrl.basketitems">
                 <a ui-sref="product({ productKey: basketitem.productKey })">
                     <div class="col-md-3 col-sm-3 col-xs-3">
                        <img src="{{ basketitem.images }}" alt="{{ basketitem.title }}">
