@@ -62,9 +62,9 @@ const product = {
 					$http({ withCredentials: true, method: 'post', url:'/api/basket', data: this.basket })
 						.then(function sucessCallback(){
 							alert('Successfully added to basket')
-                            fetchBasket($store,$http)
+							fetchBasket($store,$http)
 						}, function errorCallback(){
-							alert('Database is currently down. Try again later')
+							alert('You must be logged in to buy a product.')
 						})
 				}
 				else {

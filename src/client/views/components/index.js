@@ -8,7 +8,8 @@ import listcategories from './listcategories'
 import productlist from './productlist'
 import salesanalysis from './salesanalysis'
 import selleraddproducts from './selleraddproducts'
+import sellerorders from './sellerorders'
 import sellerproducts from './sellerproducts'
 import sellerupdateproducts from './sellerupdateproducts'
 
-export { navbar, footersection, bannertools, breadcrumbs, categories, categorytools, listcategories, productlist, salesanalysis, selleraddproducts, sellerproducts, sellerupdateproducts }
+export { navbar, footersection, bannertools, breadcrumbs, categories, categorytools, listcategories, productlist, salesanalysis, selleraddproducts, sellerorders, sellerproducts, sellerupdateproducts }

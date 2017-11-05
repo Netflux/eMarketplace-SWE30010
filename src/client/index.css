@@ -5,13 +5,19 @@ body {
 	background-color:#f4f4f4;
 }
 
-a {
+a, .btn {
 	color: black;
 }
 
 a:hover {
 	color: #9c7242;
 	text-decoration: none;
+}
+
+.btn:hover, .btn-link:hover{
+    background-color: #9c7242;
+    text-decoration: none;
+    color:white;
 }
 
 img {
@@ -132,4 +138,9 @@ img {
 		transform: scaleY(1.0);
 		-webkit-transform: scaleY(1.0);
 	}
+}
+
+.submitbutton {
+    margin-top: 5%;
+    padding: 1% 15% 1% 15%;
 }

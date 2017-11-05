@@ -27,19 +27,19 @@ export const fetchProducts = ($store, $http, categoryId) => {
 }
 
 export const userProducts = (products, userId) => {
-    var userproducts = []
-    for (var j = 0; j < products.items.length; j++){
-                if(products.items[j].userId == userId){
-                    userproducts.push({
-                        productId: products.items[j].productId,
-                        productKey: products.items[j].productKey,
-                        title: products.items[j].title,
-                        stock: products.items[j].stock,
-                        price: products.items[j].price,
-                        shippingPrice: products.items[j].shippingPrice,
-                        discount: products.items[j].discount,
-                    })
-                }
-            }
-    return userproducts
+	var userproducts = []
+	for (var j = 0; j < products.items.length; j++){
+		if(products.items[j].userId == userId){
+			userproducts.push({
+				productId: products.items[j].productId,
+				productKey: products.items[j].productKey,
+				title: products.items[j].title,
+				stock: products.items[j].stock,
+				price: products.items[j].price,
+				shippingPrice: products.items[j].shippingPrice,
+				discount: products.items[j].discount,
+			})
+		}
+	}
+	return userproducts
 }
