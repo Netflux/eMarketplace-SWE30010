@@ -22,10 +22,10 @@ const sellerupdateproducts = {
 
 		this.updateProduct = function () {
 			$http.post(`/api/products/${this.userproduct.productKey}`, this.userproduct)
-				.then(function sucessCallback(){
+				.then(function sucessCallback() {
 					alert('Successfully updated your product')
 					fetchProducts($store, $http)
-				}, function errorCallback(response){
+				}, function errorCallback() {
 					alert('Database is currently down. Try again later')
 				})
 		}

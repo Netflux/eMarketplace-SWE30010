@@ -9,7 +9,7 @@ const rootReducer = (state, action) => ({
 	products: productsReducer(state.products, action),
 	users: usersReducer(state.users, action),
 	basket: basketsReducer(state.basket, action),
-    orders: ordersReducer(state.orders, action)
+	orders: ordersReducer(state.orders, action)
 })
 
 export default rootReducer
