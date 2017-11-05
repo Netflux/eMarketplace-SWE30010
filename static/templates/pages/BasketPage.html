@@ -7,21 +7,25 @@
 <div class="row">
     <div class="col-md-6 col-sm-6 basketitembox">
         <div class="row"> 
-            <div class="col-md-12 col-xs-12 well" ng-repeat="basketitem in $ctrl.basketitems">
+            <div class="ol-md-12 col-xs-12 well" ng-repeat="basketitem in $ctrl.basketitems">
                 <a ui-sref="product({ productKey: basketitem.productKey })">
-                    <div class="col-md-3 col-xs-3">
+                    <div class="col-md-3 col-sm-3 col-xs-3">
                        <img src="{{ basketitem.images }}" alt="{{ basketitem.title }}">
                     </div>
-                    <div class="col-md-8 col-xs-8">
+                </a>  
+                <div class="col-md-8 col-sm-8 col-xs-8">    
+                    <a ui-sref="product({ productKey: basketitem.productKey })">
                         <h3>{{ basketitem.title }}</h3>
                         <p>Price: RM {{ basketitem.price | number: 2 }}</p>
-                        <p>Quantity: {{ basketitem.quantity }}</p>
+                    </a>   
+                    <div>Quantity: 
+                        <button class="btn btn-minus" ng-click="$ctrl.updateQuantity(basketitem.productKey, basketitem.quantity - 1)">-</button>
+                        <span> {{ basketitem.quantity }} </span>
+                        <button class="btn btn-plus" ng-click="$ctrl.updateQuantity(basketitem.productKey, basketitem.quantity + 1)">+</button>
                     </div>
-                </a>     
-                <div class="col-md-1 col-xs-1">
-                    <form>
-                        <button type="submit" class="btn btn-basic" ng-confirm-click="Are you sure you want to remove {{ basketitem.title }} from your basket?" confirmed-click="$ctrl.deleteBasketItem('{{ basketitem.productKey }}')"><span class="glyphicon glyphicon-remove"></span></button>
-                    </form>
+                </div>   
+                <div class="col-md-1 col-sm-1 col-xs-1 nopadding">
+                    <button type="button" class="btn btn-delete" ng-confirm-click="Are you sure you want to remove {{ basketitem.title }} from your basket?" confirmed-click="$ctrl.deleteBasketItem('{{ basketitem.productKey }}')"><span class="glyphicon glyphicon-remove"></span></button>
                 </div>
             </div>
             <div class="text-center" ng-show="$ctrl.basketitems.length == 0"><i>No products in basket.</i></div>

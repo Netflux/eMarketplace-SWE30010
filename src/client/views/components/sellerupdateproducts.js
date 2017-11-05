@@ -21,7 +21,6 @@ const sellerupdateproducts = {
 		}
 
 		this.updateProduct = function () {
-			console.log(this.userproduct)
 			$http.post(`/api/products/${this.userproduct.productKey}`, this.userproduct)
 				.then(function sucessCallback(){
 					alert('Successfully updated your product')
