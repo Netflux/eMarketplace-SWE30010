@@ -51,17 +51,56 @@
 				<ul class="nav nav-tabs productinfo2">
 					<li class="active"><a ui-sref="product({ '#': 'productdetailstab' })" data-toggle="tab">Product details</a></li>
 					<li><a ui-sref="product({ '#': 'reviewtab' })" data-toggle="tab">Review</a></li>
-					<li><a ui-sref="product({ '#': 'discussiontab' })" data-toggle="tab">Discussion</a></li>
 				</ul>
 				<div class="tab-content clearfix productinfo2content">
 					<div class="col-md-12 tab-pane active" id="productdetailstab">
 						<p>{{$ctrl.product.description || 'No product description available' }}</p>
 					</div>
 					<div class="col-md-12 tab-pane fade" id="reviewtab">
-						<p>{{ $ctrl.product.reviews || 'No reviews available' }}</p>
-					</div>
-					<div class="col-md-12 tab-pane fade" id="discussiontab">
-						<p>Discussion here. </p>
+                        <div class="row" ng-show="$ctrl.thisreview.length == 0">
+                            <div class="col-md-12 reviewbox">
+                                <p class="text-center lead emptyreview">Be the first one to post a review!</p>
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-12 reviewbox"  ng-show="$ctrl.thisreview.length != 0">
+				                <p class="lead nopadding">Title <span class="glyphicon glyphicon-star"></span></p>
+                                <p class="nopadding">Comments</p>
+                                <p class="nopadding reviewdetails">Author <span>Date</span></p>
+                                <hr>
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-12 reviewbox">
+                                <p class="lead">Add a review</p>
+                                <form id="addReview" name="addReview" ng-submit="$ctrl.addReview()">
+                                    <div class="form-row">
+                                        <div class="col-md-7">
+                                            <label for="title">Title: </label>
+                                            <input type="text" class="form-control" id="title" name="title" required="required" ng-model="$ctrl.title"/>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <label for="rating">Rating: </label>
+                                            <select class="form-control" id="rating" name="rating" required="required" ng-model="$ctrl.rating">
+                                                <option value="0">0</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-xs-12 col-md-12">
+                                            <label for="description">Description: </label>
+                                            <textarea class="form-control" id="description" name="description" placeholder="Write your review here" required="required" ng-model="$ctrl.description"></textarea>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-basic pull-right btn-review">Submit review</button>
+                                </form>
+                            </div>
+                        </div>
 					</div>
 				</div>
 				<br><br>

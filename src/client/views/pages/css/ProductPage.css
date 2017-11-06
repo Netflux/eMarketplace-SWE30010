@@ -71,3 +71,16 @@
 .productsuggesionbox img {
 	width:100%;
 }
+
+.btn-review {
+    margin-top: 2%;
+    padding: 0.5% 5% 0.5% 5%;
+}
+
+.emptyreview {
+    padding: 10% 0% 10% 0%;
+}
+
+.reviewdetails {
+    color: darkgrey;
+}

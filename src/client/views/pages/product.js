@@ -4,6 +4,7 @@ import { fetchCategories } from 'client/logic/actions/categories'
 import { fetchProducts } from 'client/logic/actions/products'
 import { fetchUsers } from 'client/logic/actions/users'
 import { fetchBasket } from 'client/logic/actions/basket'
+import { fetchReviews } from 'client/logic/actions/reviews'
 
 const product = {
 	templateUrl: 'templates/pages/ProductPage.html',
@@ -12,12 +13,14 @@ const product = {
 			this.products = state.products
 			this.categories = state.categories
 			this.users = state.users
-
+            this.reviews = state.reviews
+            
 			// Check local cache
 			this.product = this.products.items.find(i => i.productKey === $stateParams.productKey)
 			this.category = this.product ? this.categories.items.find(i => i.categoryId === this.product.categoryId) : undefined
 			this.user = this.product ? this.users.items.find(i => i.userId === this.product.userId) : undefined
-
+            this.review = this.product ? this.reviews.items.find(i => i.productKey === this.product.productKey) : undefined
+            
 			// Populate breadcrumbs
 			this.crumbs = [{
 				title:'Category',
@@ -41,7 +44,6 @@ const product = {
 				}
 			}
 
-			// Will become infinite loop if i++ is in if statement
 			while(i < 4){
 				var generatenumber = Math.floor((Math.random() * state.products.items.length) + 1)
 				var resultObject = search(generatenumber, state.products.items)
@@ -51,7 +53,6 @@ const product = {
 				i++
 			}
 
-			//Handle form submission
 			this.addBasket = function () {
 				if (this.productqty <= this.product.stock){
 					this.basket = {
@@ -71,6 +72,23 @@ const product = {
 					alert ('Not enough stock available for purchase')
 				}
 			}
+            
+            this.addReview = function() {  
+                this.review = {
+                    userId: 2,
+                    productKey: this.product.productKey,
+                    title: this.title,
+                    rating: this.rating,
+                    description: this.description
+                }
+                
+                $http({ withCredentials: true, method: 'post', url:`/api/products/${this.product.productKey}/reviews`, data: this.review })
+						.then(function sucessCallback(){
+							alert('Successfully added review')
+						}, function errorCallback(){
+							alert('You must be logged to post review.')
+						})
+            }
 		})
 
 		// In cache not found, fetch from server
@@ -78,6 +96,7 @@ const product = {
 		fetchProducts($store, $http)
 		fetchUsers($store, $http)
 		fetchBasket($store,$http)
+        fetchReviews($store, $http)
 	}]
 }
 
