@@ -42,7 +42,7 @@
 			</div>
 			<div class="col-xs-3 col-sm-3 col-md-3 sellerinfobox">
 				<p>Joined </p>
-				<p>{{ $ctrl.user.createdAt | date:'dd/MM/yyyy'}}</p>
+				<p>{{ $ctrl.user.createdAt | date:'dd/MM/yyyy' }}</p>
 			</div>
 		</div>
 		<div class="row">
@@ -57,17 +57,21 @@
 						<p>{{$ctrl.product.description || 'No product description available' }}</p>
 					</div>
 					<div class="col-md-12 tab-pane fade" id="reviewtab">
-                        <div class="row" ng-show="$ctrl.thisreview.length == 0">
+                        <div class="row" ng-show="$ctrl.reviews.length == 0">
                             <div class="col-md-12 reviewbox">
                                 <p class="text-center lead emptyreview">Be the first one to post a review!</p>
                             </div>
                         </div><br>
-                        <div class="row">
-                            <div class="col-md-12 reviewbox"  ng-show="$ctrl.thisreview.length != 0">
-				                <p class="lead nopadding">Title <span class="glyphicon glyphicon-star"></span></p>
-                                <p class="nopadding">Comments</p>
-                                <p class="nopadding reviewdetails">Author <span>Date</span></p>
-                                <hr>
+                        <div class="row" ng-show="$ctrl.reviews.length != 0">
+                            <div class="col-md-12 reviewbox">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-12" ng-repeat="review in $ctrl.reviews">
+                                        <p class="lead nopadding">{{ review.title }} <span class="glyphicon glyphicon-star"></span></p>
+                                        <p class="nopadding">{{ review.description }}</p>
+                                        <p class="nopadding reviewdetails" ng-repeat="user in $ctrl.users.items | filter: { userId: review.userId }">{{ user.username }} <span>{{ review.date | date:'h:mm a, yyyy-MM-dd' }}</span></p>
+                                        <hr>
+                                    </div>
+                                </div>
                             </div>
                         </div><br>
                         <div class="row">
