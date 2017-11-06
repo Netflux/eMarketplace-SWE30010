@@ -46,6 +46,11 @@ const discount = check('discount')
 	.isInt({ min: 0, max: 100 })
 	.toInt()
 
+const rating = check('rating')
+	.trim()
+	.isInt({ min: 0, max: 5 })
+	.toInt()
+
 export {
 	productImageId,
 	categoryId,
@@ -55,5 +60,6 @@ export {
 	price,
 	shippingPrice,
 	stock,
-	discount
+	discount,
+	rating
 }

@@ -143,6 +143,42 @@ const reviews = {
 	findAll: productKey => {
 		return db('ProductReview')
 			.where('productKey', productKey)
+	},
+	upsert: (userId, review) => {
+		return db.transaction(trx => trx('ProductReview')
+			.where({
+				userId,
+				productKey: review.productKey
+			})
+			.first()
+			.then(row => {
+				if (row) {
+					return trx('ProductReview')
+						.where({
+							userId,
+							productKey: review.productKey
+						})
+						.update({
+							...review,
+							date: Date.now()
+						})
+				}
+
+				return trx('ProductReview')
+					.insert({
+						userId,
+						...review,
+						date: Date.now()
+					})
+			}))
+	},
+	deleteOne: (productKey, userId) => {
+		return db('ProductReview')
+			.where({
+				userId,
+				productKey
+			})
+			.del()
 	}
 }
 
