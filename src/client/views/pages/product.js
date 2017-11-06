@@ -52,7 +52,7 @@ const product = {
 				}
 				i++
 			}
-
+            
 			this.addBasket = function () {
 				if (this.productqty <= this.product.stock){
 					this.basket = {
