@@ -47,6 +47,7 @@ const product = {
                     }, function errorCallback(){
                         alert('You must be logged to post review.')
                     })
+            ctrl.seeAddReview = false
         }
 
         ctrl.fetchReviews = function() {
