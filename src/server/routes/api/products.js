@@ -10,7 +10,7 @@ import multer from 'server/utils/multer'
 const router = Express.Router()
 
 const validation = userValidation => (req, res, next) => {
-	
+
 	if (userValidation && (!req.user || req.user.role === 'Buyer')) { return res.sendStatus(403) }
 
 	const validationErrors = validationResult(req)
@@ -92,6 +92,44 @@ router.get('/:productKey/reviews', [
 ], (req, res) => {
 	ProductModel.reviews.findAll(req.params.productKey)
 		.then(rows => res.status(200).json({ data: rows }))
+		.catch(err => {
+			console.error(err)
+			res.sendStatus(500)
+		})
+})
+
+router.post('/:productKey/reviews', [
+	validators.productKey,
+	validators.title,
+	validators.description,
+	validators.rating,
+	validation(false)
+], (req, res) => {
+	if (!req.user) { return res.sendStatus(403) }
+
+	const review = {
+		productKey: req.params.productKey,
+		title: req.body.title,
+		description: req.body.description,
+		rating: req.body.rating
+	}
+
+	ProductModel.reviews.upsert(req.user.userId, review)
+		.then(() => res.sendStatus(204))
+		.catch(err => {
+			console.error(err)
+			res.sendStatus(500)
+		})
+})
+
+router.delete('/:productKey/reviews', [
+	validators.productKey,
+	validation(false)
+], (req, res) => {
+	if (!req.user) { return res.sendStatus(403) }
+
+	ProductModel.reviews.deleteOne(req.params.productKey, req.user.userId)
+		.then(() => res.sendStatus(204))
 		.catch(err => {
 			console.error(err)
 			res.sendStatus(500)
