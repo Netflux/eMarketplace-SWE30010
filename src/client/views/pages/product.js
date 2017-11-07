@@ -9,6 +9,8 @@ const product = {
 	templateUrl: 'templates/pages/ProductPage.html',
 	controller:['$store','$stateParams','$http', function($store, $stateParams, $http){
         const ctrl = this
+        ctrl.seeAddReview = false 
+        
         ctrl.addBasket = function () {
             if (ctrl.productqty <= ctrl.product.stock){
                 const basket = {
@@ -56,6 +58,14 @@ const product = {
                         ctrl.reviews = []
                     })
             }
+        }
+        
+        ctrl.getStar = function(num) {
+            return new Array(num);   
+        }
+        
+        ctrl.enableReview = function (bool) {
+            ctrl.seeAddReview = bool
         }
         
 		ctrl.$onDestroy = $store.subscribe(state => {
