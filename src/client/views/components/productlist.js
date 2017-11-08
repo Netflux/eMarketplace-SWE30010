@@ -19,12 +19,6 @@ const productlist = {
 				this.orderByName = function(field){
 					this.myName = field;
 				}
-				
-				//get reviews
-				if(this.products.items.length === 2){
-					var productid1 = this.products.items[0].productId
-					var productid2 = this.products.items[1].productId
-				}
 			})
 
 			//Error Handling here
