@@ -38,7 +38,7 @@ const product = {
 
         ctrl.addReview = function() {  
             const review = {
-                userId: 2,
+                userId: this.account.data.userId,
                 productKey: ctrl.product.productKey,
                 title: ctrl.title,
                 rating: ctrl.rating,
@@ -90,6 +90,7 @@ const product = {
 			ctrl.products = state.products
 			ctrl.categories = state.categories
 			ctrl.users = state.users
+            ctrl.account = state.account
 
 			// Check local cache
 			ctrl.product = ctrl.products.items.find(i => i.productKey === $stateParams.productKey)

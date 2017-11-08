@@ -69,7 +69,7 @@
                             <div class="col-md-12 reviewbox">
                                 <div class="row">
                                     <div class="col-xs-12 col-md-12" ng-repeat="review in $ctrl.reviews">
-                                        <button type="button" class="btn btn-basic pull-right" ng-click="$ctrl.deleteReview()"><span class="glyphicon glyphicon-remove"></span></button>
+                                        <button type="button" class="btn btn-basic pull-right" ng-click="$ctrl.deleteReview()" ng-show="$ctrl.account.data.userId == review.userId "><span class="glyphicon glyphicon-remove"></span></button>
                                         <p class="lead nopadding">{{ review.title }} 
                                             <span ng-repeat="i in $ctrl.getStar(review.rating) track by $index"><span>&#9733;</span></span><span ng-repeat="i in $ctrl.getStar(5 - review.rating) track by $index"><span>&#9734;</span></span>
                                         </p>
