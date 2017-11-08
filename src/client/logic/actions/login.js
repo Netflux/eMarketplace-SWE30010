@@ -1,1 +1,0 @@
-export const RECEIVE_LOGIN = 'RECEIVE_LOGIN'

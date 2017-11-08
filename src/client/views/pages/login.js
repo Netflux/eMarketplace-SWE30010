@@ -1,40 +1,28 @@
 import './css/LoginPage.css'
 
-import { fetchUsers } from 'client/logic/actions/users'
+import { fetchLogin, fetchLogout } from 'client/logic/actions/account'
 
 const login = {
 	templateUrl: 'templates/pages/LoginPage.html',
-	controller: ['$store', '$http', '$location', function($store, $http, $location){
-		this.$onDestroy = $store.subscribe(state =>{
-			//login function	
-			this.login = function(){
-				this.user ={
+	controller: ['$store', '$http', '$location', function($store, $http, $location) {
+		this.$onDestroy = $store.subscribe(state => {
+			//login function
+			this.login = function() {
+				const user = {
 					username: this.username,
 					password: this.password
 				}
-				//console.log(this.user)
-				$http({withCredentials: true, method:'post', url:'api/users/login', data: this.user, headers: {'Content-Type': 'application/json'}})
-					.then(function successCallback(response) {
-						alert("Login Success")
-						$store.update({data: response.data.data, type: 'RECEIVE_LOGIN'})
-						//console.log($store.login)
-						$location.path("/account")
-				  }, function errorCallback(response) {
-						alert("Can't do that right now. Try again later")
-						//console.log(response.data.id)
-				  })
+				fetchLogin($store, $http, user)
 			}
 			//logout function
-			this.logout = function(){
-				$http({withCredentials: true, method:'post', url:'api/users/logout'})
-					.then(function successCallback(response) {
-						alert("Logout Success")
-				  }, function errorCallback(response) {
-						alert("Can't logout right now. Try again later")
-				  })
+			this.logout = function() {
+				fetchLogout($store, $http)
+			}
+
+			if (state.account.isLoggedIn) {
+				$location.path('/account')
 			}
 		})
-		fetchUsers($store, $http)
 	}]
 }
 

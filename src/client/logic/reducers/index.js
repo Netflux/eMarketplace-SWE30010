@@ -3,7 +3,7 @@ import productsReducer from './products'
 import usersReducer from './users'
 import basketsReducer from './basket'
 import ordersReducer from './orders'
-import loginReducer from './login'
+import accountReducer from './account'
 
 const rootReducer = (state, action) => ({
 	categories: categoriesReducer(state.categories, action),
@@ -11,7 +11,7 @@ const rootReducer = (state, action) => ({
 	users: usersReducer(state.users, action),
 	basket: basketsReducer(state.basket, action),
 	orders: ordersReducer(state.orders, action),
-	login: loginReducer(state.login, action)
+	account: accountReducer(state.account, action)
 })
 
 export default rootReducer
