@@ -42,7 +42,7 @@
                     <td>RM {{ orderproduct.quantity * orderproduct.price + orderproduct.shippingPrice | number: 2}}</td>
                 </tr>
             </table> 
-                 <p class="lead text-right text-success">Total amount paid: RM {{ $ctrl.totalprice }}</p>
+                 <p class="lead text-right text-success">Total amount paid: RM {{ $ctrl.totalprice | number: 2}}</p>
             </div>
         </div>
     </div>

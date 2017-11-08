@@ -3,7 +3,9 @@ import { fetchOrders } from 'client/logic/actions/orders'
 const sellerorders = {
 	templateUrl: 'templates/components/SellerOrders.html',
 	controller:['$http', '$store', function($http, $store) {
-		this.$onDestroy = $store.subscribe(state => this.orders = state.orders)
+		this.$onDestroy = $store.subscribe(state => {
+            this.orders = state.orders
+        })
         
 		this.checker = false
 		this.totalprice = 0

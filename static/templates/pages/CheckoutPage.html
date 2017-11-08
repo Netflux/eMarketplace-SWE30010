@@ -11,32 +11,32 @@
             <hr>
             <p><span class="text-danger">*</span> field is required.</p><br>
             <div class="form-group">
-                <label for="fullname">Full name: <span class="text-danger">*</span></label>
-                <input type="text" id="fullname" name="fullname" class="form-control" maxlength="255" required="required" ng-model="fullname"/>
-                <span ng-show="checkoutform.fullname.$touched && checkoutform.fullname.$invalid" class="text-danger">Full name is required.</span>
+                <label for="username">Full name: <span class="text-danger">*</span></label>
+                <input type="text" id="username" name="username" class="form-control" maxlength="255" required ng-model="$ctrl.account.address.name"/>
+                <span ng-show="checkoutform.username.$touched && checkoutform.username.$invalid" class="text-danger">Full name is required.</span>
             </div>
             <div class="form-group">
                 <label for="street">Street: <span class="text-danger">*</span></label>
-                <input type="text" id="street" name="street" class="form-control" maxlength="255" required="required" ng-model="street"/>
+                <input type="text" id="street" name="street" class="form-control" maxlength="255" required ng-model="$ctrl.account.address.street"/>
                 <span ng-show="checkoutform.street.$touched && checkoutform.street.$invalid" class="text-danger">Street is required.</span>
             </div>
             <div class="form-group">
                 <label for="city">City: <span class="text-danger">*</span></label>
-                <input type="text" id="city" name="city" class="form-control" maxlength="255" required="required" ng-model="city"/>
+                <input type="text" id="city" name="city" class="form-control" maxlength="255" required ng-model="$ctrl.account.address.city"/>
                 <span ng-show="checkoutform.city.$touched && checkoutform.city.$invalid" class="text-danger">City is required.</span>
             </div>
             <div class="form-group">
                 <label for="state">State: <span class="text-danger">*</span></label>
-                <input type="text" id="state" name="state" class="form-control" maxlength="255" required="required" ng-model="state"/>
+                <input type="text" id="state" name="state" class="form-control" maxlength="255" required ng-model="$ctrl.account.address.state"/>
                 <span ng-show="checkoutform.state.$touched && checkoutform.state.$invalid" class="text-danger">State is required.</span>
             </div>
             <div class="form-group">
                 <label for="zipcode">Zipcode: </label>
-                <input type="text" id="zipcode" name="zipcode" class="form-control" ng-model="zipcode"/>
+                <input type="text" id="zipcode" name="zipcode" class="form-control" required ng-model="$ctrl.account.address.zip"/>
             </div>
             <div class="form-group">
                 <label for="phoneno">Phone Number: </label>
-                <input type="text" id="phoneno" name="phoneno" class="form-control" ng-model="phoneno"/>
+                <input type="text" id="phoneno" name="phoneno" class="form-control" required ng-model="$ctrl.account.address.phone"/>
             </div>
             <br>
             <h3>Payment Method</h3>
@@ -57,7 +57,7 @@
                 </label>
             </div>
             <br>
-            <button class="btn btncheckout" ng-disabled="checkoutform.$invalid">Checkout</button>
+            <button type="submit" class="btn btncheckout" ng-disabled="checkoutform.$invalid">Checkout</button>
         </form>
     </div>
     <div class="col-md-5 col-sm-5 col-md-push-1 col-sm-push-1 sumcheckoutbox">

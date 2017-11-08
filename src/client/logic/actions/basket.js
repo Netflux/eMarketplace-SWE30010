@@ -1,10 +1,12 @@
 export const FETCH_BASKET = 'FETCH_BASKET'
 export const RECEIVE_BASKET = 'RECEIVE_BASKET'
 export const RECEIVE_BASKET_ERROR = 'RECEIVE_BASKET_ERROR'
+export const REMOVE_BASKET = 'REMOVE_BASKET'
+export const CLEAR_BASKET = 'CLEAR_BASKET'
 
 export const fetchBasket = ($store, $http) => {
 	const isFetching = $store.getState().basket.isFetching
-
+    console.log($store.getState().basket)
 	if (!isFetching) {
 		$store.update({
 			type: FETCH_BASKET

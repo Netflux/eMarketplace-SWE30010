@@ -1,16 +1,20 @@
 import { fetchProducts, userProducts } from 'client/logic/actions/products'
+import { fetchUsers } from 'client/logic/actions/users'
 
 const sellerproducts = {
 	templateUrl: 'templates/components/SellerProducts.html',
 	controller:['$store', '$http', function($store, $http){
 		this.$onDestroy = $store.subscribe(state => {
 			this.products = state.products
-			//Temporary check userId
-			var userId = 2
+            this.users = state.users
+            this.account = state.account
+            this.user = this.users.items.find(i => i.username === this.account.data.username)
 			this.userproducts = []
-			this.userproducts = userProducts(this.products, userId)
+            if(this.user) { 
+                this.userproducts = userProducts(this.products, this.user.userId)
+            }
 		})
-
+        
 		this.deleteProductItem = function(productKey){
 			$http({ withCredentials: true, method: 'delete', url:`/api/products/${productKey}`})
 				.then(function sucessCallback() {
@@ -21,7 +25,8 @@ const sellerproducts = {
 				})
 		}
 
-		fetchProducts($store,$http)
+		fetchProducts($store, $http)
+        fetchUsers($store, $http)
 	}]
 }
 

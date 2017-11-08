@@ -1,6 +1,7 @@
 export const FETCH_ACCOUNT = 'FETCH_ACCOUNT'
 export const RECEIVE_ACCOUNT = 'RECEIVE_ACCOUNT'
 export const RECEIVE_ACCOUNT_ERROR = 'RECEIVE_ACCOUNT_ERROR'
+export const RECEIVE_ACCOUNT_ADDRESS = 'RECEIVE_ACCOUNT_ADDRESS'
 
 export const fetchAccount = ($store, $http) => {
 	const isFetching = $store.getState().account.isFetching

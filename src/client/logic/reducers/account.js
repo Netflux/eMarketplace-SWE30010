@@ -23,6 +23,14 @@ const accountReducer = (state = {
 			...state,
 			isFetching: false
 		}
+    case actions.RECEIVE_ACCOUNT_ADDRESS:
+        return {
+            ...state,
+            data: {
+                ...state.data,
+                address: action.address
+            }
+        }
 	default:
 		return state
 	}

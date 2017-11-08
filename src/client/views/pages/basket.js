@@ -1,6 +1,6 @@
 import './css/BasketPage.css'
 
-import { fetchBasket, findBasketDetails, calculateTotalPrice } from 'client/logic/actions/basket'
+import { fetchBasket, findBasketDetails, calculateTotalPrice, REMOVE_BASKET } from 'client/logic/actions/basket'
 import { fetchProducts } from 'client/logic/actions/products'
 
 const basket = {
@@ -23,8 +23,10 @@ const basket = {
 		this.deleteBasketItem = function(productKey) {
 			$http({ withCredentials: true, method: 'delete', url:`/api/basket/${productKey}` })
 				.then(function sucessCallback() {
-					alert('Item removed.')
-					fetchBasket($store,$http)
+					$store.update({
+                        type: REMOVE_BASKET,
+                        productKey
+                    })
 				}, function errorCallback() {
 					alert('Database is currently down. Try again later.')
 				})

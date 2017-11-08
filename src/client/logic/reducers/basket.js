@@ -25,6 +25,16 @@ const basketReducer = (state = {
 			...state,
 			isFetching: false
 		}
+    case actions.REMOVE_BASKET:
+        return {
+            ...state,
+            items: state.items.filter(i => i.productKey !== action.productKey)
+        }
+    case actions.CLEAR_BASKET:
+        return {
+            ...state,
+            items: []
+        }
 	default:
 		return state
 	}
