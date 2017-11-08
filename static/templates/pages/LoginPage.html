@@ -2,22 +2,30 @@
 	<h1>LOGIN</h1>
 	<hr>
 	<div class="col-md-4 col-md-push-4 container">
-
-		<form class="text-center well">
-			<div class="nopadding">
-				<h3 class="">Username</h3>
-				<input type="text" name="username">
-			</div>
-			<div class="nopadding">
-				<h3 class="">Password</h3>
-				<input type="password" name="password">
-			</div>
-			<div class="smallPrintLogin margintop">
-				<a href="#">Forgot Password?</a>
-			</div>
-			<div class="margintop">
-				<button class="loginbtn" type="submit">Login</button>
-			</div>
-		</form>
-	</div>
+        <form class="text-center well" ng-submit="$ctrl.login()">
+            <div class="nopadding">
+                <h3 class="">Username</h3>
+                <input type="text" name="username" required form-control ng-model="$ctrl.username">
+            </div>
+            <div class="nopadding">
+                <h3 class="">Password</h3>
+                <input type="password" name="password" required form-control ng-model="$ctrl.password">
+            </div>
+            <div class="smallPrintLogin margintop">
+                <a href="#">Forgot Password?</a>
+            </div>
+            <div class="margintop">
+                <button class="loginbtn btn" type="submit" id="submit" value="Submit">Login</button>
+            </div>
+        </form>
+		<div class="smallPrintLogin margintop">
+			<button class="btn" ng-click="$ctrl.logout()">Logout mou?</button>
+		</div>
+<!--
+		<pre>
+				input = {{$ctrl.username}}, {{$ctrl.password}}
+				out = {{$ctrl.user}}
+			</pre>
+-->
+    </div>
 </div>

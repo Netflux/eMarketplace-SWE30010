@@ -85,17 +85,17 @@ const product = {
         ctrl.enableReview = function (bool) {
             ctrl.seeAddReview = bool
         }
-        
+
 		ctrl.$onDestroy = $store.subscribe(state => {
 			ctrl.products = state.products
 			ctrl.categories = state.categories
 			ctrl.users = state.users
-            
+
 			// Check local cache
 			ctrl.product = ctrl.products.items.find(i => i.productKey === $stateParams.productKey)
 			ctrl.category = ctrl.product ? ctrl.categories.items.find(i => i.categoryId === ctrl.product.categoryId) : undefined
 			ctrl.user = ctrl.product ? ctrl.users.items.find(i => i.userId === ctrl.product.userId) : undefined
-            
+
 			// Populate breadcrumbs
 			ctrl.crumbs = [{
 				title:'Category',
@@ -127,10 +127,10 @@ const product = {
 				}
 				i++
 			}
-            
-            ctrl.fetchReviews()
+
+			ctrl.fetchReviews()
 		})
-        
+
 		// In cache not found, fetch from server
 		fetchCategories($store, $http)
 		fetchProducts($store, $http)

@@ -22,5 +22,5 @@ export const fetchUsers = ($store, $http) => {
 					type: RECEIVE_USERS_ERROR
 				})
 			})
-	}
+	} 
 }

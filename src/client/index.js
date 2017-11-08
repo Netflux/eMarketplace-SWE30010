@@ -2,6 +2,7 @@ import { $store } from './logic/services'
 import * as pages from './views/pages'
 import * as components from './views/components'
 import routes from './views/routes'
+import { fetchAccount } from './logic/actions/account'
 
 import './index.css'
 
@@ -46,8 +47,11 @@ import './index.css'
 				}
 			})
 		}])
-		
+
 	angular.module('app', ['app.services', 'app.routes'])
+		.controller('rootCtrl', ['$store', '$http', function($store, $http) {
+			fetchAccount($store, $http)
+		}])
 		.directive('ngConfirmClick', [function() {
 			return {
 				link: function (scope, element, attr) {
