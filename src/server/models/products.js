@@ -22,9 +22,12 @@ const findOne = productKey => {
 			.then(images => {
 				return trx('Product')
 					.select(defaultProjection)
+					.avg('ProductReview.rating as rating')
 					.innerJoin('ProductStock', 'ProductStock.productKey', 'Product.productKey')
+					.leftJoin('ProductReview', 'ProductReview.productKey', 'Product.productKey')
 					.where('Product.productKey', productKey)
 					.whereNull('validTo')
+					.groupBy('Product.productKey')
 					.first()
 					.then(row => ({
 						...row,
@@ -42,7 +45,9 @@ const findAll = (categoryId, timestamp = 0) => {
 			.then(images => {
 				return trx('Product')
 					.select(defaultProjection)
+					.avg('ProductReview.rating as rating')
 					.innerJoin('ProductStock', 'ProductStock.productKey', 'Product.productKey')
+					.leftJoin('ProductReview', 'ProductReview.productKey', 'Product.productKey')
 					.modify(queryBuilder => {
 						if (categoryId !== null && categoryId !== undefined) {
 							queryBuilder.where('categoryId', categoryId)
@@ -50,6 +55,7 @@ const findAll = (categoryId, timestamp = 0) => {
 					})
 					.where('validFrom', '>=', timestamp)
 					.whereNull('validTo')
+					.groupBy('Product.productKey')
 					.then(rows => rows.map(row => ({
 						...row,
 						images: images
