@@ -19,10 +19,10 @@ const basket = {
 		this.deleteBasketItem = function(productKey) {
 			$http({ withCredentials: true, method: 'delete', url:`/api/basket/${productKey}` })
 				.then(function sucessCallback() {
-					alert('Item removed')
+					alert('Item removed.')
 					fetchBasket($store,$http)
 				}, function errorCallback() {
-					alert('Database is currently down. Try again later')
+					alert('Database is currently down. Try again later.')
 				})
 		}
             
@@ -32,7 +32,7 @@ const basket = {
 			if (quantity > this.basketitem.stock){
 				alert(`This product has only ${quantity - 1} stock left.`)
 			}else if (quantity == 0) {
-				alert('Quantity must be at least 1')
+				alert('Quantity must be at least 1.')
 			}else {
 				this.updateProduct = {
 					productKey: productKey,
@@ -41,11 +41,10 @@ const basket = {
 
 				$http({ withCredentials: true, method: 'post', url:`/api/basket/${productKey}`, data: this.updateProduct })
 					.then(function sucessCallback() {
-						alert('Item updated')
+						alert('Item updated.')
 						fetchBasket($store,$http)
 					}, function errorCallback() {
-						alert('Failed')
-						fetchBasket($store,$http)
+						alert('Try again.')
 					}) 
 			}
 

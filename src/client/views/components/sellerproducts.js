@@ -14,10 +14,10 @@ const sellerproducts = {
 		this.deleteProductItem = function(productKey){
 			$http({ withCredentials: true, method: 'delete', url:`/api/products/${productKey}`})
 				.then(function sucessCallback() {
-					alert('Item removed')
+					alert('Item removed.')
 					fetchProducts($store, $http)
 				}, function errorCallback() {
-					alert('Database is currently down. Try again later')
+					alert('Database is currently down. Try again later.')
 				})
 		}
 

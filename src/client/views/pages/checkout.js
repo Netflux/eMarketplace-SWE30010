@@ -19,10 +19,10 @@ const checkout = {
 		this.checkout = function () {
 			$http({ withCredentials: true, method: 'post', url:'/api/orders'})
 				.then(function sucessCallback() {
-					alert('Order sent to seller')
+					alert('Order sent to seller.')
 					fetchBasket($store,$http)
 				}, function errorCallback() {
-					alert('Database is currently down. Try again later')
+					alert('Unable to checkout.')
 				})
 		}
 

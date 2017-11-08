@@ -12,23 +12,28 @@ const product = {
         ctrl.seeAddReview = false 
         
         ctrl.addBasket = function () {
-            if (ctrl.productqty <= ctrl.product.stock){
-                const basket = {
-                    productKey: ctrl.product.productKey,
-                    quantity: ctrl.productqty
-                }
+            if(ctrl.productqty > 0){
+                 if (ctrl.productqty <= ctrl.product.stock){
+                    const basket = {
+                        productKey: ctrl.product.productKey,
+                        quantity: ctrl.productqty
+                    }
 
-                $http({ withCredentials: true, method: 'post', url:'/api/basket', data: basket })
-                    .then(function sucessCallback(){
-                        alert('Successfully added to basket')
-                        fetchBasket($store,$http)
-                    }, function errorCallback(){
-                        alert('You must be logged in to buy a product.')
-                    })
+                    $http({ withCredentials: true, method: 'post', url:'/api/basket', data: basket })
+                        .then(function sucessCallback(){
+                            alert('Successfully added to basket.')
+                            fetchBasket($store,$http)
+                        }, function errorCallback(){
+                            alert('You must be logged in to buy a product.')
+                        })
+                }
+                else {
+                    alert ('Not enough stock available for purchase.')
+                }     
+            }else {
+                alert('Quantity must be more than 1.')
             }
-            else {
-                alert ('Not enough stock available for purchase')
-            }
+           
         }
 
         ctrl.addReview = function() {  
@@ -42,12 +47,24 @@ const product = {
 
             $http({ withCredentials: true, method: 'post', url:`/api/products/${ctrl.product.productKey}/reviews`, data: review })
                     .then(function sucessCallback(){
-                        alert('Successfully added review')
+                        alert('Successfully added review.')
                         ctrl.fetchReviews()
+                        fetchUsers($store, $http)
                     }, function errorCallback(){
                         alert('You must be logged to post review.')
                     })
             ctrl.seeAddReview = false
+        }
+        
+        ctrl.deleteReview = function() {
+            $http({ withCredentials: true, method: 'delete', url:`/api/products/${ctrl.product.productKey}/reviews`})
+                    .then(function sucessCallback(){
+                        alert('Review is deleted.')
+                        ctrl.fetchReviews()
+                        fetchUsers($store, $http)
+                    }, function errorCallback(){
+                        alert('Please try again.')
+                    })
         }
 
         ctrl.fetchReviews = function() {
