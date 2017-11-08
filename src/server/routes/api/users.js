@@ -100,6 +100,7 @@ router.get('/login', (req, res) => {
 	if (req.user) {
 		return res.status(200).json({
 			data: {
+				userId: req.user.userId,
 				username: req.user.username,
 				email: req.user.email,
 				address: {
@@ -137,6 +138,7 @@ router.post('/login', [
 			}
 			return res.status(200).json({
 				data: {
+					userId: user.userId,
 					username: user.username,
 					email: user.email,
 					address: {
