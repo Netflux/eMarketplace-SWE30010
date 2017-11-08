@@ -26,6 +26,11 @@ const productsReducer = (state = {
 			...state,
 			isFetching: false
 		}
+    case actions.DELETE_PRODUCTS: 
+            return {
+                ...state,
+                items: state.items.filter(i => i.productKey !== action.productKey)
+            }
 	default:
 		return state
 	}

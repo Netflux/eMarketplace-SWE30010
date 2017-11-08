@@ -18,11 +18,13 @@ const selleraddproducts = {
 
 		this.addProduct = () => {
 			const formData = new FormData(document.forms.namedItem('addProduct'))
+            for (const v of formData.values()) console.log(v)
 			$http.post('/api/products', formData, { headers: { 'Content-Type': undefined } })
 				.then(function success() {
 					alert('Successfully add this product.')
 					fetchProducts($store, $http)
-				}, function failure() {
+				}, function failure(response) {
+                console.log(response.data)
 					alert('Fail to add this product.')
 				})
 		}

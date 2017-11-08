@@ -2,7 +2,7 @@ import './css/ProductPage.css'
 
 import { fetchCategories } from 'client/logic/actions/categories'
 import { fetchProducts } from 'client/logic/actions/products'
-import { fetchUsers } from 'client/logic/actions/users'
+import { fetchUsers, FETCH_USER } from 'client/logic/actions/users'
 import { fetchBasket } from 'client/logic/actions/basket'
 
 const product = {
@@ -79,7 +79,11 @@ const product = {
         }
         
         ctrl.getStar = function(num) {
-            return new Array(num);   
+            if (ctrl.product){
+                return new Array(num)   
+            }else {
+                return new Array(0)
+            }
         }
         
         ctrl.enableReview = function (bool) {

@@ -28,6 +28,15 @@ exports.seed = knex => {
 			password: hash,
 			email: 'root@root.com',
 			newsletter: 0,
+			role: 'Seller',
+			createdAt: timestamp,
+			updatedAt: timestamp
+		},{
+			userId: 4,
+			username: 'wilzon',
+			password: hash,
+			email: 'root@root.com',
+			newsletter: 0,
 			role: 'Buyer',
 			createdAt: timestamp,
 			updatedAt: timestamp
@@ -55,6 +64,16 @@ exports.seed = knex => {
 		},{
 			userId: 3,
 			name: 'kelvin',
+			street: 'Street',
+			city: 'City',
+			state: 'State',
+			zip: 12345,
+			phone: +60123456789,
+			createdAt: timestamp,
+			updatedAt: timestamp
+		},{
+			userId: 4,
+			name: 'wilzon',
 			street: 'Street',
 			city: 'City',
 			state: 'State',

@@ -38,7 +38,7 @@
 			</div>
 			<div class="col-xs-3 col-sm-3 col-md-3 sellerinfobox">
 				<p>Total Product Rating</p>
-                <p><span ng-repeat="i in $ctrl.getStar($ctrl.user.averageRating) track by $index"><span>&#9733;</span></span><span ng-repeat="i in $ctrl.getStar(5 - $ctrl.user.averageRating) track by $index"><span>&#9734;</span></span></p>
+                <p>{{ $ctrl.user.averageRating }}<span>&#9733;</span></p>
 			</div>
 			<div class="col-xs-3 col-sm-3 col-md-3 sellerinfobox">
 				<p>Joined </p>

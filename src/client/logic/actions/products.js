@@ -1,6 +1,7 @@
 export const FETCH_PRODUCTS = 'FETCH_PRODUCTS'
 export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS'
 export const RECEIVE_PRODUCTS_ERROR = 'RECEIVE_PRODUCTS_ERROR'
+export const DELETE_PRODUCTS = 'DELETE_PRODUCTS'
 
 export const fetchProducts = ($store, $http, categoryId) => {
 	const state = $store.getState().products

@@ -1,32 +1,28 @@
-import { fetchProducts, userProducts } from 'client/logic/actions/products'
-import { fetchUsers } from 'client/logic/actions/users'
+import { fetchProducts, userProducts, DELETE_PRODUCTS } from 'client/logic/actions/products'
 
 const sellerproducts = {
 	templateUrl: 'templates/components/SellerProducts.html',
 	controller:['$store', '$http', function($store, $http){
 		this.$onDestroy = $store.subscribe(state => {
 			this.products = state.products
-            this.users = state.users
             this.account = state.account
-            this.user = this.users.items.find(i => i.username === this.account.data.username)
-			this.userproducts = []
-            if(this.user) { 
-                this.userproducts = userProducts(this.products, this.user.userId)
-            }
+            this.userproducts = this.account.isLoggedIn ? userProducts(this.products, this.account.data.userId) : []
 		})
         
 		this.deleteProductItem = function(productKey){
 			$http({ withCredentials: true, method: 'delete', url:`/api/products/${productKey}`})
 				.then(function sucessCallback() {
 					alert('Item removed.')
-					fetchProducts($store, $http)
+                    $store.update ({
+                        type: DELETE_PRODUCTS,
+                        productKey
+                    })
 				}, function errorCallback() {
 					alert('Database is currently down. Try again later.')
 				})
 		}
-
+        
 		fetchProducts($store, $http)
-        fetchUsers($store, $http)
 	}]
 }
 
