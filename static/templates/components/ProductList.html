@@ -5,35 +5,33 @@
 			<form>
 				<div class="row">
 					<div class="col-xs-12 col-md-12">
-						<form>
-                        <div class="row">
-                            <div class="col-md-12 radio">
-                                <p>Name: </p>
-                                <label><input type="radio" name="name" ng-click="$ctrl.orderByName('title')"/> A - Z </label>
-                            </div>
-                            <div class="col-md-12 radio">
-                                <label><input type="radio" name="name" ng-click="$ctrl.orderByName('-title')"/>Z - A</label>
-                            </div>
-                        </div>
-						</form>
+                            <div class="row">
+								<div class="col-md-12">
+                                    <p>Title: </p>
+									<label><input type="checkbox" name="name" ng-click="$ctrl.orderByName('title')"/> A - Z </label>
+								</div>
+								<div class="col-md-12">
+									<label><input type="checkbox" name="name" ng-click="$ctrl.orderByName('-title')"/> Z - A</label>
+								</div>
+							</div>
 						<br />
 						<div class="row">
-							<div class="col-md-12 radio">
+							<div class="col-md-12">
                                 <p>Price: </p>
-                                <label><input type="radio" name="price" ng-click="$ctrl.orderByName('price')"/>Low - High</label>
-                            </div>
-                            <div class="col-md-12 radio">
-								<label><input type="radio" name="price" ng-click="$ctrl.orderByName('-price')"/>High - Low</label>
-                            </div>
+								<label><input type="checkbox" name="price" ng-click="$ctrl.orderByName('price')"/> Low - High</label>
+							</div>
+							<div class="col-md-12">
+								<label><input type="checkbox" name="price" ng-click="$ctrl.orderByName('-price')"/> High - Low</label>
+							</div>
 						</div>
 						<br />
 						<div class="row">
-							<div class="col-md-12 radio">
+							<div class="col-md-12">
                                 <p>Rating: </p>
-								<label><input type="radio" name="rating" ng-click="$ctrl.orderByName('rating')"/>Low - High</label>
-                            </div>
-                            <div class="col-md-12 radio">
-								<label><input type="radio" name="rating" ng-click="$ctrl.orderByName('-rating')" />High - Low</label>
+								<label><input type="checkbox" name="rating" ng-click="$ctrl.orderByName('rating')"/> Low - High</label>
+							</div>
+							<div class="col-md-12">
+								<label><input type="checkbox" name="rating" ng-click="$ctrl.orderByName('-rating')" /> High - Low</label>
 							</div>
 						</div>
 					</div>
