@@ -5,34 +5,34 @@
 			<form>
 				<div class="row">
 					<div class="col-xs-12 col-md-12">
-						<p>Name: </p>
 						<form>
-							<div class="row">
-								<div class="col-md-5 radio">
-									<label><input type="radio" name="name" ng-click="$ctrl.orderByName('title')"/> A - Z </label>
-								</div>
-								<div class="col-md-5 radio">
-									<label><input type="radio" name="name" ng-click="$ctrl.orderByName('-title')"/>Z - A</label>
-								</div>
-							</div>
+                        <div class="row">
+                            <div class="col-md-12 radio">
+                                <p>Name: </p>
+                                <label><input type="radio" name="name" ng-click="$ctrl.orderByName('title')"/> A - Z </label>
+                            </div>
+                            <div class="col-md-12 radio">
+                                <label><input type="radio" name="name" ng-click="$ctrl.orderByName('-title')"/>Z - A</label>
+                            </div>
+                        </div>
 						</form>
 						<br />
-						<p>Price: </p>
 						<div class="row">
-							<div class="col-md-6 radio">
-								<label><input type="radio" name="price" ng-click="$ctrl.orderByName('price')"/>Low - High</label>
-							</div>
-							<div class="col-md-6 radio">
+							<div class="col-md-12 radio">
+                                <p>Price: </p>
+                                <label><input type="radio" name="price" ng-click="$ctrl.orderByName('price')"/>Low - High</label>
+                            </div>
+                            <div class="col-md-12 radio">
 								<label><input type="radio" name="price" ng-click="$ctrl.orderByName('-price')"/>High - Low</label>
-							</div>
+                            </div>
 						</div>
 						<br />
-						<p>Rating: </p>
 						<div class="row">
-							<div class="col-md-6 radio">
+							<div class="col-md-12 radio">
+                                <p>Rating: </p>
 								<label><input type="radio" name="rating" ng-click="$ctrl.orderByName('rating')"/>Low - High</label>
-							</div>
-							<div class="col-md-6 radio">
+                            </div>
+                            <div class="col-md-12 radio">
 								<label><input type="radio" name="rating" ng-click="$ctrl.orderByName('-rating')" />High - Low</label>
 							</div>
 						</div>

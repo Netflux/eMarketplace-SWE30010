@@ -10,17 +10,19 @@
 		<div class="info-box">
 			<span class="info-box-icon"><p class="glyphicon glyphicon-user"></p></span>
 			<div class="info-box-content">
-				<span class="c-info-box-text">Personal Info</span>
-				<span class="c-info-box-number"><p>personal info here</p></span>
+				<p class="nopadding"><span class="c-info-box-text">{{ $ctrl.account.data.username }}</span></p>
+                <p class="nopadding"><strong>Email: </strong>{{ $ctrl.account.data.email }}</p>
+                <p class="nopadding"><strong>Rating: </strong>{{ $ctrl.account.data.averageRating || 'Not rated' }}</p>
+                <p class="nopadding"><strong>Role: </strong>{{ $ctrl.account.data.role }}</p>
 			</div>
 		</div>
 	</div>
 	<div class="col-md-4">
 		<div class="info-box">
-			<span class="info-box-icon"><p class="glyphicon glyphicon-shopping-cart"></p></span>
+			<span class="info-box-icon"><p class="glyphicon glyphicon-briefcase"></p></span>
 			<div class="c-info-box-content">
-				<span class="c-info-box-text">Address</span>
-				<span class="c-info-box-number"><p>address go here</p></span>
+				<p class="nopadding"><span class="c-info-box-text">Address</span></p>
+				<p class="nopadding">{{ $ctrl.account.data.address.street }}, {{ $ctrl.account.data.address.state }}, {{ $ctrl.account.data.address.city }}, {{ $ctrl.account.data.address.zip }} </p>
 			</div>
 		</div>
 	</div>
