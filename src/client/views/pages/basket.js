@@ -5,7 +5,7 @@ import { fetchProducts } from 'client/logic/actions/products'
 
 const basket = {
 	templateUrl: 'templates/pages/BasketPage.html',
-	controller:['$store','$http', function($store, $http){
+	controller:['$store','$http', '$location', function($store, $http, $location){
 		this.$onDestroy = $store.subscribe(state => {
 			this.basket = state.basket
 			this.products = state.products
@@ -14,8 +14,12 @@ const basket = {
 
 			this.basketitems = findBasketDetails(this.basket,this.products)
 			this.totalprice = calculateTotalPrice(this.basket,this.products,this.basketitems)
+
+			if (!state.account.isFetching && !state.account.isLoggedIn) {
+				$location.path('/login')
+			}
 		})
-        
+
 		this.deleteBasketItem = function(productKey) {
 			$http({ withCredentials: true, method: 'delete', url:`/api/basket/${productKey}` })
 				.then(function sucessCallback() {
@@ -25,7 +29,7 @@ const basket = {
 					alert('Database is currently down. Try again later.')
 				})
 		}
-            
+
 		this.updateQuantity = function(productKey, quantity) {
 			this.basketitem = this.products.items.find(i => i.productKey === productKey)
 
@@ -45,7 +49,7 @@ const basket = {
 						fetchBasket($store,$http)
 					}, function errorCallback() {
 						alert('Try again.')
-					}) 
+					})
 			}
 
 		}

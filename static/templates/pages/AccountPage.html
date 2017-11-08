@@ -32,34 +32,34 @@
 		<span class="box-header" id="users">
 			<ul class="nav nav-tabs">
 				<li class="active"><a ui-sref="account({ '#': 'ordersTab' })" data-toggle="tab">Orders</a></li>
-				<li><a ui-sref="account({ '#': 'productsTab' })" data-toggle="tab">Products</a></li>
-                <li><a ui-sref="account({ '#': 'addproductsTab' })" data-toggle="tab">Add Products</a></li>
-                <li><a ui-sref="account({ '#': 'updateproductsTab' })" data-toggle="tab">Update Products</a></li>
-				<li><a ui-sref="account({ '#': 'salesTab' })" data-toggle="tab">Sales Analysis</a></li>
-				<li><a ui-sref="account({ '#': 'bannersTab' })" data-toggle="tab">Home Banners</a></li>
-				<li><a ui-sref="account({ '#': 'categoriesTab' })" data-toggle="tab">Categories</a></li>
+				<li ng-if="$ctrl.account.data.role !== 'Buyer'"><a ui-sref="account({ '#': 'productsTab' })" data-toggle="tab">Products</a></li>
+                <li ng-if="$ctrl.account.data.role !== 'Buyer'"><a ui-sref="account({ '#': 'addproductsTab' })" data-toggle="tab">Add Products</a></li>
+                <li ng-if="$ctrl.account.data.role !== 'Buyer'"><a ui-sref="account({ '#': 'updateproductsTab' })" data-toggle="tab">Update Products</a></li>
+				<li ng-if="$ctrl.account.data.role !== 'Buyer'"><a ui-sref="account({ '#': 'salesTab' })" data-toggle="tab">Sales Analysis</a></li>
+				<li ng-if="$ctrl.account.data.role === 'Administrator'"><a ui-sref="account({ '#': 'bannersTab' })" data-toggle="tab">Home Banners</a></li>
+				<li ng-if="$ctrl.account.data.role === 'Administrator'"><a ui-sref="account({ '#': 'categoriesTab' })" data-toggle="tab">Categories</a></li>
 			</ul>
 		</span>
 		<div class="tab-content">
 			<div id="ordersTab" class="col-md-12 tab-pane fade in active">
 				<sellerorders></sellerorders>
 			</div>
-			<div id="productsTab" class="col-md-12 tab-pane fade">
+			<div id="productsTab" class="col-md-12 tab-pane fade" ng-if="$ctrl.account.data.role !== 'Buyer'">
                 <sellerproducts></sellerproducts>
 			</div>
-			<div id="addproductsTab" class="col-md-12 tab-pane fade">
+			<div id="addproductsTab" class="col-md-12 tab-pane fade" ng-if="$ctrl.account.data.role !== 'Buyer'">
                 <selleraddproducts></selleraddproducts>
             </div>
-            <div id="updateproductsTab" class="col-md-12 tab-pane fade">
+            <div id="updateproductsTab" class="col-md-12 tab-pane fade" ng-if="$ctrl.account.data.role !== 'Buyer'">
                 <sellerupdateproducts></sellerupdateproducts>
             </div>
-			<div id="salesTab" class="col-md-12 tab-pane fade">
+			<div id="salesTab" class="col-md-12 tab-pane fade" ng-if="$ctrl.account.data.role !== 'Buyer'">
 				<salesanalysis></salesanalysis>
 			</div>
-			<div id="bannersTab" class="col-md-12 tab-pane fade">
+			<div id="bannersTab" class="col-md-12 tab-pane fade" ng-if="$ctrl.account.data.role === 'Administrator'">
 				<bannertools></bannertools>
 			</div>
-			<div id="categoriesTab" class="col-md-12 tab-pane fade">
+			<div id="categoriesTab" class="col-md-12 tab-pane fade" ng-if="$ctrl.account.data.role === 'Administrator'">
 				<categorytools></categorytools>
 			</div>
 		</div>

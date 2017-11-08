@@ -28,7 +28,7 @@ exports.seed = knex => {
 			password: hash,
 			email: 'root@root.com',
 			newsletter: 0,
-			role: 'Seller',
+			role: 'Buyer',
 			createdAt: timestamp,
 			updatedAt: timestamp
 		}]))

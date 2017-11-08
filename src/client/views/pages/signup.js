@@ -5,7 +5,13 @@ const signup = {
 	bindings:{
 		user: '='
 	},
-	controller:['$http', '$location', function($http, $location) {
+	controller:['$store', '$http', '$location', function($store, $http, $location) {
+		this.$onDestroy = $store.subscribe(state => {
+			if (!state.account.isFetching && state.account.isLoggedIn) {
+				$location.path('/account')
+			}
+		})
+
 		this.submit = function() {
 			const user = {
 				username: this.username,

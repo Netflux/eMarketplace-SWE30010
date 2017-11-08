@@ -16,7 +16,7 @@ export function $store() {
 		return () => this.unsubscribe(func)
 	}
 	this.unsubscribe = func => {
-		subscribers = subscribers.filter(i => i === func)
+		subscribers = subscribers.filter(i => i !== func)
 	}
 	this.update({ type: '$STORE_NULL' })
 }
