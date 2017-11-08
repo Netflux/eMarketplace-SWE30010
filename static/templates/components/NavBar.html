@@ -16,9 +16,10 @@
 				<li><a href="#">Forum</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a ui-sref="signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-				<li><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-				<li><a ui-sref="basket"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+				<li ng-if="!$ctrl.isLoggedIn"><a ui-sref="signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+				<li ng-if="!$ctrl.isLoggedIn"><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				<li ng-if="$ctrl.isLoggedIn"><a href="" ng-click="$ctrl.logout()"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+				<li ng-if="$ctrl.isLoggedIn"><a ui-sref="basket"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
 			</ul>
 		</div>
 	</div>
