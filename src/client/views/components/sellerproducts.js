@@ -22,7 +22,7 @@ const sellerproducts = {
 				})
 		}
         
-		fetchProducts($store, $http)
+        fetchProducts($store, $http)
 	}]
 }
 

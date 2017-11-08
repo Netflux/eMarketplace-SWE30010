@@ -79,11 +79,7 @@ const product = {
         }
         
         ctrl.getStar = function(num) {
-            if (ctrl.product){
-                return new Array(num)   
-            }else {
-                return new Array(0)
-            }
+            return new Array(num)
         }
         
         ctrl.enableReview = function (bool) {

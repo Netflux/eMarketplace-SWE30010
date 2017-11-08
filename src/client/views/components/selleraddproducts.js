@@ -24,7 +24,6 @@ const selleraddproducts = {
 					alert('Successfully add this product.')
 					fetchProducts($store, $http)
 				}, function failure(response) {
-                console.log(response.data)
 					alert('Fail to add this product.')
 				})
 		}
