@@ -25,9 +25,7 @@ eMarketplace powered by Angular 1 and NodeJS.
 | `npm run build`   | Build client/server bundles                                       |
 | `npm run start`   | Run the server                                                    |
 
-The `migrate`, `seed`, `build` and `start` commands can be appended with `-dev` to run in development mode:
-* `npm run migrate-dev`
-* `npm run seed-dev`
+The `build` and `start` commands can be appended with `-dev` to run in development mode:
 * `npm run build-dev`
 * `npm run start-dev`
 
