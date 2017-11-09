@@ -40,7 +40,7 @@ const salesanalysis = {
 						data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 					}
 					const byDay = {
-						labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+						labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
 						data: [0, 0, 0, 0, 0, 0, 0]
 					}
 
