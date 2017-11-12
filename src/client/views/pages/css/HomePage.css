@@ -1,0 +1,43 @@
+#banner {
+	width:100%;
+	display: block;
+	margin: auto;
+}
+
+.categorycontainerhome{
+	margin-left:6%;
+	margin-right:6%;
+}
+
+.categorybox {
+	background-color:white;
+	border: 1px solid #060e20;
+	margin-right: 5%;
+}
+
+.categorybox img{
+	padding: 5%;
+	width:100%;
+}
+
+
+.contentcontainerhome{
+	margin-top:2%;
+}
+
+.trendingcontainer {
+	margin-left:6%;
+	margin-right:6%;
+}
+
+.trendingcontainer img{
+	width:100%;
+}
+
+#trendingbanner1, #trendingbanner2{
+	margin-bottom:2%;
+}
+
+#trendingbanner3{
+	padding:0;
+}

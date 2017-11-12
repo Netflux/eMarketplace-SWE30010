@@ -1,0 +1,51 @@
+<form ng-submit="$ctrl.updateProduct()" id="updateProduct" name="updateProduct">
+    <p class="lead">Step 1: Choose a product to update</p>
+    <div class="form-group">
+        <label for="productKey">Select a product: </label>
+        <select id="productKey" name="productKey" class="form-control" ng-model="$ctrl.productKey" required="required">
+            <option ng-repeat="product in $ctrl.userproducts" value="{{ product.productKey }}" ng-click="$ctrl.showproduct($ctrl.productKey)">{{ product.title }}</option>
+        </select>
+    </div>
+    <br>
+    <div ng-show="$ctrl.updateform == true">
+        <p class="lead">Step 2: Update your product details</p>
+        <div class="form-group">
+            <label for="producttitle">Product name: </label>
+            <input type="text" id="title" name="title" class="form-control" required="required" ng-model="$ctrl.userproduct.title" />
+        </div>
+        <div class="form-group">
+            <label for="description">Product description: </label>
+            <textarea class="form-control" id="description" name="description"  rows="4" required="required" ng-model="$ctrl.userproduct.description"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="productKey">Change a category: </label>
+            <select id="categoryId" name="categoryId" class="form-control" ng-model="$ctrl.userproduct.categoryId" required="required">
+                <option ng-repeat="category in $ctrl.categories.items" value="{{ category.categoryId }}" ng-selected="category.categoryId == $ctrl.userproduct.categoryId">{{ category.title }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="price">Price: </label>
+            <input type="number" id="price" name="price" class="form-control" required="required" step="0.01" ng-model="$ctrl.userproduct.price"/>
+        </div>
+        <div class="form-group">
+            <label for="shippingPrice">Shipping price: </label>
+            <input type="number" id="shippingPrice" name="shippingPrice" class="form-control" required="required" step="0.01" ng-model="$ctrl.userproduct.shippingPrice"/>
+        </div>
+        <div class="form-group">
+            <label for="discount">Discount: </label>
+            <input type="number" id="discount" name="discount" class="form-control" required="required" step="0.01" ng-model="$ctrl.userproduct.discount"/>
+        </div>
+        <div class="form-group">
+            <label for="stock">Stock: </label>
+            <input type="number" id="stock" name="stock" class="form-control" required="required" ng-model="$ctrl.userproduct.stock"/>
+        </div>
+        <div class="form-group">
+            <p>Current image:<img src="{{ $ctrl.userproduct.images[0].imageUrl }}" id="currentimage"></p>
+            <label for="images">Images: </label>
+            <input type="file" id="images" name="images" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-basic submitbutton" ng-disabled="updateProduct.$invalid">Add Product</button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,55 @@
+<div class="row" ng-if="$ctrl.banners.length > 0">
+	<div class="col-md-12 nopadding">
+		<div id="carousel" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li ng-repeat="banner in $ctrl.banners" data-target="#carousel" data-slide-to="{{$index}}" class="{{$index === 0 ? 'active' : ''}}"></li>
+			</ol>
+
+			<div class="carousel-inner" role="listbox">
+				<div ng-repeat="banner in $ctrl.banners" class="item {{$index === 0 ? 'active' : ''}}">
+					<img src="{{banner.imageUrl}}" alt="{{'Banner ' + $index}}">
+				</div>
+			</div>
+
+			<!-- Controls -->
+			<a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="right carousel-control" href="#carousel" role="button" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+	</div>
+</div>
+<br>
+<div class="row contentcontainerhome">
+	<div class="categorycontainerhome">
+		<categories></categories>
+	</div>
+</div>
+<br>
+<div class="row contentcontainerhome">
+	<div class="col-xs-12">
+		<div class="trendingcontainer">
+			<div class="row">
+				<div class="col-xs-9">
+					<div class="row">
+						<div class="col-xs-12">
+							<img src="images/trending1.jpg" alt="trending banner 1" id="trendingbanner1"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<img src="images/trending1.jpg" alt="trending banner 2" id="trendingbanner2"/>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-3">
+					<img src="images/trending3.jpg" alt="trending banner 3" id="trendingbanner3"/>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

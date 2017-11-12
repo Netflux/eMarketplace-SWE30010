@@ -1,0 +1,50 @@
+<div class="row productlistcontainer">
+	<section>
+		<div class="col-xs-2 col-md-2 productlistfiltercontainer">
+			<p class="lead">Filter by: </p>
+			<form>
+				<div class="row">
+					<div class="col-xs-12 col-md-12">
+                            <div class="row">
+								<div class="col-md-12 radio">
+                                    <p>Title: </p>
+									<label><input type="radio" name="name" ng-click="$ctrl.orderByName('title')"/> A - Z </label>
+								</div>
+								<div class="col-md-12 radio">
+									<label><input type="radio" name="name" ng-click="$ctrl.orderByName('-title')"/> Z - A</label>
+								</div>
+							</div>
+						<br />
+						<div class="row">
+							<div class="col-md-12 radio">
+                                <p>Price: </p>
+								<label><input type="radio" name="price" ng-click="$ctrl.orderByName('price')"/> Low - High</label>
+							</div>
+							<div class="col-md-12 radio">
+								<label><input type="radio" name="price" ng-click="$ctrl.orderByName('-price')"/> High - Low</label>
+							</div>
+						</div>
+						<br />
+						<div class="row">
+							<div class="col-md-12 radio">
+                                <p>Rating: </p>
+								<label><input type="radio" name="rating" ng-click="$ctrl.orderByName('rating')"/> Low - High</label>
+							</div>
+							<div class="col-md-12 radio">
+								<label><input type="radio" name="rating" ng-click="$ctrl.orderByName('-rating')" /> High - Low</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="col-xs-4 col-md-5ths productcontainer" ng-repeat="product in $ctrl.products.items | orderBy: $ctrl.myName"> 
+			<a  ui-sref="product({ productKey: product.productKey })">
+				<div class="productbox">
+					<img src="{{ product.images[0].imageUrl }}" alt="{{ product.title }}" id="product 1" />
+					<p class="lead nopadding">{{product.title}}</p>
+					<p>RM {{ product.price }}</p>
+				</div></a>
+		</div>
+	</section>
+</div>

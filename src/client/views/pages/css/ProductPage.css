@@ -1,0 +1,97 @@
+#categorybanner {
+	width:100%;
+}
+
+.productimage {
+	width:100%;
+	box-shadow: rgba(0,0,0,0.1) 0px 0px 3px 2px;
+}
+
+.productinfocontainer {
+	box-shadow: rgba(0,0,0,0.1) 0px 0px 3px 2px;
+	padding-bottom: 10%;
+}
+
+#profilepicture {
+	width:25%;
+}
+
+.productlistcontainer {
+	margin-top: 3%;
+}
+
+.productcontainer {
+	margin-bottom: 1.5%;
+	padding-left:0;
+}
+
+.productbox {
+	box-shadow: rgba(0,0,0,0.1) 0px 0px 3px 2px;
+	padding:10%;
+}
+.productbox img {
+	width:100%;
+}
+
+.productsellercontainer {
+	box-shadow: rgba(0,0,0,0.1) 0px 0px 3px 2px;
+}
+
+.productsellerinfo div:nth-child(2), .productsellerinfo div:nth-child(3), .productsellerinfo div:nth-child(4) {
+	margin-top:3%;
+	border-left: 1px solid black;
+}
+
+.sellerinfobox {
+	margin-top: 2%;
+	text-align:center;
+}
+
+.sellerinfobox img {
+	width: 100%;
+}
+
+.productinfo2 li:nth-child(1) {
+	margin-left:8%;
+}
+
+.productinfo2content {
+	background-color: #f4f4f4;
+	padding: 2% 8% 2% 8%;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+	color:black;
+	background-color:#f4f4f4;
+}
+.productsuggestionwrap {
+	width: 80%;
+	margin: auto;
+}
+.productsuggesionbox img {
+	width:100%;
+}
+
+.btn-review {
+    margin-top: 2%;
+    padding: 0.5% 5% 0.5% 5%;
+}
+
+.emptyreview {
+    padding: 10% 0% 10% 0%;
+    overflow:hidden;
+}
+
+.reviewdetails {
+    color: darkgrey;
+}
+
+.productprice {
+    color: #9c7242;
+}
+
+.reviewbutton {
+    padding: 1% 10% 1% 10%;
+    display:block;
+    margin:auto;
+}

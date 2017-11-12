@@ -15,6 +15,9 @@ const common = {
 				}
 			}
 		]
+	},
+	resolve: {
+		modules: [path.resolve(__dirname, "src"), "node_modules"]
 	}
 }
 
@@ -34,7 +37,8 @@ const client = {
 						{
 							loader: 'clean-css-loader',
 							options: {
-								level: 2
+								level: 2,
+								inline: ['none']
 							}
 						}
 					]

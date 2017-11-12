@@ -1,0 +1,15 @@
+.listviewalphabet {
+	width:100%;
+	display:flex;
+	margin: 1% 0 3% 0;
+}
+
+.listviewalphabet a {
+	flex:1;
+	display:inline-block;
+	text-align:center;
+}
+
+.listviewhr {
+	margin-bottom:1%;
+}

@@ -2,6 +2,7 @@
 build/
 static/js/
 static/css/
+static/images/uploads/
 
 # Logs
 logs

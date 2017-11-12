@@ -1,0 +1,69 @@
+<div class="row">
+	<div class="col-md-12">
+		<h1 id="to-top">My Account</h1>
+		<hr>
+	</div>
+</div>
+<!-- info boxes -->
+<div class="row">
+	<div class="col-md-4">
+		<div class="info-box">
+			<span class="info-box-icon"><p class="glyphicon glyphicon-user"></p></span>
+			<div class="info-box-content">
+				<p class="nopadding"><span class="c-info-box-text">{{ $ctrl.account.data.username }}</span></p>
+                <p class="nopadding"><strong>Email: </strong>{{ $ctrl.account.data.email }}</p>
+                <p class="nopadding"><strong>Rating: </strong>{{ $ctrl.account.data.averageRating || 'Not rated' }}</p>
+                <p class="nopadding"><strong>Role: </strong>{{ $ctrl.account.data.role }}</p>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="info-box">
+			<span class="info-box-icon"><p class="glyphicon glyphicon-briefcase"></p></span>
+			<div class="c-info-box-content">
+				<p class="nopadding"><span class="c-info-box-text">Address</span></p>
+				<p class="nopadding">{{ $ctrl.account.data.address.street }}, {{ $ctrl.account.data.address.state }}, {{ $ctrl.account.data.address.city }}, {{ $ctrl.account.data.address.zip }} </p>
+			</div>
+		</div>
+	</div>
+</div><br>
+<!-- Order history -->
+<div class="row">
+	<div class="col-md-12 accountpanelcontainer">
+        <h3 class="nopadding">Account panel</h3>
+		<span class="box-header" id="users">
+			<ul class="nav nav-tabs">
+				<li class="active"><a ui-sref="account({ '#': 'ordersTab' })" data-toggle="tab">Orders</a></li>
+				<li ng-if="$ctrl.account.data.role !== 'Buyer'"><a ui-sref="account({ '#': 'productsTab' })" data-toggle="tab">Products</a></li>
+                <li ng-if="$ctrl.account.data.role !== 'Buyer'"><a ui-sref="account({ '#': 'addproductsTab' })" data-toggle="tab">Add Products</a></li>
+                <li ng-if="$ctrl.account.data.role !== 'Buyer'"><a ui-sref="account({ '#': 'updateproductsTab' })" data-toggle="tab">Update Products</a></li>
+				<li ng-if="$ctrl.account.data.role !== 'Buyer'"><a ui-sref="account({ '#': 'salesTab' })" data-toggle="tab">Sales Analysis</a></li>
+				<li ng-if="$ctrl.account.data.role === 'Administrator'"><a ui-sref="account({ '#': 'bannersTab' })" data-toggle="tab">Home Banners</a></li>
+				<li ng-if="$ctrl.account.data.role === 'Administrator'"><a ui-sref="account({ '#': 'categoriesTab' })" data-toggle="tab">Categories</a></li>
+			</ul>
+		</span>
+		<div class="tab-content">
+			<div id="ordersTab" class="col-md-12 tab-pane fade in active">
+				<sellerorders></sellerorders>
+			</div>
+			<div id="productsTab" class="col-md-12 tab-pane fade" ng-if="$ctrl.account.data.role !== 'Buyer'">
+                <sellerproducts></sellerproducts>
+			</div>
+			<div id="addproductsTab" class="col-md-12 tab-pane fade" ng-if="$ctrl.account.data.role !== 'Buyer'">
+                <selleraddproducts></selleraddproducts>
+            </div>
+            <div id="updateproductsTab" class="col-md-12 tab-pane fade" ng-if="$ctrl.account.data.role !== 'Buyer'">
+                <sellerupdateproducts></sellerupdateproducts>
+            </div>
+			<div id="salesTab" class="col-md-12 tab-pane fade" ng-if="$ctrl.account.data.role !== 'Buyer'">
+				<salesanalysis></salesanalysis>
+			</div>
+			<div id="bannersTab" class="col-md-12 tab-pane fade" ng-if="$ctrl.account.data.role === 'Administrator'">
+				<bannertools></bannertools>
+			</div>
+			<div id="categoriesTab" class="col-md-12 tab-pane fade" ng-if="$ctrl.account.data.role === 'Administrator'">
+				<categorytools></categorytools>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,86 @@
+<div class="row">
+    <div class="col-md-12">
+        <h1>Checkout</h1>
+        <hr>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-sm-6 sumcheckoutbox">
+        <form id="checkoutform" name="checkoutform" ng-submit="$ctrl.checkout()">
+            <h3 class="nopadding">Your address:</h3>
+            <hr>
+            <p><span class="text-danger">*</span> field is required.</p><br>
+            <div class="form-group">
+                <label for="username">Full name: <span class="text-danger">*</span></label>
+                <input type="text" id="username" name="username" class="form-control" maxlength="255" required ng-model="$ctrl.account.address.name"/>
+                <span ng-show="checkoutform.username.$touched && checkoutform.username.$invalid" class="text-danger">Full name is required.</span>
+            </div>
+            <div class="form-group">
+                <label for="street">Street: <span class="text-danger">*</span></label>
+                <input type="text" id="street" name="street" class="form-control" maxlength="255" required ng-model="$ctrl.account.address.street"/>
+                <span ng-show="checkoutform.street.$touched && checkoutform.street.$invalid" class="text-danger">Street is required.</span>
+            </div>
+            <div class="form-group">
+                <label for="city">City: <span class="text-danger">*</span></label>
+                <input type="text" id="city" name="city" class="form-control" maxlength="255" required ng-model="$ctrl.account.address.city"/>
+                <span ng-show="checkoutform.city.$touched && checkoutform.city.$invalid" class="text-danger">City is required.</span>
+            </div>
+            <div class="form-group">
+                <label for="state">State: <span class="text-danger">*</span></label>
+                <input type="text" id="state" name="state" class="form-control" maxlength="255" required ng-model="$ctrl.account.address.state"/>
+                <span ng-show="checkoutform.state.$touched && checkoutform.state.$invalid" class="text-danger">State is required.</span>
+            </div>
+            <div class="form-group">
+                <label for="zipcode">Zipcode: </label>
+                <input type="text" id="zipcode" name="zipcode" class="form-control" required ng-model="$ctrl.account.address.zip"/>
+            </div>
+            <div class="form-group">
+                <label for="phoneno">Phone Number: </label>
+                <input type="text" id="phoneno" name="phoneno" class="form-control" required ng-model="$ctrl.account.address.phone"/>
+            </div>
+            <br>
+            <h3>Payment Method</h3>
+            <hr>
+            <p>Please select a payment method: <span class="text-danger">*</span></p><br>
+            <div class="form-check">
+                <label class="radio-inline">
+                    <input type="radio" id="paypal" name="paymentmethod" value="paypal" class="form-check-input" required="required" ng-model="paymentmethod"/>
+                    <img src="images/paypal.png" alt="paypal logo" class="well">
+                </label>   
+                <label class="radio-inline">
+                    <input type="radio" id="visa" name="paymentmethod" value="visa" class="form-check-input" ng-model="paymentmethod"/>
+                    <img src="images/visa.png" alt="visa logo" class="well">
+                </label>    
+                <label class="radio-inline">
+                    <input type="radio" id="americanexp" name="paymentmethod" value="americanexp" class="form-check-input" ng-model="paymentmethod">
+                    <img src="images/americanexp.png" alt="americanexp logo" class="well">
+                </label>
+            </div>
+            <br>
+            <button type="submit" class="btn btncheckout" ng-disabled="checkoutform.$invalid">Checkout</button>
+        </form>
+    </div>
+    <div class="col-md-5 col-sm-5 col-md-push-1 col-sm-push-1 sumcheckoutbox">
+         <table class="table table-striped">
+            <tr>
+                <th>No</th>
+                <th>Product Name</th>
+                <th class="text-right">Price</th>
+                <th class="text-right">Shipping Price</th>
+            </tr>
+            <tr ng-repeat="sumcheckoutitem in $ctrl.checkoutitems">
+                <td>{{ $index + 1 }}.</td>
+                <td>{{ sumcheckoutitem.title }}</td>
+                <td class="text-right">RM {{ sumcheckoutitem.sumprice | number: 2 }}</td>
+                <td class="text-right">RM {{ sumcheckoutitem.shipping | number: 2 }}</td>
+            </tr>
+        </table>
+        <br>
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <p class="text-right">Total Amount: <span class="h4 text-success"><strong>RM {{ $ctrl.totalprice | number: 2 }}</strong></span></p>
+            </div>
+        </div>
+    </div>
+</div>
+<br>

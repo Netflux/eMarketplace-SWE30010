@@ -1,0 +1,22 @@
+.btnbasket {
+    text-transform: uppercase;
+    color:white;
+    background-color: #9c7242;
+    width:100%;
+    display:block;
+    margin:auto;
+}
+
+.btn-minus, .btn-plus {
+    padding: 1% 5% 1% 5%;
+    color:white;
+}
+
+.btn-minus{
+    margin-left: 2%;
+    margin-right: 4%;
+}
+
+.btn-plus {
+    margin-left: 4%;
+}
